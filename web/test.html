@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>test page</title>
+</head>
+<body style="background-color: yellowgreen">
+<script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+<div  >
+	<h5>This is test Page!</h5>
+<div>
+<input id="put" type="file" accept="image/*" onchange="selectItem()"></input>
+<canvas id="cnv" style="width: 80px;height: 80px;"></canvas>
+<script>
+	function selectItem(){
+		alert($("#put").val())
+		var beauty = new Image();  
+		beauty.src = "images/raw_1456592576.png"
+		var mycv = document.getElementById("cnv");
+		var myctx = mycv.getContext("2d");
+		myctx.drawImage(beauty, 0, 0);
+		var reader = new FileReader();
+		 reader.readAsDataURL($("#put").val());
+		 reader.onload = function(ev){
+		      var image = new Image();
+		      image.src = ev.target.result;
+		}
+	}
+</script>
+</body>
+</html>
