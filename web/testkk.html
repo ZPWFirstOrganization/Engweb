@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>练习</title>
+		<meta charset="UTF-8"> 
+		<script type="text/javascript" src="jquery-1.12.2.min.js"></script>
+		<script type="text/javascript" src="test.js"></script>
+	</head>
+	<body>
+		<input id="myinput" style="width:100px;height:20px;margin:0;backgroundColor:gray" value="请输入手机号" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+		<button id="testbtn" style="width:100px;height:20px;margin:0;backgroundColor:gray">测试</button>
+		<br/>
+		<img id="image" style="width:100px;height:100px;background-repeat:repeat-x;" src=""/>
+		<br/>
+		 <input type="file"onchange="selectImage(this);"/>
+		<br/>
+		 <input type="button"onclick="uploadImage();"value="提交"/>
+	</body>
+</html>
