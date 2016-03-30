@@ -13,132 +13,43 @@ a {
 .clear{
     clear: both;
 }
-.content{
+#main1{
     border: 1px solid #b1b1b1;
     border-radius: 10px;
-    padding: 1px 5px;
+    padding: 5px;
     margin: 5px;
-    background-color: white;
 }
-.content input{
+#main1 input{
+    width: 100%;
     border: none;
     outline: none;
 }
-.content .thing{
+#main1 .thing{
     border-bottom: 1px solid #c0c0c0;
     padding: 7px 0;
 }
-
-.content .thing-nopadding{
-    height: 31px;
-    border-bottom: 1px solid #c0c0c0;
-    padding: 2px 0;
-}
-
-.content .thing-last{
+#main1 .thing-last{
     border-bottom: none;
 }
-
-.content .left{
+#main1 .left{
     margin-right: 160px;
 }
-.content .left .left-left{
-    float: left;
-    width: 150px;
-}
-
-.content .left .left-left .put{
-    top: 0px;
-    bottom: 0px;
-    text-align: left;
-    border: 1px solid #b1b1b1;
-    border-radius: 5px;
-}
-
-.content .thing .wrapper{
-}
-.content .thing .wrapper .row{
-    width: 100%;
-    padding: 5px 0;
-}
-.content .thing .wrapper .row .btn{
-    width: 25%;
-    height: 30px;
-    margin-left: 6.25%;
-    background-color: white;
-    border: 1px solid #b1b1b1;
-    border-radius: 5px;
-}
-.content .thing .wrapper .row .puttxt{
-    margin-left: 6%;
-    text-align:center;
-}
-.content .thing .wrapper .row .put{
-    margin-left: 6%;
-    width: 20%;
-    text-align:left;
-    color:#738FFE;
-}
-
-
-.content .thing .wrapper .row .positive{
-    background-color: #ff9800;
-    border-color: #ff9800;
-    color: white;
-}
-
-.content .verificationinput{
-    border: 1px solid #b1b1b1;
-    border-radius: 5px;
-    width: 100%;
-    height: 31px;
-}
-.content .areatxt{
-    border: 1px solid #b1b1b1;
-    border-radius: 5px;
-    width: 100%;
-}
-
-.content .imgtxt{
-    margin-top:15px; 
-}
-
-.content .imgfa{
-    margin-top: 20px;
-    float: left;
-}
-
-.content .image{
-    margin-right: 10%;
-    height: 60px;
-    width: 60px;
-    background-color: red;
-}
-.content .verificationbtn{
-    width: 80%;
-    margin-right: 5%;
-    border: 1px solid #b1b1b1;
-    border-radius: 5px;
-    background-color: #dddddd;
-    height: 31px
-}
-
-.content .right{
+#main1 .right{
     width: 160px;
     float: right;
     text-align: right;
 }
-.content .right .right-right{
+#main1 .right .right-right{
     float: right;
     width: 20px;
 }
-.content .right .right-left .put{
+#main1 .right .right-left .put{
     text-align: right;
 }
-.content .right .right-left{
+#main1 .right .right-left{
     margin-right: 20px;
 }
-.content .right-right .fa-angle-right{
+#main1 .right-right .fa-angle-right{
     font-size: 22px;
     color: #666;
 }
@@ -163,11 +74,11 @@ a {
     border-bottom: 1px solid #c0c0c0;
     padding: 5px 0;
 }
-.content .time-ipt{
+#main1 .time-ipt{
     color: #5663b5;
     text-align: center;
 }
-.content .border-item{
+#main1 .border-item{
     border-bottom: none;
     padding-bottom: 60px;
 }
@@ -185,19 +96,19 @@ a {
     border-radius: 5px;
     padding: 8px 0;
     position: absolute;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    bottom: 20px;
 }
 .msg{
-    color: #EE9D80;
-    font-size: 14px;
+    color: #FF9C0A;
+    font-size: 16px;
     width: 100%;
     text-align: center;
-    padding: 5px 0;
+    position: absolute;
+    bottom: 70px;
 }
 .msg .fa-exclamation-circle{
     font-size: 20px;
-    color: #FF9800;
+    color: #FF9C0A;
     margin-right: 10px;
 }
 
@@ -313,6 +224,29 @@ a {
     line-height: 30px;
     font-size: 14px;
 }
+.myCarStatus{
+	float: left;
+    width: 25%;
+}
+.myCarTitle{
+	text-align: center;
+	color: #b1b1b1;
+    line-height: 30px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.myCarInput{
+	text-align: center;
+	color: black;
+    line-height: 30px;
+    font-size: 15px;
+    width: 100%;
+}
+
+.todayHour{
+	color: #F30909;
+}
 .driver-list .list-time .time-num{
     font-size: 20px;
     font-weight: bold;
@@ -346,6 +280,26 @@ a {
     padding: 5px 25px;
     border-radius: 10px;
     color: #333;
+}
+.myCarBtn{
+	width: 33%;
+	background: #2F89E8;
+    border: 1px solid #cccccc;
+    padding: 5px 25px;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+.myCarBtnDiv{
+	color: #FF9C0A;
+	border-top: 1px solid #cccccc;
+	background: #fff;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
 }
 .search .search-left input{
     border: 1px solid #cccccc;
@@ -854,4 +808,59 @@ a {
 .music .fa-music{
     font-size: 30px;
     color: #ffffff;
+}
+.personalInfoTitleLeft{
+	float: left;
+	padding: 5px;
+}
+
+.personalInfoTitleRight{
+	text-align: right;
+	padding: 5px;
+}
+
+.personalDiv{ 
+    border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    padding: 1px;
+    margin: 5px;
+    padding: 5px;
+}
+.underLine{
+	border-bottom:1px solid #b1b1b1
+}
+
+.SMSInput{
+	border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    padding: 1px;
+    margin: 0px;
+    width: 60%;
+    padding: 5px;
+}
+
+.SMSclick{
+	border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    padding: 1px;
+    margin-left: 9%;
+    width: 30%;
+    padding: 5px;
+}
+
+.myCarName{
+	width:70%;
+	float:left;
+	color: #ffffff;
+    background: #FF9C0A;
+    text-align: center;
+    font-size: 16px;
+}
+
+.myCarDriver{
+	width:30%;
+	float: right;
+	color: #666666;
+    text-align: center;
+    font-size: 16px;
 }
