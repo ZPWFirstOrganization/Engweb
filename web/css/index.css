@@ -228,11 +228,15 @@ a {
 	float: left;
     width: 25%;
 }
+.myEquipmentStatus{
+	float: left;
+    width: 33.3%;
+}
 .myCarTitle{
 	text-align: center;
 	color: #b1b1b1;
     line-height: 30px;
-    font-size: 14px;
+    font-size: 13px;
     width: 100%;
 }
 
@@ -243,6 +247,7 @@ a {
     font-size: 15px;
     width: 100%;
 }
+
 
 .todayHour{
 	color: #F30909;
@@ -283,6 +288,16 @@ a {
 }
 .myCarBtn{
 	width: 33%;
+	background: #2F89E8;
+    border: 1px solid #cccccc;
+    padding: 5px 25px;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+.myEquipmentBtn{
+	width: 70%;
 	background: #2F89E8;
     border: 1px solid #cccccc;
     padding: 5px 25px;
@@ -859,8 +874,8 @@ a {
 
 .myCarDriver{
 	width:30%;
+	height: 100%;
 	float: right;
 	color: #666666;
     text-align: center;
-    font-size: 16px;
 }
