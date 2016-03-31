@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/icon/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/animate.min.css"/>
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+	<title>test page</title>
+</head>
+<body style="overflow: hidden;margin-top: 0;margin-left: 0;background-color: #666666">
+<audio id="musicAudio" src="music/music.mp3"></audio>
+<div id="page1" style="height: 100%;width: 100%;background-color: #666666;position: absolute;">
+	<div class="music"> <i class="fa fa-music" onclick="playMusic()"></i></div>
+	<div class="people">
+	    <div style="height:150px">
+	        <div class="name" style="display: none;">我是李自忠</div>
+	        <div class="old" style="display: none">25岁，入行12年</div>
+	        <div class="tag" style="display: none">乘着朋友圈的东风为您而来</div>
+	    </div>
+	    <div class="img" style="display: none"><div class="back"></div><img src="images/raw_1456592576.png" alt=""/></div>
+	</div>
+	<div class="down" onclick="nextPage(1)"><i class="fa fa-angle-down"></i></div>
+</div>
+<div id="page2" style="height: 100%;width: 100%;background-color: #666666;position: absolute;display: none">
+    <div class="up" onclick="lastPage(2)"><i class="fa fa-angle-up"></i></div>
+	<div class="music"> <i class="fa fa-music" onclick="playMusic()"></i></div>
+<div style="height: 250px;">
+    <div class="machine">
+        <div class="machine-number"><span class="machine-num">3</span>台挖掘机</div>
+        <div class="machine-info">
+            <ul>
+                <li>卡特彼特 336D、</li>
+                <li>小松 PC200-8、</li>
+                <li>日立 ZX200</li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="count">
+        <div class="count-info"><span class="count-num">3</span>名司机</div>
+        <div class="count-info">平均驾龄 <span class="count-num">3</span>年</div>
+        <div class="count-info">平均驾驶 <span class="count-num">3500</span>小时</div>
+    </div>
+</div>
+<div class="work">
+    <div class="work-title">
+        <div class="work-title-content">参与最多的工程</div>
+    </div>
+    <div class="work-info">
+        <ul>
+            <li class="li-bg">
+                <div class="back"></div>
+                <div class="nav-content">公路桥梁</div>
+            </li>
+            <li class="li-bg">
+                <div class="back" style="background: #29ABE2"></div>
+                <div class="nav-content">城建房产</div>
+            </li>
+            <li class="li-bg">
+                <div class="back" style="background: #AAD825"></div>
+                <div class="nav-content">农林水利</div>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="down" onclick="nextPage(2)"><i class="fa fa-angle-down"></i></div>
+</div>
+<div id="page2-2" style="height: 100%;width: 100%;background-color: #666666;position: absolute;display: none">
+<div class="up" onclick="lastPage(2)"><i class="fa fa-angle-up"></i></div>
+<div class="music"> <i class="fa fa-music" onclick="playMusic()"></i></div>
+<div style="height: 395px">
+    <div class="mic">
+        <div class="mic-name">累计驾驶挖掘机</div>
+        <div class="mic-time"><span class="mic-num">3500</span>小时</div>
+    </div>
+    <div class="mic-best-number">
+        <div class="mic-more-time">小时数最多的3个技能</div>
+        <div class="clear"></div>
+        <div class="mic-info">
+            <div class="info-1">
+                <div class="info-top">挖沟</div>
+                <div class="info-bottom">1500H</div>
+            </div>
+            <div class="info-2">
+                <div class="info-top">整平</div>
+                <div class="info-bottom">800H</div>
+            </div>
+            <div class="info-3">
+                <div class="info-top">甩陂</div>
+                <div class="info-bottom">500H</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="mic-type">
+    <div class="mic-type-title">最熟悉的机型</div>
+    <div class="mic-type-name">小松PC200-8</div>
+    <div class="clear"></div>
+</div>
+<div class="down" onclick="nextPage(2)"><i class="fa fa-angle-down"></i></div>
+</div>
+<div id="page3" style="height: 100%;width: 100%;background-color: #666666;position: absolute;display: none">
+<div class="up" onclick="lastPage(3)"><i class="fa fa-angle-up"></i></div>
+<div class="music"> <i class="fa fa-music" onclick="playMusic()"></i></div>
+<div class="self-introduction">
+    <div class="me">我 </div>
+    <div class="me-description">诚实稳重、踏实勤快、技术好、会日常保养、希望在成都附近找中挖开</div>
+</div>
+<div class="height"></div>
+<div class="self-phone">
+    <div class="phone-title">如果您需要我这样的，<br>来个电话吧，我们细聊！</div>
+    <div class="phone">
+        <i class="fa fa-phone"></i>
+        18735387115
+    </div>
+</div>
+<div class="represent" style="background-color: #7487f2;padding: 5px;border-radius: 10px;"><a href="#">我也为自己代言</a></div>
+<!-- <div class="down"><i class="fa fa-angle-down"></i></div> -->
+<div>
+<script type="text/javascript">
+	$(function(){
+        initLayout()
+        animpage1()
+    })
+    function initLayout(){
+
+    }
+    function playMusic(){
+        if($("#musicAudio")[0].paused){
+            $("#musicAudio")[0].play();
+        }else{
+            $("#musicAudio")[0].pause();
+        }
+    }
+
+    function nextPage(current){
+        if (current == 1){
+            $("#page1").addClass("bounceOutUp animated");
+            $("#page2").css({"display":"block"})
+            $("#page2").removeClass("bounceOutDown animated");
+
+            $("#page2").addClass("bounceInUp animated");
+            animpage2()
+        }else if(current == 2){
+            $("#page2").removeClass("bounceInUp animated");
+            $("#page2").addClass("bounceOutUp animated");
+            $("#page3").css({"display":"block"})
+            $("#page3").removeClass("bounceOutDown animated");
+            $("#page3").addClass("bounceInUp animated");
+            animpage3()
+        }
+        // $("#page2-2").css({"display":"block"})
+        // $("#page2-2").addClass("bounceInUp animated");
+        // animpage2_2();
+    }
+    function lastPage(current){
+        if (current == 2){
+            $("#page2").removeClass("bounceInUp animated");
+            $("#page2").addClass("bounceOutDown animated");
+            // $("#page1").css({"display":"block"})
+            $("#page1").removeClass("bounceOutUp animated");
+            $("#page1").addClass("bounceInDown animated");
+        }else if(current == 3){
+            $("#page3").removeClass("bounceInUp animated");
+            $("#page3").addClass("bounceOutDown animated");
+            // $("#page2").css({"display":"block"})
+            $("#page2").removeClass("bounceOutUp animated");
+            $("#page2").addClass("bounceInDown animated");
+        }
+        // $("#page2-2").css({"display":"block"})
+        // $("#page2-2").addClass("bounceInUp animated");
+        // animpage2_2();
+    }
+
+    function animpage1(){
+    	setTimeout(function(){
+            $animate=$('.name');
+            $animate.show().removeClass('bounceInRight animated').addClass('bounceInRight animated');
+            // setTimeout(function(){
+            //     $animate.removeClass('bounceInRight animated infinite');
+            // }, 999);
+        },0);
+        setTimeout(function(){
+            $animate=$('.old');
+            $animate.show().removeClass('bounceInRight animated').addClass('bounceInRight animated');
+            // setTimeout(function(){
+            //     $animate.removeClass('bounceInRight animated');
+            // }, 1000);
+        },1100);
+        setTimeout(function(){
+            $animate=$('.tag');
+            $animate.show().removeClass('bounceInRight animated').addClass('bounceInRight animated');
+            // setTimeout(function(){
+            //     $animate.removeClass('bounceInRight animated');
+            // }, 1000);
+        },2200);
+        setTimeout(function(){
+            $animate=$('.img');
+            $animate.fadeIn(500);
+            // $('.back').fadeOut(500);
+        },3300);
+    }
+    function animpage2(){
+        setTimeout(function(){
+            $animate=$('.machine');
+            $animate.show().removeClass('fadeInLeftBig animated').addClass('fadeInLeftBig animated');
+            // setTimeout(function(){
+            //     $animate.removeClass('fadeInLeftBig animated infinite');
+            // }, 1000);
+        },0);
+        setTimeout(function(){
+            $animate1=$('.count');
+            $animate1.show().removeClass('fadeInLeftBig animated').addClass('fadeInLeftBig animated');
+            // setTimeout(function(){
+            //     $animate1.removeClass('fadeInLeftBig animated');
+            // }, 1000);
+        },0);
+        setTimeout(function(){
+            $animate2=$('.work-title-content');
+            $animate2.fadeIn(800);
+        },1000);
+        setTimeout(function(){
+            $animate3=$('.back');
+            $animate3.fadeIn(800);
+        },1000);
+    }
+    function animpage2_2(){
+        setTimeout(function(){
+            $animate=$('.mic');
+            $animate.show().removeClass('fadeInLeftBig animated ').addClass('fadeInLeftBig animated');
+            // setTimeout(function(){
+            //     $animate.removeClass('fadeInLeftBig animated');
+            // }, 1000);
+        },0);
+        setTimeout(function(){
+            $animate1=$('.mic-best-number');
+            $animate1.fadeIn(800);
+        },1000);
+        setTimeout(function(){
+            $animate2=$('.mic-type');
+            $animate2.show().removeClass('fadeInRightBig animated').addClass('fadeInRightBig animated');
+            // setTimeout(function(){
+            //     $animate2.removeClass('fadeInRightBig animated infinite');
+            // }, 1000);
+        },1200);
+    }
+    function animpage3(){
+        setTimeout(function(){
+            $animate0=$('.me');
+            $animate0.show().removeClass('fadeInDownBig animated').addClass('fadeInDownBig animated');
+            // setTimeout(function(){
+            //     $animate0.removeClass('fadeInDownBig animated');
+            // }, 1000);
+        },100);
+        setTimeout(function(){
+            $animate=$('.me-description');
+            $animate.show().removeClass('slideInDown animated').addClass('slideInDown animated');
+            // setTimeout(function(){
+            //     $animate.removeClass('slideInDown animated');
+            // }, 1000);
+        },0);
+
+        setTimeout(function(){
+            $animate1=$('.self-phone');
+            $animate1.fadeIn(800);
+        },1100);
+
+        setTimeout(function(){
+            $animate2=$('.represent');
+            $animate2.show().removeClass('rotateInUpLeft animated').addClass('rotateInUpLeft animated');
+            // setTimeout(function(){
+            //     $animate2.removeClass('rotateInUpLeft animated');
+            // }, 1000);
+        },1500);
+    }
+</script>
+</body>
+</html>

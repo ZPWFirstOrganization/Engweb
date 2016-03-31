@@ -568,6 +568,17 @@ a {
     top:5px;
     z-index: 2;
 }
+ .up{
+    position: fixed;
+    left: 50%;
+    top: 5px;
+    margin-left: -12px;
+}
+ .up .fa-angle-up{
+    color: #ffffff;
+    font-size: 38px;
+    font-weight: bold;
+}
  .down{
     position: fixed;
     left: 50%;
@@ -667,7 +678,7 @@ a {
     z-index:1;
     display: none;
 }
-.work .work-info li .content{
+.work .work-info li .nav-content{
     position: absolute;
     left: 50%;
     margin-top: 15px;
@@ -844,7 +855,7 @@ a {
 .represent a{
     width: 100%;
     color: #ffffff;
-    font-size: 22px;
+    font-size: 16px;
 }
 .music{
     text-align: right;
@@ -852,6 +863,12 @@ a {
     margin-top: 10px;
 }
 .music .fa-music{
+    margin-right: 10px;
     font-size: 30px;
     color: #ffffff;
+}
+.fa-remove{
+    margin-right: 10px;
+    font-size: 35px;
+    color: red;
 }

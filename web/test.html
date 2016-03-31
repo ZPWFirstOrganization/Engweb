@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>test page</title>
 </head>
 <body style="background-color: yellowgreen">
@@ -13,6 +14,7 @@
 <div>
 <input id="put" type="file" accept="image/*" onchange="selectItem()"></input>
 <canvas id="cnv" style="width: 80px;height: 80px;"></canvas>
+	<script src="js/services/httpService.js"></script>
 <script>
 	function selectItem(){
 		alert($("#put").val())
@@ -28,6 +30,8 @@
 		      image.src = ev.target.result;
 		}
 	}
+	CreateRecord()
+	// RetrieveSingleRecord()
 </script>
 </body>
 </html>
