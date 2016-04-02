@@ -9,18 +9,20 @@
     <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
     <script src="js/controller/inputMyCarController.js"></script>
     <script>
-        $(function(){
-            $('#shebei').focus(function(){
-                $.choose({
-                    callback:function(v){
-                        $('#shebei').val(v);
-                    }
-                })
-            })
-        })
+    	$(document).ready(function() {
+	    	$(function(){
+	            $('#shebei').focus(function(){
+	                $.choose({
+	                    callback:function(v){
+	                        $('#shebei').val(v);
+	                    }
+	                })
+	            })
+	        })
+    	})
     </script>
 </head>
-<body>
+<body style=" margin:0px; height:100%; "> 
     <div id="main1">
         <div class="thing">
             <div class="right">
@@ -67,6 +69,13 @@
             </div>
             <div class="left">登记时小时数</div>
             <div class="clear"></div>
+        </div>
+    </div>
+    <div id="showDriver" class="bindedDrivers">
+        <div class="bindTitle">已绑定司机</div>
+        <div class="bindInfo">
+        	<div class="bindLeftInfo" ></div>
+        	<div class="freeBind">解绑</div>
         </div>
     </div>
     <div class="button">

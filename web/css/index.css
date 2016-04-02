@@ -13,132 +13,122 @@ a {
 .clear{
     clear: both;
 }
-.content{
+
+.bindedDrivers{
+	border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 50px 5px 5px 5px;
+    display: none;
+}
+
+.bindTitle{
+	text-align: left;
+	font-size: 15px;
+	margin: 0px;
+	margin-bottom: 5px;
+	padding:5px ;
+}
+
+.bindInfo{
+	margin: 0px;
+}
+
+.bindLeftInfo{
+	text-align: left;
+	font-size: 15px;
+	margin: 0px;
+	padding: 5px;
+	float:left;
+	width: 70%;
+}
+.freeBind{
+	text-align: center;
+	font-size: 15px;
+	color: red;
+	margin-left: 1%;
+	padding: 5px;
+}
+.mainDriver{
     border: 1px solid #b1b1b1;
     border-radius: 10px;
-    padding: 1px 5px;
+    padding: 5px;
     margin: 5px;
-    background-color: white;
+    margin-top: 20px;
 }
-.content input{
+.mainDriver input{
+    width: 100%;
     border: none;
     outline: none;
 }
-.content .thing{
+.mainDriver .thing{
     border-bottom: 1px solid #c0c0c0;
     padding: 7px 0;
 }
-
-.content .thing-nopadding{
-    height: 31px;
-    border-bottom: 1px solid #c0c0c0;
-    padding: 2px 0;
-}
-
-.content .thing-last{
+.mainDriver .thing-last{
     border-bottom: none;
 }
+.mainDriver .left{
+    margin-right: 130px;
+}
+.mainDriver .right{
+    width: 130px;
+    float: right;
+    text-align: right;
+}
+.mainDriver .right .right-right{
+    float: right;
+    width: 20px;
+}
+.mainDriver .right .right-left .put{
+    text-align: right;
+}
+.mainDriver .right .right-left{
+    margin-right: 20px;
+}
+.mainDriver .right-right .fa-angle-right{
+    font-size: 22px;
+    color: #666;
+}
 
-.content .left{
+
+#main1{
+    border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+}
+#main1 input{
+    width: 100%;
+    border: none;
+    outline: none;
+}
+#main1 .thing{
+    border-bottom: 1px solid #c0c0c0;
+    padding: 7px 0;
+}
+#main1 .thing-last{
+    border-bottom: none;
+}
+#main1 .left{
     margin-right: 160px;
 }
-.content .left .left-left{
-    float: left;
-    width: 150px;
-}
-
-.content .left .left-left .put{
-    top: 0px;
-    bottom: 0px;
-    text-align: left;
-    border: 1px solid #b1b1b1;
-    border-radius: 5px;
-}
-
-.content .thing .wrapper{
-}
-.content .thing .wrapper .row{
-    width: 100%;
-    padding: 5px 0;
-}
-.content .thing .wrapper .row .btn{
-    width: 25%;
-    height: 30px;
-    margin-left: 6.25%;
-    background-color: white;
-    border: 1px solid #b1b1b1;
-    border-radius: 5px;
-}
-.content .thing .wrapper .row .puttxt{
-    margin-left: 6%;
-    text-align:center;
-}
-.content .thing .wrapper .row .put{
-    margin-left: 6%;
-    width: 20%;
-    text-align:left;
-    color:#738FFE;
-}
-
-
-.content .thing .wrapper .row .positive{
-    background-color: #ff9800;
-    border-color: #ff9800;
-    color: white;
-}
-
-.content .verificationinput{
-    border: 1px solid #b1b1b1;
-    border-radius: 5px;
-    width: 100%;
-    height: 31px;
-}
-.content .areatxt{
-    border: 1px solid #b1b1b1;
-    border-radius: 5px;
-    width: 100%;
-}
-
-.content .imgtxt{
-    margin-top:15px; 
-}
-
-.content .imgfa{
-    margin-top: 20px;
-    float: left;
-}
-
-.content .image{
-    margin-right: 10%;
-    height: 60px;
-    width: 60px;
-    background-color: red;
-}
-.content .verificationbtn{
-    width: 80%;
-    margin-right: 5%;
-    border: 1px solid #b1b1b1;
-    border-radius: 5px;
-    background-color: #dddddd;
-    height: 31px
-}
-
-.content .right{
+#main1 .right{
     width: 160px;
     float: right;
     text-align: right;
 }
-.content .right .right-right{
+#main1 .right .right-right{
     float: right;
     width: 20px;
 }
-.content .right .right-left .put{
+#main1 .right .right-left .put{
     text-align: right;
 }
-.content .right .right-left{
+#main1 .right .right-left{
     margin-right: 20px;
 }
-.content .right-right .fa-angle-right{
+#main1 .right-right .fa-angle-right{
     font-size: 22px;
     color: #666;
 }
@@ -163,16 +153,19 @@ a {
     border-bottom: 1px solid #c0c0c0;
     padding: 5px 0;
 }
-.content .time-ipt{
+#main1 .time-ipt{
     color: #5663b5;
     text-align: center;
 }
-.content .border-item{
+#main1 .border-item{
     border-bottom: none;
     padding-bottom: 60px;
 }
 .button{
-
+	position: fixed;
+	background: white;
+	bottom: 0px;
+	width: 100%;
 }
 .button button{
     width: 70%;
@@ -183,21 +176,21 @@ a {
     color: #fff;
     border: none;
     border-radius: 5px;
+   /* position: absolute;*/
     padding: 8px 0;
-    position: absolute;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .msg{
-    color: #EE9D80;
-    font-size: 14px;
+    color: #FF9C0A;
+    font-size: 16px;
     width: 100%;
     text-align: center;
-    padding: 5px 0;
+    margin-bottom: 10px;
+    /*position: absolute;*/
 }
 .msg .fa-exclamation-circle{
     font-size: 20px;
-    color: #FF9800;
+    color: #FF9C0A;
     margin-right: 10px;
 }
 
@@ -313,6 +306,34 @@ a {
     line-height: 30px;
     font-size: 14px;
 }
+.myCarStatus{
+	float: left;
+    width: 25%;
+}
+.myEquipmentStatus{
+	float: left;
+    width: 33.3%;
+}
+.myCarTitle{
+	text-align: center;
+	color: #b1b1b1;
+    line-height: 30px;
+    font-size: 13px;
+    width: 100%;
+}
+
+.myCarInput{
+	text-align: center;
+	color: black;
+    line-height: 30px;
+    font-size: 15px;
+    width: 100%;
+}
+
+
+.todayHour{
+	color: #F30909;
+}
 .driver-list .list-time .time-num{
     font-size: 20px;
     font-weight: bold;
@@ -346,6 +367,78 @@ a {
     padding: 5px 25px;
     border-radius: 10px;
     color: #333;
+}
+.myCarBtn{
+	width: 33%;
+	background: #2F89E8;
+    border: 1px solid #cccccc;
+    padding: 5px 25px;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+.myEquipmentBtn{
+	width: 70%;
+	background: #2F89E8;
+    border: 1px solid #cccccc;
+    padding: 5px 25px;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+.myCarBtnDiv{
+	color: #FF9C0A;
+	border-top: 1px solid #cccccc;
+	background: #fff;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+}
+.selectMyCarDiv{
+	color: #FF9C0A;
+	border-bottom: 1px solid #cccccc;
+	height: 30px;
+	background: #fff;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 15;
+}
+
+.selectDriversDiv{
+    border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+    overflow: auto;
+}
+
+.driversDiv{
+	height: 100%;
+	width: 100%;
+	position: fixed;
+    top: 0px;
+    background: #fff;
+    z-index: 20;
+}
+
+.selectMycarBtn{
+	width: 20%;
+	height: 20px;
+	background: #AAAAAA;
+    border: 1px solid #cccccc;
+    padding: 0;
+    font-size: 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+    color: #ffffff;
+}
+.selectdMyCarBtnClass{
+	background: #FF9C0A;
 }
 .search .search-left input{
     border: 1px solid #cccccc;
@@ -493,7 +586,7 @@ a {
     width: 100%;
     height:100%;
     left: 0;
-    top:0;
+    top:30px;
     background: #fff;
     z-index: 11;
 }
@@ -567,17 +660,6 @@ a {
     left:3px;
     top:5px;
     z-index: 2;
-}
- .up{
-    position: fixed;
-    left: 50%;
-    top: 5px;
-    margin-left: -12px;
-}
- .up .fa-angle-up{
-    color: #ffffff;
-    font-size: 38px;
-    font-weight: bold;
 }
  .down{
     position: fixed;
@@ -678,7 +760,7 @@ a {
     z-index:1;
     display: none;
 }
-.work .work-info li .nav-content{
+.work .work-info li .content{
     position: absolute;
     left: 50%;
     margin-top: 15px;
@@ -855,7 +937,7 @@ a {
 .represent a{
     width: 100%;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 22px;
 }
 .music{
     text-align: right;
@@ -863,12 +945,63 @@ a {
     margin-top: 10px;
 }
 .music .fa-music{
-    margin-right: 10px;
     font-size: 30px;
     color: #ffffff;
 }
-.fa-remove{
-    margin-right: 10px;
-    font-size: 35px;
-    color: red;
+.personalInfoTitleLeft{
+	float: left;
+	padding: 5px;
+}
+
+.personalInfoTitleRight{
+	text-align: right;
+	padding: 5px;
+}
+
+.personalDiv{ 
+    border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    padding: 1px;
+    margin: 5px;
+    padding: 5px;
+}
+.underLine{
+	border-bottom:1px solid #b1b1b1
+}
+
+.SMSInput{
+	border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    padding: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 60%;
+    padding: 5px;
+}
+
+.SMSclick{
+	border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    padding: 1px;
+    margin-top: 10px;
+    margin-left: 5%;
+    width: 30%;
+    padding: 5px;
+}
+
+.myCarName{
+	width:70%;
+	float:left;
+	color: #ffffff;
+    background: #FF9C0A;
+    text-align: center;
+    font-size: 16px;
+}
+
+.myCarDriver{
+	width:30%;
+	height: 100%;
+	float: right;
+	color: #666666;
+    text-align: center;
 }
