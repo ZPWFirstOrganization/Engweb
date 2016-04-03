@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="css/icon/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/animate.min.css"/>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index2.css">
     <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
-	<title>test page</title>
+	<title>我为自己代言</title>
 </head>
-<body style="overflow: hidden;margin-top: 0;margin-left: 0;background-color: #666666">
+<body style="overflow: hidden;margin-top: 0;margin-left: 0;background-color: #666666" scroll="no">
 <audio id="musicAudio" src="music/music.mp3"></audio>
 <div id="page1" style="height: 100%;width: 100%;background-color: #666666;position: absolute;">
 	<div class="music"> <i class="fa fa-music" onclick="playMusic()"></i></div>
@@ -124,6 +124,9 @@
 <div>
 <script type="text/javascript">
 	$(function(){
+        document.body.addEventListener('touchmove', function (event) {
+            event.preventDefault();
+        }, false);
         initLayout()
         animpage1()
     })
@@ -133,8 +136,10 @@
     function playMusic(){
         if($("#musicAudio")[0].paused){
             $("#musicAudio")[0].play();
+            $(".fa-music").css({"color":"white"});
         }else{
             $("#musicAudio")[0].pause();
+            $(".fa-music").css({"color":"#aaaaaa"});
         }
     }
 
@@ -145,14 +150,14 @@
             $("#page2").removeClass("bounceOutDown animated");
 
             $("#page2").addClass("bounceInUp animated");
-            animpage2()
+            setTimeout("animpage2()",500);
         }else if(current == 2){
             $("#page2").removeClass("bounceInUp animated");
             $("#page2").addClass("bounceOutUp animated");
             $("#page3").css({"display":"block"})
             $("#page3").removeClass("bounceOutDown animated");
             $("#page3").addClass("bounceInUp animated");
-            animpage3()
+            setTimeout("animpage3()",500);
         }
         // $("#page2-2").css({"display":"block"})
         // $("#page2-2").addClass("bounceInUp animated");
@@ -204,6 +209,7 @@
             $animate.fadeIn(500);
             // $('.back').fadeOut(500);
         },3300);
+//        $(".down").addClass("animated bounce infinite")
     }
     function animpage2(){
         setTimeout(function(){
@@ -226,7 +232,7 @@
         },1000);
         setTimeout(function(){
             $animate3=$('.back');
-            $animate3.fadeIn(800);
+            $animate3.fadeIn(2000);
         },1000);
     }
     function animpage2_2(){

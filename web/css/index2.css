@@ -1,0 +1,877 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei';
+    font-size: 15px;
+}
+ul,li{
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.clear{
+    clear: both;
+}
+.content{
+    border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    padding: 1px 5px;
+    margin: 5px;
+    background-color: white;
+}
+.content input{
+    border: none;
+    outline: none;
+}
+.content .thing{
+    border-bottom: 1px solid #c0c0c0;
+    padding: 7px 0;
+}
+
+.content .thing-nopadding{
+    height: 31px;
+    border-bottom: 1px solid #c0c0c0;
+    padding: 2px 0;
+}
+
+.content .thing-last{
+    border-bottom: none;
+}
+
+.content .left{
+    margin-right: 160px;
+}
+.content .left .left-left{
+    float: left;
+    width: 150px;
+}
+
+.content .left .left-left .put{
+    top: 0px;
+    bottom: 0px;
+    text-align: left;
+    border: 1px solid #b1b1b1;
+    border-radius: 5px;
+}
+
+.content .thing .wrapper{
+}
+.content .thing .wrapper .row{
+    width: 100%;
+    padding: 5px 0;
+}
+.content .thing .wrapper .row .btn{
+    width: 25%;
+    height: 30px;
+    margin-left: 6.25%;
+    background-color: white;
+    border: 1px solid #b1b1b1;
+    border-radius: 5px;
+}
+.content .thing .wrapper .row .puttxt{
+    margin-left: 6%;
+    text-align:center;
+}
+.content .thing .wrapper .row .put{
+    margin-left: 6%;
+    width: 20%;
+    text-align:left;
+    color:#738FFE;
+}
+
+
+.content .thing .wrapper .row .positive{
+    background-color: #ff9800;
+    border-color: #ff9800;
+    color: white;
+}
+
+.content .verificationinput{
+    border: 1px solid #b1b1b1;
+    border-radius: 5px;
+    width: 100%;
+    height: 31px;
+}
+.content .areatxt{
+    border: 1px solid #b1b1b1;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.content .imgtxt{
+    margin-top:15px; 
+}
+
+.content .imgfa{
+    margin-top: 20px;
+    float: left;
+}
+
+.content .image{
+    margin-right: 10%;
+    height: 60px;
+    width: 60px;
+    background-color: red;
+}
+.content .verificationbtn{
+    width: 80%;
+    margin-right: 5%;
+    border: 1px solid #b1b1b1;
+    border-radius: 5px;
+    background-color: #dddddd;
+    height: 31px
+}
+
+.content .right{
+    width: 160px;
+    float: right;
+    text-align: right;
+}
+.content .right .right-right{
+    float: right;
+    width: 20px;
+}
+.content .right .right-left .put{
+    text-align: right;
+}
+.content .right .right-left{
+    margin-right: 0;
+}
+.content .right-right .fa-angle-right{
+    font-size: 22px;
+    color: #666;
+}
+ .item .item-li{
+    width: 50%;
+    float: left;
+    line-height: 35px;
+}
+ .item .item-li .li-right{
+    float: right;
+    width: 70px;
+}
+.item .item-li .li-right .ipt{
+    text-align: left;
+    color: #5663b5;
+}
+.item .item-li .li-left{
+  margin-right: 70px;
+    text-align: center;
+}
+ .item{
+    border-bottom: 1px solid #c0c0c0;
+    padding: 5px 0;
+}
+.content .time-ipt{
+    color: #5663b5;
+    text-align: center;
+}
+.content .border-item{
+    border-bottom: none;
+    padding-bottom: 60px;
+}
+.button{
+
+}
+.button button{
+    width: 70%;
+    margin-left: 15%;
+    text-align: center;
+    font-size: 20px;
+    background: #728FFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 0;
+    position: absolute;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.msg{
+    color: #EE9D80;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+.msg .fa-exclamation-circle{
+    font-size: 20px;
+    color: #FF9800;
+    margin-right: 10px;
+}
+
+/*司机信息*/
+#driver{
+    margin-top: 5px;
+}
+#driver input{
+    width: 100%;
+    border: none;
+    outline: none;
+}
+#driver .driver-name{
+    width: 60px;
+    height: 122px;
+    line-height: 122px;
+    background: #FF9C0A;
+    color: #ffffff;
+    font-size:208px;
+    text-align: center;
+    float: left;
+}
+#driver .driver-info{
+    padding-left: 5px;
+    margin-left: 60px;
+    border-bottom: 1px solid #b1b1b1;
+    border-top: 1px solid #b1b1b1;
+}
+#driver .driver-info .info-li{
+    float: left;
+    width: 50%;
+}
+#driver .driver-info .info-li div{
+    line-height: 30px;
+}
+#driver .driver-info .info-li .info-name{
+    color: #bababa;
+}
+#driver .driver-info .info-li .info-time{
+    font-size: 20px;
+    font-weight: bold;
+}
+#driver .driver-info .info-li .color-time{
+    color: #FF9C0A;
+}
+#driver .driver-info .info-li .info-time input{
+    text-align: left;
+    font-weight: bold;
+    font-size: 20px;
+}
+#driver .driver-info .info-li .info-time  .color-ipt{
+    color: #FF9C0A;
+}
+.border-item{
+    border-bottom: none;
+    margin-top: 10px;
+}
+#driver .tab{
+    margin-top: 10px;
+}
+#driver table tr th{
+    background: #FF9C0A;
+    color: #ffffff;
+    line-height: 30px;
+    font-size: 16px;
+}
+#driver table tr td{
+    text-align: center;
+    line-height: 30px;
+}
+
+/*司机列表*/
+.driver-list{
+    margin-top: 5px;
+}
+.driver-list li{
+    border-bottom: 2px solid #d1d1d1;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+.driver-list .list-name{
+    height: 40px;
+    line-height: 40px;
+}
+.driver-list .list-name .name-left{
+    width: 50%;
+    float: left;
+    color: #ffffff;
+    background: #FF9C0A;
+    text-align: center;
+    font-size: 16px;
+}
+.driver-list .list-name .name-right{
+    width: 50%;
+    float: right;
+    color: #666666;
+    text-align: center;
+    font-size: 16px;
+}
+.driver-list .list-time{
+    height: 60px;
+}
+.driver-list .list-time .time-left{
+    width: 50%;
+    float: left;
+}
+.driver-list .list-time .time-right{
+    width: 50%;
+    float: right;
+}
+.driver-list .list-time .time-name{
+    color: #b1b1b1;
+    line-height: 30px;
+    font-size: 14px;
+}
+.driver-list .list-time .time-num{
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.driver-list .list-time .color-num{
+    color: #FF9C0A;
+}
+
+/*司机查询*/
+.search , .search-info{
+    margin: 5px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    height: 70px;
+    line-height: 70px;
+    margin-bottom: 15px;
+}
+.search .search-right{
+    float: right;
+    width: 100px;
+    text-align: center;
+}
+.search .search-left{
+    margin-right: 115px;
+    padding-left: 5px;
+}
+.search .search-right button{
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    padding: 5px 25px;
+    border-radius: 10px;
+    color: #333;
+}
+.search .search-left input{
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    outline: none;
+    padding-left: 5px;
+    color: #333;
+}
+.search-info li{
+    line-height: 35px;
+    border-bottom: 1px solid #cccccc;
+
+}
+.search-info .li-last{
+    border-bottom: none;
+}
+.search-info .info-left{
+    float: left;
+    width: 45%;
+    padding-left: 5px;
+}
+.search-info .info-right{
+    float: right;
+    width: 45%;
+    text-align: right;
+    padding-right: 20px;
+}
+.search-btn{
+    width: 70%;
+    margin-left: 15%;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    background: #728FFF;
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+    bottom: 20px;
+}
+
+/*绑定司机6*/
+.bind-driver{
+    margin: 5px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+.bind-driver p{
+    line-height: 40px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+.bind-driver ul{
+    margin-bottom: 50px;
+}
+.bind-driver li{
+    line-height: 35px;
+    border-bottom: 1px solid #cccccc;
+}
+.bind-driver .bind-last{
+    border-bottom: none;
+}
+.bind-driver li .bind-left{
+    float: left;
+    width: 100px;
+    text-align: center;
+}
+.bind-driver li .bind-right{
+    float: right;
+    width: 80px;
+    text-align: center;
+    color: #FF9C0A;
+}
+.bind-driver li .bind-middle{
+    margin-left: 100px;
+    margin-right: 80px;
+}
+.bind-btn{
+    width: 70%;
+    margin-left: 15%;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    background: #728FFF;
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/*设备列表7*/
+.equipment{
+    margin-bottom: 20px;
+}
+.equipment li{
+    border-bottom: 1px solid #aaaaaa;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+.equipment .equipment-top{
+    height: 40px;
+    line-height: 40px;
+}
+.equipment .equipment-top .top-right{
+    width: 130px;
+    float: right;
+    text-align: center;
+    font-size: 20px;
+    color: #666666;
+}
+.equipment .equipment-top .top-left{
+    margin-right: 130px;
+    background: #FF9C0A;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+}
+.equipment .equipment-bottom{
+    height: 60px;
+}
+.equipment .equipment-bottom .bottom-left ,.bottom-middle,.bottom-right{
+    float: left;
+    width: 33%;
+}
+.equipment .equipment-bottom .eq-name{
+    color: #b1b1b1;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.equipment .equipment-bottom .eq-num{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.equipment .equipment-bottom .eq-color{
+    color: #FF9C0A;
+}
+
+/*设备表8*/
+.equipment-list{
+    position: fixed;
+    width: 100%;
+    height:100%;
+    left: 0;
+    top:0;
+    background: #fff;
+    z-index: 11;
+}
+.equipment-list .el-left{
+    width: 150px;
+    height:100%;
+    float: left;
+    border-right: 1px solid #cccccc;
+    overflow-y: scroll;
+}
+.equipment-list .el-left li{
+    line-height: 30px;
+    color: #b1b1b1;
+    border-bottom: 1px solid #ccc;
+    padding-left: 10px;
+     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.equipment-list .el-right{
+    margin-left: 150px;
+    height: 100%;
+    overflow-y: scroll;
+}
+.equipment-list .el-right li{
+    line-height: 55px;
+    color: #b1b1b1;
+    border-bottom: 1px solid #ccc;
+    padding-left: 10px;
+}
+.equipment-list .el-left .hover-li{
+    color: #007aff;
+}
+.equipment-list .el-right .hover-li{
+    color: #007aff;
+}
+
+/*人物介绍9*/
+#body{
+    background: #666666;
+}
+.people{
+    color: #ffffff;
+    font-weight: bold;
+}
+.people .name,.old,.tag{
+    font-size: 22px;
+    text-align: center;
+    line-height: 45px;
+}
+.people .img{
+    text-align: center;
+    width: 230px;
+    height: 330px;
+    background: #ffffff;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    margin-left: -115px;
+    /*margin-top: 15px;*/
+}
+.people .img .back{
+    /*background: #ccc;*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.people .img  img{
+    width: 100%;
+    height: 100%;
+    /*position: absolute;*/
+    /*left:3px;*/
+    /*top:5px;*/
+    z-index: 2;
+}
+ .up{
+    position: fixed;
+    left: 50%;
+    top: 5px;
+    margin-left: -12px;
+}
+ .up .fa-angle-up{
+    color: #ffffff;
+    font-size: 38px;
+    font-weight: bold;
+}
+ .down{
+    position: fixed;
+    left: 50%;
+    bottom: 5px;
+    margin-left: -12px;
+}
+ .down .fa-angle-down{
+     color: #ffffff;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+
+/*机器设备10*/
+.machine{
+    margin-left: 20px;
+    display: none;
+}
+.machine .machine-number{
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    color: #ffffff;
+    font-size: 22px;
+    border-bottom: 1px solid #ffffff;
+}
+.machine .machine-number .machine-num{
+    font-size: 28px;
+    color: #FF9C0A;
+    font-weight: bold;
+}
+.machine .machine-info{
+    margin-top: 15px;
+}
+.machine .machine-info li{
+    float: left;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 30px;
+}
+.count{
+    margin-top: 30px;
+    margin-right: 20px;
+    display: none;
+}
+.count .count-info{
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 40px;
+    text-align: right;
+}
+.count .count-info .count-num{
+    font-size: 28px;
+    color: #FF9C0A;
+    font-weight: bold;
+}
+.work{
+    margin-top: 30px;
+    margin-left: 20px;
+}
+.work .work-title{
+    width: 160px;
+    height: 41px;
+}
+.work .work-title .work-title-content{
+	width:100%;
+	height:100%;
+    line-height: 40px;
+    color: #ffffff;
+    font-size: 22px;
+    border-bottom: 1px solid #ffffff;
+    display: none;
+}
+.work .work-info{
+    margin-top: 20px;
+}
+.work .work-info li{
+    margin: 0 5px;
+    float: left;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+    background: none;
+}
+.work .work-info li .back{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    color: #ffffff;
+    position: absolute;
+    background: #FF9C0A;
+    top:0;
+    right:0;
+    z-index:1;
+    display: none;
+}
+.work .work-info li .nav-content{
+    position: absolute;
+    left: 50%;
+    margin-top: 15px;
+    margin-left: -30px;
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+    z-index:2;
+    text-align: center;
+}
+
+
+/*司机技能11*/
+.mic{
+    margin-left: 20px;
+    display: none;
+}
+.mic .mic-name{
+    width: 170px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ffffff;
+    font-size: 22px;
+    color: #ffffff;
+}
+.mic .mic-time{
+    font-size: 22px;
+    color: #ffffff;
+    margin-top: 5px;
+}
+.mic .mic-time .mic-num{
+    font-size: 28px;
+    color: #FF9C0A;
+    font-weight: bold;
+}
+.mic-best-number{
+    margin-top: 20px;
+    display: none;
+}
+.mic-best-number .mic-info{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.mic-best-number .mic-info .info-1{
+    width: 130px;
+    height: 130px;
+    color: #ffffff;
+    background: #FF9C0A;
+    border-radius: 50%;
+    text-align: center;
+    float: left;
+}
+.mic-best-number .mic-info .info-2{
+    width: 110px;
+    height: 110px;
+    color: #ffffff;
+    background: #29ABE2;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 60px;
+    margin-top: 30px;
+    float: left;
+}
+.mic-best-number .mic-info .info-3{
+    width: 90px;
+    height: 90px;
+    color: #ffffff;
+    background: #AAD825;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 100px;
+    margin-top: 10px;
+    float: left;
+}
+.mic-best-number .mic-info .info-1 .info-top{
+    font-size: 26px;
+    padding-top: 25px;
+}
+.mic-best-number .mic-info .info-top{
+    font-size: 26px;
+    padding-top: 15px;
+}
+.mic-best-number .mic-info .info-bottom{
+    font-size: 22px;
+    line-height: 40px;
+}
+.mic-best-number .mic-more-time{
+    float: right;
+    width: 220px;
+    margin-right: 20px;
+    line-height: 40px;
+    font-size: 22px;
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+}
+.mic-type{
+    float: right;
+    margin-right: 20px;
+    margin-top: 15px;
+    display: none;
+}
+.mic-type .mic-type-title{
+    width: 140px;
+    line-height: 40px;
+    font-size: 22px;
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+}
+.mic-type  .mic-type-name{
+    margin-top: 5px;
+    font-size: 28px;
+    color: #FF9C0A;
+    font-weight: bold;
+}
+
+/*司机自我介绍12*/
+.self-introduction{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.self-introduction .me{
+    width: 60px;
+    height: 60px;
+    background: #AAD825;
+    color: #ffffff;
+    text-align: center;
+    line-height: 60px;
+    font-size: 30px;
+    display: none;
+}
+.self-introduction .me-description{
+    margin-top: 5px;
+    font-size: 22px;
+    color: #ffffff;
+    line-height: 35px;
+    display: none;
+}
+.height{
+    height: 60px;
+ }
+.self-phone{
+    margin-left: 20px;
+    display: none;
+
+}
+.self-phone .phone-title{
+    font-size: 26px;
+    color: #FF9C0A;
+    line-height: 50px;
+    font-weight: bold;
+}
+.self-phone .phone{
+    color: #ffffff;
+    font-size: 26px;
+    margin-top: 10px;
+}
+.self-phone .phone .fa-phone{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: #666;
+    border-radius: 10px;
+    background: #AAD825;
+    margin-right: 10px;
+}
+.represent{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -77px;
+    display: none;
+}
+.represent a{
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+.music{
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+.music .fa-music{
+    margin-right: 10px;
+    font-size: 30px;
+    color: #ffffff;
+}
+.fa-remove{
+    margin-right: 10px;
+    font-size: 35px;
+    color: red;
+}

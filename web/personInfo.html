@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>个人信息</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/icon/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/index2.css">
+    <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    
+</head>
+<body style="background-color: #f0f0f2;overflow-x: hidden">
+    <div class="content">
+        <div class="thing">
+            <div class="right">
+                <div class="right-right">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <div class="right-left">
+                    机主
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left">我是</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing">
+            <div class="right" style="margin-right: 15px">
+                <div class="right-right">
+                    <!-- <i class="fa fa-angle-right"></i> -->
+                </div>
+                <div class="right-left">
+                    <input type="text" placeholder="必填" class="put">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left">姓名</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing">
+            <div class="right" style="margin-right: 15px">
+                <div class="right-left">
+                    <input type="num" placeholder="必填" maxlength="11" class="put">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left">手机</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing-nopadding thing-last">
+                <div class="right">
+                <button class="verificationbtn" onclick="getVerificationbtn()">获得验证码</button>
+                </div>
+                <div class="left">
+                <input type="text" placeholder="请输入短信验证码" class="verificationinput">
+                </div>
+                <div class="clear"></div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="thing">
+            <div class="right">
+                <div class="right-right">
+                    <i class="fa fa-angle-right imgfa"></i>
+                </div>
+                <div class="right-left">
+                    <img class="image"/>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left imgtxt">照片</div>
+            <br>
+            <div class="left">
+            照片用于为自己代言
+            <input type="checkbox"/>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing">
+            <div class="right" style="margin-right: 15px">
+                <div class="right-left">
+                    <input type="text" placeholder="必填" class="put">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left">QQ号</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing">
+            <div class="right" style="margin-right: 15px">
+                <div class="right-left">
+                    <input type="text" placeholder="必填" class="put" >
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left">微信号</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing">
+            <div class="right">
+                <div class="right-right">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <div class="right-left">
+                    小松 PC2310-8
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left">熟悉机型</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing" style="display: block;">
+            <div>参与最多的工程（限3个）</div>
+            <div class="wrapper">
+                <div class="row">
+                <button class="btn positive">公路桥梁</button>
+                <button class="btn">园林绿化</button>
+                <button class="btn positive">城建房产</button>
+                </div>
+                <div class="row">
+                <button class="btn">矿山采掘</button>
+                <button class="btn positive">农林水利</button>
+                <button class="btn">其他</button>
+                </div>
+            </div>
+        </div>
+        <div class="thing thing-last">
+            <div>个人描述（用于自己代言）</div>
+            <div class="clear"></div>
+            <textarea class="areatxt" rows="2"></textarea>
+        </div>
+    </div>
+    <div class="msg"><i class="fa fa-exclamation-circle"></i> 以下信息提交后不可再修改，请真实正确填写</div>
+    <div class="content">
+        <div class="thing">
+            <div class="right" style="margin-right: 10px">
+<!--                 <div class="right-right">
+                    <i class="fa fa-angle-right"></i>
+                </div> -->
+                <input type="date" class="right-left" value="1970-01-01" style="text-align: right;">
+                    <!-- 1970-01-01 -->
+                </input>
+                <div class="clear"></div>
+            </div>
+            <div class="left">生日</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing">
+            <div class="right" style="margin-right: 10px">
+<!--                 <div class="right-right">
+                    <i class="fa fa-angle-right"></i>
+                </div> -->
+                <input type="month" class="right-left" value="2016-01" style="text-align: right;">
+                    <!-- 1970-01-01 -->
+                </input>
+                <div class="clear"></div>
+            </div>
+            <div class="left">入行时间</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing thing-last" style="display: block;">
+                <div>我的技能和小时数</div>
+                <div class="wrapper">
+                    <div class="row">
+                        <a class="puttxt">挖沟</a><input class="put" type="tel"  value="0"/>
+                        <a class="puttxt">整平</a><input class="put" type="tel"  value="0"/>
+                    </div>
+                    <div class="row">
+                        <a class="puttxt">甩坡</a><input class="put" type="tel"  value="0"/>
+                        <a class="puttxt">装车</a><input class="put" type="tel"  value="0"/>
+                    </div>
+                    <div class="row">
+                        <a class="puttxt">隧道</a><input class="put" type="tel"  value="0"/>
+                        <a class="puttxt">绿化</a><input class="put" type="tel"  value="0"/>
+                    </div>
+                    <div class="row">
+                        <a class="puttxt">河道</a><input class="put" type="tel"  value="0"/>
+                        <a class="puttxt">破碎</a><input class="put" type="tel"  value="0"/>
+                    </div>
+                    <div class="row">
+                        <a class="puttxt">拆楼</a><input class="put" type="tel"  value="0"/>
+                        <a class="puttxt">其他</a><input class="put" type="tel"  value="0"/>
+                    </div>
+                </div>
+        </div>
+        <div class="thing thing-last" style="display: block;">
+                <div class="left">我的技能和小时数</div>
+                <div class="wrapper">
+                    <div class="row">
+                        <a class="puttxt">土石装车</a><input class="put" type="tel"  value="0"/>
+                        <a class="puttxt">矿山装车</a><input class="put" type="tel"  value="0"/>
+                    </div>
+                    <div class="row">
+                        <a class="puttxt">搅拌站装料</a><input class="put" type="tel"  value="0"/>
+                        <a class="puttxt">其他</a><input class="put" type="tel"  value="0"/>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="button">
+        <button>提交</button>
+    </div>
+    <script type="text/javascript" src="js/controller/personInfoCtrl.js"></script>
+</body>
+</html>
