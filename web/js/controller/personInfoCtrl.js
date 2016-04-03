@@ -33,3 +33,7 @@ function checkSubmit(){
 function submit(){
 	
 }
+
+function initLayout(){
+
+}

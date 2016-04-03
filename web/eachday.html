@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>每日工作</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/icon/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/index2.css">
+    <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+</head>
+<body>
+    <div class="content">
+        <div class="thing">
+            <div class="right" style="margin-right: 10px">
+                <!--                 <div class="right-right">
+                                    <i class="fa fa-angle-right"></i>
+                                </div> -->
+                <input id="dateTnput" type="date" class="right-left" value="1970-01-01" style="text-align: right;">
+                <!-- 1970-01-01 -->
+                </input>
+                <div class="clear"></div>
+            </div>
+            <div class="left">创建日期</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing">
+            <div class="right">
+                <div class="right-right">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <div class="right-left">
+                    小松 PC2310-8
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left">操作设备</div>
+            <div class="clear"></div>
+        </div>
+        <div class="item">
+            <ul>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-1" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">挖沟</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-2" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">整平</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-3" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">甩坡</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-4" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">装车</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-5" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">隧道</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-6" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">绿化</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-7" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">河道</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-8" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">破碎</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-9" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">拆楼</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-10" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">其他</div>
+                    <div class="clear"></div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+            <ul>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="2" id="select2-1" onchange="seletChange(this)" onfocus="selectFocus(this)"">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">土石装车</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="2" id="select2-2" onchange="seletChange(this)" onfocus="selectFocus(this)"">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">矿山装车</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right"><select  class="ipt" roletype="2" class="ipt" id="select2-3" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select></div>
+                    <div class="li-left">搅拌站装料</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right">
+                    <select  class="ipt" selected class="ipt" roletype="2" id="select2-4" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select>
+                    </div>
+                    <div class="li-left">其他</div>
+                    <div class="clear"></div>
+                </li>
+            <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="thing" style="border-bottom:0">
+            <div class="right">
+                 <div class="time-ipt" id="hours">0</div>
+            </div>
+            <div class="left">当日小时数</div>
+            <div class="clear"></div>
+        </div>
+        <!--<div class="item border-item">-->
+            <!--<ul>-->
+                <!--<li class="item-li">-->
+                    <!--<div class="li-right"><input type="text" value="8" class="ipt"/></div>-->
+                    <!--<div class="li-left">正常H</div>-->
+                    <!--<div class="clear"></div>-->
+                <!--</li>-->
+                <!--<li class="item-li">-->
+                    <!--<div class="li-right"><input type="text" value="3" class="ipt"/></div>-->
+                    <!--<div class="li-left">加班小时数</div>-->
+                    <!--<div class="clear"></div>-->
+                <!--</li>-->
+                <!--<div class="clear"></div>-->
+            <!--</ul>-->
+        <!--</div>-->
+    </div>
+    <div class="button" style="right: 0;left: 0;bottom: 80px;position: fixed;">
+        <div class="msg"><i class="fa fa-exclamation-circle"></i> 提交后不可修改哦</div>
+        <button onclick="self.location='IsDriver.html'">提交</button>
+    </div>
+<script>
+    var type = 2;
+    var oldValue = 0;
+    $(function(){
+        initLayout()
+    })
+    function initLayout(){
+        $("#dateTnput").val((new Date()).format("isoDate"))
+    }
+    function seletChange(e) {
+        var sum = 0
+        if (e.getAttribute("roletype") == 1) {
+            for (var i = 1; i <= 10; i++) {
+                sum += parseInt($("#select1-"+i).val());
+            }
+            if(sum > 16){
+                alert("总小时数超过16，请重新输入");
+                $("#"+ e.id).val(oldValue)
+                return
+            }
+        } else {
+            for (var i = 1; i <= 4; i++) {
+                sum += parseInt($("#select2-"+i).val());
+            }
+            if(sum > 16){
+                alert("总小时数超过16，请重新输入");
+                $("#"+ e.id).val(oldValue)
+                return
+            }
+        }
+        $("#hours").text(sum);
+    }
+    function selectFocus(e){
+       oldValue =  parseInt($("#"+ e.id).val());
+        console.log(oldValue)
+    }
+</script>
+</body>
+
+</html>

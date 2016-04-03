@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>司机信息</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/icon/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/index2.css">
+    <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+</head>
+<body>
+    <div id="driver" >
+        <div class="driver-name">张强</div>
+        <div class="driver-info">
+            <ul>
+                <li class=" info-li">
+                    <div class="info-name">入行年月</div>
+                    <div class="info-time"><input type="text" value="2012-10"/></div>
+                </li>
+                <li class=" info-li">
+                    <div class="info-name">累计小时数</div>
+                    <div class="info-time color-time"><input type="text" value="1000" class="color-ipt"/></div>
+                </li>
+                <li class=" info-li">
+                    <div class="info-name">当前操作设备</div>
+                    <div class="info-time" style="font-size: 14px">卡特彼特 336D</div>
+                </li>
+                <li class=" info-li">
+                    <div class="info-name">已为老板服务T</div>
+                    <div class="info-time color-time"><input type="text" value="800" class="color-ipt"/></div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="item border-item">
+            <ul>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li1-1">6</div>
+                    <div class="li-left">挖沟</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li1-2">6</div>
+                    <div class="li-left">整平</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li1-3">6</div>
+                    <div class="li-left">甩坡</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li1-4">6</div>
+                    <div class="li-left">装车</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li1-5">6</div>
+                    <div class="li-left">隧道</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li1-6">6</div>
+                    <div class="li-left">绿化</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li1-7">6</div>
+                    <div class="li-left">河道</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li1-8">6</div>
+                    <div class="li-left">破碎</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li1-9">6</div>
+                    <div class="li-left">拆楼</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li1-10">6</div>
+                    <div class="li-left">其他</div>
+                    <div class="clear"></div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+            <ul>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li2-1">6</div>
+                    <div class="li-left">土石装车</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li2-2">6</div>
+                    <div class="li-left">矿山装车</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li2-3">6</div>
+                    <div class="li-left">搅拌站装料</div>
+                    <div class="clear"></div>
+                </li>
+                <li class="item-li">
+                    <div class="li-right" style="color: #5663b5" id="li2-4">6</div>
+                    <div class="li-left">其他</div>
+                    <div class="clear"></div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="tab">
+            <table width="100%" cellspacing="0" id="tableList">
+                <ul>
+                    <th>日期</th>
+                    <th>设备</th>
+                    <th>正常T</th>
+                    <th>加班T</th>
+                </ul>
+                <!--<tr>-->
+                    <!--<td>10-20</td>-->
+                    <!--<td>卡特彼特 336D</td>-->
+                    <!--<td>8</td>-->
+                    <!--<td>3</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>10-19</td>-->
+                    <!--<td>卡特彼特 336D</td>-->
+                    <!--<td>8</td>-->
+                    <!--<td>3</td>-->
+                <!--</tr>-->
+            </table>
+        </div>
+        <!--<div style="height: 60px"></div>-->
+        <div style="position: fixed;bottom: 0;left: 0;right: 0;background-color: white">
+            <button class="search-btn" id="recordBtn"  onclick="self.location='eachday.html'">记录努力的一天</button>
+        </div>
+    </div>
+
+<script>
+    function initLayout(data){
+        data = [
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+
+        ];
+        $.each(data, function(i,v){
+            var html = "<tr>";
+            html += "<td>"+ v.date+"</td>";
+            html += "<td>"+ v.shebei+"</td>";
+            html += "<td>"+ v.normal+"</td>";
+            html += "<td>"+ v.extra+"</td>";
+            html += "</tr>";
+            $("#tableList").append(html);
+        })
+//        $("#recordBtn").css({"position":"relative"});
+//        $("#recordBtn").css({"bottom":20});
+    }
+    $(function(){
+        initLayout()
+    })
+</script>
+</body>
+</html>
