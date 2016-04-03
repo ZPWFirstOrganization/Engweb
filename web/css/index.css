@@ -308,7 +308,11 @@ a {
 }
 .myCarStatus{
 	float: left;
-    width: 25%;
+    width: 33%;
+}
+.driverStatus{
+	float: left;
+    width: 50%;
 }
 .myEquipmentStatus{
 	float: left;
@@ -323,6 +327,21 @@ a {
 }
 
 .myCarInput{
+	text-align: center;
+	color: black;
+    line-height: 30px;
+    font-size: 15px;
+    width: 100%;
+}
+.driverTitle{
+	text-align: center;
+	color: #b1b1b1;
+    line-height: 30px;
+    font-size: 13px;
+    width: 100%;
+}
+
+.driverInput{
 	text-align: center;
 	color: black;
     line-height: 30px;
@@ -391,6 +410,15 @@ a {
 .myCarBtnDiv{
 	color: #FF9C0A;
 	border-top: 1px solid #cccccc;
+	background: #fff;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+}
+.driverShowDiv{
+	color: #FF9C0A;
 	background: #fff;
     font-size: 16px;
     width: 100%;
@@ -1000,6 +1028,22 @@ a {
 
 .myCarDriver{
 	width:30%;
+	height: 100%;
+	float: right;
+	color: #666666;
+    text-align: center;
+}
+.driverName{
+	width:50%;
+	float:left;
+	color: #ffffff;
+    background: #FF9C0A;
+    text-align: center;
+    font-size: 16px;
+}
+
+.driverPhone{
+	width:50%;
 	height: 100%;
 	float: right;
 	color: #666666;

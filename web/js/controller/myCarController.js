@@ -8,4 +8,11 @@ $(function(){
 		$('ul li:first-child .myCarInput').eq(3).text(i);
 		$("ul li:first-child").clone(true).appendTo("ul");
 	}
+	$("<div style='height:50px;'></div>").appendTo("ul");
+	$("ul li").each(function() {
+		$(this).click(function() {
+			alert("111")
+			window.location.href=''
+		})
+	})
 })
