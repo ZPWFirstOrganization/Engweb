@@ -65,7 +65,8 @@
                     <i class="fa fa-angle-right imgfa"></i>
                 </div>
                 <div class="right-left">
-                    <img class="image"/>
+                    <input class="image" type="file" style="position: absolute;width: 60px;height: 60px;opacity:0" accept="image/*" onchange="picChange(this)"/>
+                    <img class="image" id="personIcon"/>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -77,26 +78,26 @@
             </div>
             <div class="clear"></div>
         </div>
-        <div class="thing">
-            <div class="right" style="margin-right: 15px">
-                <div class="right-left">
-                    <input type="text" placeholder="必填" class="put">
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="left">QQ号</div>
-            <div class="clear"></div>
-        </div>
-        <div class="thing">
-            <div class="right" style="margin-right: 15px">
-                <div class="right-left">
-                    <input type="text" placeholder="必填" class="put" >
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="left">微信号</div>
-            <div class="clear"></div>
-        </div>
+        <!--<div class="thing">-->
+            <!--<div class="right" style="margin-right: 15px">-->
+                <!--<div class="right-left">-->
+                    <!--<input type="text" placeholder="必填" class="put">-->
+                <!--</div>-->
+                <!--<div class="clear"></div>-->
+            <!--</div>-->
+            <!--<div class="left">QQ号</div>-->
+            <!--<div class="clear"></div>-->
+        <!--</div>-->
+        <!--<div class="thing">-->
+            <!--<div class="right" style="margin-right: 15px">-->
+                <!--<div class="right-left">-->
+                    <!--<input type="text" placeholder="必填" class="put" >-->
+                <!--</div>-->
+                <!--<div class="clear"></div>-->
+            <!--</div>-->
+            <!--<div class="left">微信号</div>-->
+            <!--<div class="clear"></div>-->
+        <!--</div>-->
         <div class="thing">
             <div class="right">
                 <div class="right-right">
@@ -114,14 +115,14 @@
             <div>参与最多的工程（限3个）</div>
             <div class="wrapper">
                 <div class="row">
-                <button class="btn positive">公路桥梁</button>
-                <button class="btn">园林绿化</button>
-                <button class="btn positive">城建房产</button>
+                <button id="program1" class="btn" onclick="programClick(this,1)">公路桥梁</button>
+                <button id="program2" class="btn" onclick="programClick(this,2)">园林绿化</button>
+                <button id="program3" class="btn" onclick="programClick(this,3)">城建房产</button>
                 </div>
                 <div class="row">
-                <button class="btn">矿山采掘</button>
-                <button class="btn positive">农林水利</button>
-                <button class="btn">其他</button>
+                <button id="program4" class="btn" onclick="programClick(this,4)">矿山采掘</button>
+                <button id="program5" class="btn" onclick="programClick(this,5)">农林水利</button>
+                <button id="program6" class="btn" onclick="programClick(this,6)">其他</button>
                 </div>
             </div>
         </div>

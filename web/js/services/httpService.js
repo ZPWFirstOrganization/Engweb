@@ -1,50 +1,150 @@
-var baseUrl = "http://120.25.241.161:8081"
-function invokeMethod(url, data) {
+function invokeMethod(url,data,suc,err) {
     var returnValue;
     $.ajax({
         async: false,
         type: "POST",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
-        url: baseUrl+url,
+        url: url,
         data: data,
-        beforeSend:function(XMLHttpRequest){
-            XMLHttpRequest.setRequestHeader("Access-Control-Allow-Origin","*");
-            XMLHttpRequest.setRequestHeader("Access-Control-Allow-Origin","http://localhost:8080");
-        },
         success: function (data) {
-            alert(window.JSON.stringify(data));
+            return suc(data);
         },
         error: function (data) {
-            alert("error:" + data.status);
-            return;
+            return err(data);
         }
     });
     return returnValue;
 }
+//获取品牌
+function RetrieveMultipleBrand(data,suc,err){
+    var url = "/BaseData/BaseDataServices.svc/RetrieveMultipleBrand";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
 
-function CreateRecord() {
+//获取型号
+function RetrieveMultipleModel(data,suc,err){
+    var url = "/BaseData/BaseDataServices.svc/RetrieveMultipleModel";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//获取品牌型号
+function RetrieveMultipleBrandModel(data,suc,err){
+    var url = "/BaseData/BaseDataServices.svc/RetrieveMultipleBrandModel";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//普通短信
+function SendSMS(data,suc,err){
+    var url = "/SMS/SMSServices.svc/SendSMS";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//用户注册验证码短信
+function SendRegisterSMS(data,suc,err){
+    var url = "/SMS/SMSServices.svc/SendRegisterSMS";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//用户获取密码短信
+function SendGetPasswordSMS(data,suc,err){
+    var url = "/SMS/SMSServices.svc/SendGetPasswordSMS";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//创建联系人
+function CreateContact(data,suc,err){
     var url = "/Contact/ContactServices.svc/CreateContact";
-    var data = {"Contact":{"Subject":"FindJob Subject","ContactName":"FindJobContact","Phone":"FindJob Phone","BrandId":"","ModelId":"","Description":"FindJob Description"}};
-    invokeMethod(url, data);
+    var data = data
+    invokeMethod(url, data,suc,err);
 }
-function UpdateRecord() {
-    var url = "/Contact/ContactServices.svc/UpdateContact";
-    var data = document.getElementById("UpdateRecordJSON").value;
-    invokeMethod(url, data);
-}
-function DeleteRecord() {
-    var url = "/Contact/ContactServices.svc/DeleteContact";
-    var data = document.getElementById("DeleteRecordJSON").value;
-    invokeMethod(url, data);
-}
-function RetrieveSingleRecord() {
+
+//查询单条联系人
+function RetrieveSingleContact(data,suc,err){
     var url = "/Contact/ContactServices.svc/RetrieveSingleContact";
-    var data = {"Contact":{"FindJobId":"755931e6-cb13-e511-9415-e520d767005a","AppUserId":"A2A33A88-7C33-E511-9415-E520D767005A"}}
-    invokeMethod(url, data);
+    var data = data
+    invokeMethod(url, data,suc,err);
 }
-function RetrieveMultipleRecords() {
-    var url = "/Contact/ContactServices.svc/RetrieveMultipleContacts";
-    var data = document.getElementById("RetrieveMultipleRecordsJSON").value;
-    invokeMethod(url, data);
+
+//更新联系人
+function UpdateContact(data,suc,err){
+    var url = "/Contact/ContactServices.svc/UpdateContact";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//查询司机信息
+function RetrieveMultipleDrivers(data,suc,err){
+    var url = "/Contact/ContactServices.svc/RetrieveMultipleDrivers";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//创建设备档案
+function CreateEquipment(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/CreateEquipment";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//查询单条设备档案
+function RetrieveSingleEquipment(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/RetrieveSingleEquipment";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//查询多条设备档案
+function RetrieveMultipleEquipments(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/RetrieveMultipleEquipments";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//更新设备档案
+function UpdateEquipment(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/UpdateEquipment";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//删除设备
+function DisableEquipment(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/DisableEquipment";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//创建设备司机
+function CreateEquipmentDriver(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/CreateEquipmentDriver";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//解绑设备司机
+function UnboundEquipmentDriver(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/UnboundEquipmentDriver";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//设备司机报工
+function CreateEquipmentDriverWork(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/CreateEquipmentDriverWork";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//设备司机报工
+function CreateEquipmentDriverWork(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/CreateEquipmentDriverWork";
+    var data = data
+    invokeMethod(url, data,suc,err);
 }
