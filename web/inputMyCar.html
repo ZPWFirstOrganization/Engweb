@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>设备档案</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/icon/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+    <script src="js/controller/inputMyCarController.js"></script>
+    <script>
+    	$(document).ready(function() {
+	    	$(function(){
+	            $('#shebei').focus(function(){
+	                $.choose({
+	                    callback:function(v){
+	                        $('#shebei').val(v);
+	                    }
+	                })
+	            })
+	        })
+    	})
+    </script>
+</head>
+<body style=" margin:0px; height:100%; "> 
+    <div id="main1">
+        <div class="thing">
+            <div class="right">
+                <div class="right-right">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <div class="right-left">
+                    <input type="text" class="put" id="shebei" value="斗山 DH200-5">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left">品牌型号</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing">
+            <div class="right">
+                <div class="right-right">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <div class="right-left">
+                    <input type="text" value="2013-10" class="put">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left">购入年月</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing">
+            <div class="right">
+                <div class="right-left">
+                    <input type="text" value="400" class="put">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left">购入时小时数</div>
+            <div class="clear"></div>
+        </div>
+        <div class="thing thing-last">
+            <div class="right">
+                <div class="right-left">
+                    <input type="text" value="3400" class="put">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="left">登记时小时数</div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="showDriver" class="bindedDrivers">
+        <div class="bindTitle">已绑定司机</div>
+        <div class="bindInfo">
+        	<div class="bindLeftInfo" ></div>
+        	<div class="freeBind">解绑</div>
+        </div>
+    </div>
+    <div class="button">
+        <div class="msg"><i class="fa fa-exclamation-circle"></i> 提交后不可修改哦</div>
+        <button>提交</button>
+    </div>
+</body>
+</html>

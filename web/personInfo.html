@@ -13,13 +13,15 @@
 <body style="background-color: #f0f0f2;overflow-x: hidden">
     <div class="content">
         <div class="thing">
-            <div class="right">
-                <div class="right-right">
+            <div class="right" style="margin-right: 15px">
+<!--                 <div class="right-right" show="regist" style="display: none">
                     <i class="fa fa-angle-right"></i>
-                </div>
-                <div class="right-left">
-                    机主
-                </div>
+                </div> -->
+                <div show="hasregisted" style="display: none">机主</div>
+                <select class="right-left" onchange="ruleSelect(this)" id="ruleSelect" show="regist" style="display: none">
+                    <option value="1" selected>机主</option>
+                    <option value="2">司机</option>
+                </select>
                 <div class="clear"></div>
             </div>
             <div class="left">我是</div>
@@ -31,29 +33,31 @@
                     <!-- <i class="fa fa-angle-right"></i> -->
                 </div>
                 <div class="right-left">
-                    <input type="text" placeholder="必填" class="put">
+                    <div show="hasregisted" style="display: none">name1</div>
+                    <input type="text" placeholder="必填" class="put" id="name" show="regist" style="display: none">
                 </div>
                 <div class="clear"></div>
             </div>
             <div class="left">姓名</div>
             <div class="clear"></div>
         </div>
-        <div class="thing">
+        <div class="thing" style="border-bottom: 0">
             <div class="right" style="margin-right: 15px">
                 <div class="right-left">
-                    <input type="num" placeholder="必填" maxlength="11" class="put">
+                    <div show="hasregisted" style="display: none">1333333333</div>
+                    <input type="tel" placeholder="必填" id="phone" maxlength="11" class="put" show="regist" style="display: none">
                 </div>
                 <div class="clear"></div>
             </div>
             <div class="left">手机</div>
             <div class="clear"></div>
         </div>
-        <div class="thing-nopadding thing-last">
+        <div class="thing-nopadding thing-last" name="special" style="border-top: 1px solid #c0c0c0;" show="regist" style="display: none">
                 <div class="right">
                 <button class="verificationbtn" onclick="getVerificationbtn()">获得验证码</button>
                 </div>
                 <div class="left">
-                <input type="text" placeholder="请输入短信验证码" class="verificationinput">
+                <input type="tel" placeholder="请输入短信验证码" class="verificationinput" id="SMScode">
                 </div>
                 <div class="clear"></div>
         </div>
@@ -61,12 +65,12 @@
     <div class="content">
         <div class="thing">
             <div class="right">
-                <div class="right-right">
+                <div class="right-right" show="regist" style="display: none">
                     <i class="fa fa-angle-right imgfa"></i>
                 </div>
                 <div class="right-left">
-                    <input class="image" type="file" style="position: absolute;width: 60px;height: 60px;opacity:0" accept="image/*" onchange="picChange(this)"/>
-                    <img class="image" id="personIcon"/>
+                    <input class="image" type="file" style="position: absolute;width: 60px;height: 60px;opacity:0" accept="image/*" onchange="picChange(this)" show="regist" style="display: none"/>
+                    <img class="image" id="personIcon" src="images/icon.png" />
                 </div>
                 <div class="clear"></div>
             </div>
@@ -74,7 +78,7 @@
             <br>
             <div class="left">
             照片用于为自己代言
-            <input type="checkbox"/>
+            <input type="checkbox" id="isDaiyan" value="true" show="regist" style="display: none"/>
             </div>
             <div class="clear"></div>
         </div>
@@ -98,40 +102,43 @@
             <!--<div class="left">微信号</div>-->
             <!--<div class="clear"></div>-->
         <!--</div>-->
-        <div class="thing">
-            <div class="right">
-                <div class="right-right">
+        <div class="thing" id="driverCar" show="driver" style="display: none">
+            <div class="right" style="margin-right: 15px">
+                <div class="right-right" show="regist" style="display: none">
                     <i class="fa fa-angle-right"></i>
                 </div>
-                <div class="right-left">
-                    小松 PC2310-8
+                <div show="hasregisted" style="display: none">pc-mb22033</div>
+                <div class="right-left" id="shebei" show="regist" style="display: none">
+                    必选
                 </div>
                 <div class="clear"></div>
             </div>
             <div class="left">熟悉机型</div>
             <div class="clear"></div>
         </div>
-        <div class="thing" style="display: block;">
+        <div class="thing" id="masterProgram" show="master" style="display: none">
             <div>参与最多的工程（限3个）</div>
             <div class="wrapper">
                 <div class="row">
-                <button id="program1" class="btn" onclick="programClick(this,1)">公路桥梁</button>
-                <button id="program2" class="btn" onclick="programClick(this,2)">园林绿化</button>
-                <button id="program3" class="btn" onclick="programClick(this,3)">城建房产</button>
+                <button id="program1" class="btn" index="0" onclick="programClick(this,0)">公路桥梁</button>
+                <button id="program2" class="btn" index="1" onclick="programClick(this,1)">园林绿化</button>
+                <button id="program3" class="btn" index="2" onclick="programClick(this,2)">城建房产</button>
                 </div>
                 <div class="row">
-                <button id="program4" class="btn" onclick="programClick(this,4)">矿山采掘</button>
-                <button id="program5" class="btn" onclick="programClick(this,5)">农林水利</button>
-                <button id="program6" class="btn" onclick="programClick(this,6)">其他</button>
+                <button id="program4" class="btn" index="3" onclick="programClick(this,3)">矿山采掘</button>
+                <button id="program5" class="btn" index="4" onclick="programClick(this,4)">农林水利</button>
+                <button id="program6" class="btn" index="5" onclick="programClick(this,5)">其他</button>
                 </div>
             </div>
         </div>
         <div class="thing thing-last">
             <div>个人描述（用于自己代言）</div>
             <div class="clear"></div>
-            <textarea class="areatxt" rows="2"></textarea>
+            <div show="hasregisted" style="display: none"></div>
+            <textarea class="areatxt" rows="2" id="personDecription" show="regist" style="display: none"></textarea>
         </div>
     </div>
+    <div name="special" show="regist" style="display: none">
     <div class="msg"><i class="fa fa-exclamation-circle"></i> 以下信息提交后不可再修改，请真实正确填写</div>
     <div class="content">
         <div class="thing">
@@ -139,7 +146,7 @@
 <!--                 <div class="right-right">
                     <i class="fa fa-angle-right"></i>
                 </div> -->
-                <input type="date" class="right-left" value="1970-01-01" style="text-align: right;">
+                <input type="date" class="right-left" value="1970-01-01" style="text-align: right;" id="birthday">
                     <!-- 1970-01-01 -->
                 </input>
                 <div class="clear"></div>
@@ -147,12 +154,12 @@
             <div class="left">生日</div>
             <div class="clear"></div>
         </div>
-        <div class="thing">
+        <div class="thing" style="border-bottom: 0">
             <div class="right" style="margin-right: 10px">
 <!--                 <div class="right-right">
                     <i class="fa fa-angle-right"></i>
                 </div> -->
-                <input type="month" class="right-left" value="2016-01" style="text-align: right;">
+                <input type="month" class="right-left" value="2016-01" style="text-align: right;" id="joinTime">
                     <!-- 1970-01-01 -->
                 </input>
                 <div class="clear"></div>
@@ -160,7 +167,7 @@
             <div class="left">入行时间</div>
             <div class="clear"></div>
         </div>
-        <div class="thing thing-last" style="display: block;">
+        <div class="thing thing-last" style="display: none;" id="TimeArea1" show="driver1" style="border-top:1px solid #c0c0c0;" style="display: none">
                 <div>我的技能和小时数</div>
                 <div class="wrapper">
                     <div class="row">
@@ -185,7 +192,7 @@
                     </div>
                 </div>
         </div>
-        <div class="thing thing-last" style="display: block;">
+        <div class="thing thing-last" style="display: none;" id="TimeArea2" show="driver2" style="display: none">
                 <div class="left">我的技能和小时数</div>
                 <div class="wrapper">
                     <div class="row">
@@ -199,9 +206,12 @@
                 </div>
         </div>
     </div>
-    <div class="button">
-        <button>提交</button>
     </div>
+    <div class="button" show="regist" style="display: none">
+        <button class="btn" onclick="submit()">提交</button>
+    </div>
+    <script type="text/javascript" src="js/services/httpService.js"></script>
     <script type="text/javascript" src="js/controller/personInfoCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/selectCar.js"></script>
 </body>
 </html>

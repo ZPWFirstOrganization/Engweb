@@ -82,13 +82,13 @@ $(function(){
 	        if(!obj[0]){
 	            $('body').append(html);
 	            obj=$('.equipment-list');
-	            $('.el-left li').live('click',function(){
+	            $('.el-left').on('click',"li",function(){
 	                var index= $(this).index();
 	                $('.el-left li').removeClass('hover-li');
 	                $(this).addClass('hover-li');
 	                erji_fn(index,data2);
 	            })
-	            $('.el-right li').live('click',function(){
+	            $('.el-right li').on('click',"li",function(){
 	                $('.el-right li').removeClass('hover-li');
 	                $(this).addClass('hover-li');
 	                opt.callback($('.el-left li').html()+" "+$('.el-right .hover-li').html());

@@ -16,22 +16,12 @@
 <canvas id="cnv" style="width: 80px;height: 80px;"></canvas>
 	<script src="js/services/httpService.js"></script>
 <script>
-	function selectItem(){
-		alert($("#put").val())
-		var beauty = new Image();  
-		beauty.src = "images/raw_1456592576.png"
-		var mycv = document.getElementById("cnv");
-		var myctx = mycv.getContext("2d");
-		myctx.drawImage(beauty, 0, 0);
-		var reader = new FileReader();
-		 reader.readAsDataURL($("#put").val());
-		 reader.onload = function(ev){
-		      var image = new Image();
-		      image.src = ev.target.result;
-		}
-	}
-	CreateRecord()
-	// RetrieveSingleRecord()
+RetrieveMultipleBrand("",
+function(res){
+	alert("success:"+JSON.stringify(res));
+},function(){
+	alert("error"+JSON.stringify(res));
+})
 </script>
 </body>
 </html>
