@@ -27,61 +27,40 @@ function initLayout(){
 		console.log("查询联系人:",res);
 		//未查询到联系人
 		if(res.ReturnValue == "未能查询到该联系人的详细信息!"){
-			$("[name=special]").css({"display":"none"});
-			$("[show=hasregisted]").css({"display":"none"});
-			$("[show=regist]").css({"display":""});
-			$("[show=master]").css({"display":""})
-			$(".thing .wrapper .row .btn").click(function(e){
-				var dom = $("#"+ this.id);
-				if (dom.hasClass("positive")){
-					$.each(programs, function(i,v){
-						if(v == $(this).attr("index")){
-							programs.splice(i,0);
-							docs.splice(i,0);
-						}
-					})
-					dom.removeClass("positive");
-				}else{
-					if (programs.length>=3){
-						programs.shift();
-						docs[0].removeClass("positive");
-						docs.shift();
-					}
-					dom.addClass("positive");
-					programs.push($(this).attr("index"));
-					docs.push(dom);
-				}
-			})
+			// $("[name=special]").css({"display":"none"});
+			// $("[show=hasregisted]").css({"display":"none"});
+			// $("[show=regist]").css({"display":""});
+			// $("[show=master]").css({"display":""})
 		//查询到联系人
 		}else{
 			person = res;
 			$("[show=hasregisted]").css({"display":""});
 			$("[show=regist]").css({"display":"none"});
-			$(".button button").text("修改资料");
+			// $(".button button").text("修改资料");
 			// $(".button button").addClass("btnpositive");
+			var rulOption = '';
+			var maps = [];
 			if (person.ContactType == 1){
+				rulOption = '<option value="1" selected>机主</option><option value="2">司机</option>';
 				$("[show=master]").css({"display":""});
-				var maps = ["ContactTypeName","ContactName","MobilePhone","","OwnerRepresent"];
-				$("div[show=hasregisted]").each(function(i,v) {
-					$(this).text(person[maps[i]]);
-				})
+				maps = ["ContactName","MobilePhone"];
+				$("[action=update]").each(function(i,v){
+					$(this).val(person[maps[i]])
+				});
+				$("#personDecription").text(person.OwnerRepresent)
 				maps = ["ProjectType_GLQL","ProjectType_YLLH","ProjectType_CJFC","ProjectType_KSCJ","ProjectType_NLSL","ProjectType_Other"]
 				$(".thing .wrapper .row .btn").each(function(i,v){
 					if(person[maps[i]] == "true"){
 						$(this).addClass("positive");
+						programs.push($(this).attr("index"))
+						docs.push($(this));
 					};
 				})
 			}else{
-				$("[show=driver]").css({"display":""});
-				var maps = ["ContactTypeName","ContactName","MobilePhone","","DriverRepresent"];
-				$("div[show=hasregisted]").each(function(i,v) {
-					if(i != 3){
-						$(this).text(person[maps[i]]);
-					}else{
-						$(this).text(person.VehicleBrandId+person.VehicleModelId);
-					}
-				})
+				rulOption = '<option value="1">机主</option><option value="2" selected>司机</option>';
 			}
+			$("#ruleSelect").append(rulOption);
+			$("#isDaiyan").attr("checked",person.PhotoRepresent == "true")
 			$("#personIcon").attr("src","../"+person.PhotoUrl);
 		}
 	},function(res){
@@ -180,6 +159,7 @@ function getVerificationbtn(){
 	
 	
 }
+
 $("#SMScode").on('input',function(e){ 
 	if(smsCode != "" && smsCode == this.value){
 		$(".button button").addClass("btnpositive");	
@@ -204,14 +184,24 @@ function picChange(e){
 		var _img = new Image();
 		_img.src = this.result;
 		_img.onload = function(){
+			// var MAX_HEIGHT = 400
+			// if(_img.height > MAX_HEIGHT) { 
+			// // 宽度等比例缩放 *= 
+			// _img.width *= MAX_HEIGHT / _img.height; 
+			// _img.height = MAX_HEIGHT; 
+			// } 
+			// 将图像绘制到canvas上  
 			var _canvas = document.createElement("canvas")
 			_canvas.width = _img.width;
 	        _canvas.height = _img.height;
 	        var _context = _canvas.getContext('2d');
 	        _context.drawImage(_img,0,0);
-	        person.PhotoBase64 = _canvas.toDataURL('image/jpeg',0.5);
-		}	
+	        person.PhotoBase64 = _canvas.toDataURL('image/jpeg');
+		}
+		
+		//img_area.innerHTML = '<div class="sitetip">图片img标签展示：</div><img src="'+this.result+'" alt="" style="width:100px;height:100px"/>';
 	}
+	//$("#personIcon").src("")
 }
 
 function checkSubmit(){
@@ -262,41 +252,41 @@ function bundleData(){
 }
 function submit(){
 	if(!$(".button button").hasClass("btnpositive")){
-		self.location = 'personInfoUpdate.html'
 		return;
 	}
 	bundleData();
 	$("body").showLoading();
-	CreateContact('{"Contact":{'+JSON.stringify(person)+'}}',function(res){
+	UpdateContact('{"Contact":{'+JSON.stringify(person)+'}}',function(res){
 		$("body").hideLoading();
 		console.log("suc:",res)
-		if(ReturnStatus = "E"){
-			alert(ReturnValue)
+		if(res.ReturnStatus == "E"){
+			alert(res.ReturnValue)
 		}
+		self.location = 'personInfo.html'
 	},function(res){
 		$("body").hideLoading();
 		console.log("err:",res)
 	})
 }
 
-function programClick(e,id){
-	// var dom = $("#"+ e.id);
-	// if (dom.hasClass("positive")){
-	// 	$.each(programs, function(i,v){
-	// 		if(v == id){
-	// 			programs.splice(i,0);
-	// 			docs.splice(i,0);
-	// 		}
-	// 	})
-	// 	dom.removeClass("positive");
-	// }else{
-	// 	if (programs.length>=3){
-	// 		programs.shift();
-	// 		docs[0].removeClass("positive");
-	// 		docs.shift();
-	// 	}
-	// 	dom.addClass("positive");
-	// 	programs.push(id);
-	// 	docs.push(dom);
-	// }
-}
+$(".thing .wrapper .row .btn").click(function(e){
+	var dom = $("#"+ this.id);
+	if (dom.hasClass("positive")){
+		$.each(programs, function(i,v){
+			if(v == $(this).attr("index")){
+				programs.splice(i,0);
+				docs.splice(i,0);
+			}
+		})
+		dom.removeClass("positive");
+	}else{
+		if (programs.length>=3){
+			programs.shift();
+			docs[0].removeClass("positive");
+			docs.shift();
+		}
+		dom.addClass("positive");
+		programs.push($(this).attr("index"));
+		docs.push(dom);
+	}
+})
