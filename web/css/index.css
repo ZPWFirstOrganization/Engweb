@@ -76,6 +76,7 @@ a {
     float: right;
     text-align: right;
 }
+
 .mainDriver .right .right-right{
     float: right;
     width: 20px;
@@ -308,7 +309,7 @@ a {
 }
 .myCarStatus{
 	float: left;
-    width: 33%;
+    width: 25%;
 }
 .driverStatus{
 	float: left;

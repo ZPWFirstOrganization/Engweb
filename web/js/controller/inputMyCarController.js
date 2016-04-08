@@ -181,6 +181,7 @@ $(function(){
 		var brandId = $('#shebei').attr("brandId")
     	var modelId = $('#shebei').attr("modelId")
     	var typeId = $('#shebei').attr("typeId")
+    	var thisWeiId = window.location.href.split("=")[1]
 		if (!typeId||!brandId||!modelId||!buyhour||!buyData) {
 			alert("信息不完整")
 			return
@@ -196,7 +197,7 @@ $(function(){
 			alert("信息不完整")
 			return
 		}
-		
+		buyData=buyData.replace("/","-");
 		var submitData = 
 	       {
 	       		"Equipment":
@@ -304,6 +305,7 @@ $(function(){
 			alert("信息不完整")
 			return
 		}
+		startdate=startdate.replace("/","-");
 		var driverInfo = {
 			"EquipmentDriver":
 				{
@@ -353,6 +355,19 @@ $(function(){
 	    var start = new Date().getTime();
 	    while(true)  if(new Date().getTime()-start > n) break;
     }
+	
+	function GetQueryString(name) { 
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i"); 
+		var r = window.location.search.substr(1).match(reg); 
+		if (r!=null) return (r[2]); return null; 
+		} 
+		 
+		var sname = GetQueryString("name"); 
+		if(sname!=null) 
+		{ 
+		var sname_ = decodeURIComponent(sname); 
+		alert(sname_); 
+	}
 	
 	function queryDrivers(thisdata) {
 		var name = thisdata.Drivers[0].ContactName
