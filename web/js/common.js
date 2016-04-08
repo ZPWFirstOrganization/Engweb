@@ -112,3 +112,48 @@ dateFormat.i18n = {
 Date.prototype.format = function (mask, utc) {
     return dateFormat(this, mask, utc);
 };
+
+//显示加载菊花
+jQuery.fn.showLoading = function(top) {
+        if(!top){top=0}
+        if(this.css("position")!="relative"){
+            this.css("position","relative");
+        };
+
+        w=$(window).width();
+        h=$(window).height();
+
+        if(!$(".loading-Bg")[0]){
+            var bg='';
+
+        }else{
+            var bg="";
+        }
+
+
+        if(this.find(".loading").length==0){
+            this.prepend('<div class="loading"></div>'+bg);
+        };
+
+        $(window).resize(function(e) {
+            w=$(window).width();
+            h=$(window).height();
+            $(".loading-Bg").css({"width":w+"px","height":h+"px"});
+        });
+        //屏幕太长时调整位置
+
+        // topPx=this.height()/2;
+        // this.find(".loading").css("top",topPx+top);
+
+        this.find(".loading").fadeIn(200);
+
+};
+//隐藏加载菊花
+jQuery.fn.hideLoading = function() {
+
+        this.find(".loading").fadeOut(200);
+        this.find(".loading-bg").remove();
+           setTimeout(function () {
+           $(this).remove(".loading");
+        }, 200);
+};
