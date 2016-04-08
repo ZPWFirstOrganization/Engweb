@@ -8,13 +8,17 @@
     <link rel="stylesheet" href="css/index.css">
     <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
     <script src="js/controller/inputMyCarController.js"></script>
+    <script type="text/javascript" src="js/services/httpService.js"></script>
     <script>
     	$(document).ready(function() {
 	    	$(function(){
 	            $('#shebei').focus(function(){
 	                $.choose({
-	                    callback:function(v){
+	                    callback:function(v,s,t,z){
 	                        $('#shebei').val(v);
+	                        $('#shebei').attr("brandId",s);
+	                        $('#shebei').attr("modelId",t);
+	                        $('#shebei').attr("typeId",z);
 	                    }
 	                })
 	            })
@@ -30,7 +34,7 @@
                     <i class="fa fa-angle-right"></i>
                 </div>
                 <div class="right-left">
-                    <input type="text" class="put" id="shebei" value="斗山 DH200-5">
+                    <input type="text" class="put" id="shebei" brandId="" modelId="" typeId="" value="">
                 </div>
                 <div class="clear"></div>
             </div>
@@ -43,7 +47,7 @@
                     <i class="fa fa-angle-right"></i>
                 </div>
                 <div class="right-left">
-                    <input type="text" value="2013-10" class="put">
+                    <input id="buyData" type="date" value="" class="put">
                 </div>
                 <div class="clear"></div>
             </div>
@@ -53,7 +57,7 @@
         <div class="thing">
             <div class="right">
                 <div class="right-left">
-                    <input type="text" value="400" class="put">
+                    <input id="buyHour"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type="text" value="" class="put">
                 </div>
                 <div class="clear"></div>
             </div>
@@ -63,7 +67,7 @@
         <div class="thing thing-last">
             <div class="right">
                 <div class="right-left">
-                    <input type="text" value="3400" class="put">
+                    <input id="inputHour"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type="text" value="" class="put">
                 </div>
                 <div class="clear"></div>
             </div>
@@ -80,7 +84,7 @@
     </div>
     <div class="button">
         <div class="msg"><i class="fa fa-exclamation-circle"></i> 提交后不可修改哦</div>
-        <button>提交</button>
+        <button id="submitBtn" functype="submit" >提交</button>
     </div>
 </body>
 </html>

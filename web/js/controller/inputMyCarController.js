@@ -2,145 +2,154 @@
  * Created by chaos on 2016/3/1.
  */
 $(function(){
-    $.choose=function(opt){
-        if(!window.choose_data){
-            $.ajax({
-                type: "GET",
-                url: 'php/data.php',
-                data:{},
-                timeout:5000,
-                async:true,
-                dataType:'jsonp',
-                success: function(data){
-                	data = JSON.stringify(data);
-                	console.log(data);
-                	data = JSON.stringify(data);
-                	
-                    window.choose_data=data.data;
-                    console.log(data.data);
-                    //createUI ()
-                },
-                error:function(msg){
-/*                	console.log("111111111111111111111");
-                    console.log(msg);*/
-                }
-            });
-        }
-    var data = {
-    	root : ["品牌1","品牌2","品牌3","品牌4","品牌5","品牌6","品牌6","品牌6","品牌6","品牌6","品牌6","品牌6","品牌6","品牌6","品牌6","品牌6","品牌6","品牌6","品牌6","品牌6"],
-    	root_data : [["车辆11","车辆12","车辆13","车辆14","车辆15","车辆16"],["车辆21","车辆22","车辆23","车辆24","车辆25","车辆26"],["车辆31","车辆32","车辆33","车辆34","车辆35","车辆36"],["车辆41","车辆42","车辆43","车辆44","车辆45","车辆46"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"]]
-    }
-    var data1 = {
-    	root : ["品牌1","品牌2","品牌3","品牌4","品牌5","品牌6"],
-    	root_data : [["车辆11","车辆12","车辆13","车辆14","车辆15","车辆16"],["车辆21","车辆22","车辆23","车辆24","车辆25","车辆26"],["车辆31","车辆32","车辆33","车辆34","车辆35","车辆36"],["车辆41","车辆42","车辆43","车辆44","车辆45","车辆46"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"],["车辆51","车辆52","车辆53","车辆54","车辆55","车辆56","车辆57","车辆58"]]
-    }
-    window.choose_data=data;
-    window.choose_data1=data1;
-    selectCars ()
-    function selectCars () {
-    	var ohtml= 
-    	'<div class="selectMyCarDiv">' +
-	    	'<button id="LoaderCar" class="selectdMyCarBtnClass selectMycarBtn" style="margin-left: 30%;">装载机</button>' +
-	    	'<button id="excavatingCar" class="selectMycarBtn" style="margin-right: 30%;">挖掘机</button>' +
-    	'</div>'
-    	
-	    $('body').append(ohtml);
-	    $(".selectMyCarDiv > button").each(function() {
-            	$(this).click(function(i,v) {
-            		inBtnClick($(this))
-            	})
-           });
-        $(".selectMyCarDiv > button").eq(0).click()
-        //window.choose_data.root
-        //window.choose_data.root_data
-        function createList(data1,data2) {
-	        var html = '<div class="equipment-list">'+
-	            ' <div class="el-left">'+
-	            '   <ul>';
-	        $.each(data1,function(i,v){
-	            if(i==0){
-	                html+='<li class="hover-li">'+v+'</li>';
-	            }else{
-	                html+=' <li>'+v+'</li>';
-	            }
-	        });
-	        html+=  '       </ul>'+
-	            '   </div>'+
-	            '   <div class="el-right">'+
-	            '       <ul>';
-	        $.each(data2[0],function(i,v){
-	            if(i==0){
-	                html+='<li class="hover-li">'+v+'</li>';
-	            }else{
-	                html+=' <li>'+v+'</li>';
-	            }
-	        });
-	        html+=  '       </ul>'+
-	            '   </div>'+
-	            '</div>';
-	        var obj=$('.equipment-list');
-	        if(!obj[0]){
-	            $('body').append(html);
-	            obj=$('.equipment-list');
-	            $('.el-left li').live('click',function(){
-	                var index= $(this).index();
-	                $('.el-left li').removeClass('hover-li');
-	                $(this).addClass('hover-li');
-	                erji_fn(index,data2);
-	            })
-	            $('.el-right li').live('click',function(){
-	                $('.el-right li').removeClass('hover-li');
-	                $(this).addClass('hover-li');
-	                opt.callback($('.el-left li').html()+" "+$('.el-right .hover-li').html());
-	                setTimeout(function() {
-	                	$(".equipment-list").remove();
-	                	$(".selectMyCarDiv").remove();  
-	                },500)
-	                 
-	            })
-	        }else{
-	            obj.show();
-	        }	
-        }
+	$.choose=function(opt){
+	    var mydata = {
+			VehicleType:
+				{
+					VehicleType:1
+				}
+		};
+		var mydata1 = {
+			VehicleType:
+				{
+					VehicleType:2
+				}
+		};
+		mydata = JSON.stringify(mydata);
+		mydata1 = JSON.stringify(mydata1);
+		var type1Data,type2Data
+		function success(thisdata) {
+			//window.choose_data=thisdata;
+			type1Data = thisdata
+			RetrieveMultipleBrandModel(mydata1,success1,error)
+			/*for (var i=0;i<thisdata.Equipments.length;i++) 
+			{		
+				if (thisdata.Equipments[i].VehicleType == 1) {
+					wajueji.push(thisdata.Equipments[i])
+				}else{
+					zhuangzaiji.push(thisdata.Equipments[i])
+				}
+			}*/
+		}
+		function success1(thisdata) {
+			type2Data=thisdata
+			console.log("type2Data")
+			console.log(type2Data)
+			selectCars()
+		}
+		function error(thisdata) {
+			console.log("error:")
+			console.log(thisdata)
+		}
+		
+		RetrieveMultipleBrandModel(mydata,success,error)
+	    function selectCars () {
+	    	var ohtml= 
+	    	'<div class="selectMyCarDiv">' +
+		    	'<button id="LoaderCar" class="selectdMyCarBtnClass selectMycarBtn" style="margin-left: 30%;">装载机</button>' +
+		    	'<button id="excavatingCar" class="selectMycarBtn" style="margin-right: 30%;">挖掘机</button>' +
+	    	'</div>'
+	    	
+		    $('body').append(ohtml);
+		    $(".selectMyCarDiv > button").each(function() {
+	            	$(this).click(function(i,v) {
+	            		inBtnClick($(this))
+	            	})
+	           });
+	        $(".selectMyCarDiv > button").eq(0).click()
+	        //window.choose_data.root
+	        //window.choose_data.root_data
+	        function createList(thisdata,typeId) {
+	        	var thistype = typeId
+		        var html = '<div class="equipment-list">'+
+		            ' <div class="el-left">'+
+		            '   <ul>';
+		        $.each(thisdata.Brands,function(i,v){
+		            if(i==0){
+		                html+='<li class="hover-li">'+v.BrandName+'</li>';
+		            }else{
+		                html+=' <li>'+v.BrandName+'</li>';
+		            }
+		        });
+		        html+=  '       </ul>'+
+		            '   </div>'+
+		            '   <div class="el-right">'+
+		            '       <ul>';
+		        $.each(thisdata.Brands[0].Models,function(i,v){
+		            if(i==0){
+		                html+='<li class="hover-li" typeId='+thistype+' brandId='+thisdata.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+		            }else{
+		                html+=' <li typeId='+thistype+' brandId='+thisdata.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+		            }
+		        });
+		        html+=  '       </ul>'+
+		            '   </div>'+
+		            '</div>';
+		        var obj=$('.equipment-list');
+		        if(!obj[0]){
+		            $('body').append(html);
+		            obj=$('.equipment-list');
+		            $('.el-left').on('click',"li",function(){
+		                var index= $(this).index();
+		                $('.el-left li').removeClass('hover-li');
+		                $(this).addClass('hover-li');
+		                erji_fn(index,thisdata,thistype);
+		            })
+		            $('.el-right').on('click',"li",function(){
+		                $('.el-right li').removeClass('hover-li');
+		                $(this).addClass('hover-li');
+		                opt.callback($('.el-left li').html()+" "+$('.el-right .hover-li').html(),$('.el-right .hover-li').attr("brandId"),$('.el-right .hover-li').attr("modelId"),$('.el-right .hover-li').attr("typeId"));
+		                setTimeout(function() {
+		                	$(".equipment-list").remove();
+		                	$(".selectMyCarDiv").remove(); 
+		                	
+		                },500)
+		                 
+		            })
+		        }else{
+		            obj.show();
+		        }	
+	        }
         
-        function inBtnClick(thisEvent){
-        	var index = thisEvent.attr("id");
-	   		$(".selectMyCarDiv > button").each(function(i,v) {
-	   				$(this).removeClass("selectdMyCarBtnClass")
-	   			})
-	   		thisEvent.addClass("selectdMyCarBtnClass")
-	   		if ($(".equipment-list").length >　0) {
-	   			$(".equipment-list").remove();
-	   			if (index == "LoaderCar") {
-	   				createList(window.choose_data.root,window.choose_data.root_data)
-	   			} else{
-	   				createList(window.choose_data1.root,window.choose_data1.root_data)
-	   			}
-	   			
-	   		} else{
-	   			createList(window.choose_data.root,window.choose_data.root_data)
-	   		}
-	   	}
-	   	
-        function erji_fn(index,data){
-            var html='';
-            $.each(data[index],function(i,v){
-                if(i==0){
-                    html+='<li class="hover-li">'+v+'</li>';
-                }else{
-                    html+=' <li>'+v+'</li>';
-                }
-            });
-            $('.el-right ul').html(html);
-        }
-    }
-    }
+	        function inBtnClick(thisEvent){
+	        	var index = thisEvent.attr("id");
+		   		$(".selectMyCarDiv > button").each(function(i,v) {
+		   				$(this).removeClass("selectdMyCarBtnClass")
+		   			})
+		   		thisEvent.addClass("selectdMyCarBtnClass")
+		   		if ($(".equipment-list").length >　0) {
+		   			$(".equipment-list").remove();
+		   			if (index == "LoaderCar") {
+		   				createList(type1Data,1)
+		   			}else{
+		   				createList(type2Data,2)
+		   			}
+		   			
+		   		} else{
+		   			createList(type1Data,1)
+		   		}
+		   	}
+		   	
+	        function erji_fn(index,data,thistype){
+	            var html='';
+	            $.each(data.Brands[index].Models,function(i,v){
+	                if(i==0){
+	                    html+='<li class="hover-li" typeId='+thistype+' brandId='+data.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+	                }else{
+	                    html+=' <li typeId='+thistype+' brandId='+data.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+	                }
+	            });
+	            $('.el-right ul').html(html);
+	        }
+	    }
+	}
 	
-	function submit(currentHours,totalHours){
+	function showInfo(currentHours,totalHours){
+	    
 		var html = '<div class="thing">' +
             '<div class="right">' +
                 '<div class="right-left">' +
-                    '<input type="text" value="'+currentHours+'" class="put">' +
+                    '<input type="text" id="currentHour" value="'+currentHours+'" class="put">' +
                 '</div>' + 
                 '<div class="clear">' + '</div>' +
             '</div>' +
@@ -150,7 +159,7 @@ $(function(){
         '<div class="thing thing-last">' +
             '<div class="right">' +
                 '<div class="right-left">' +
-                    '<input type="text" value="'+totalHours+'" class="put">' +
+                    '<input type="text" id="totalHour" value="'+totalHours+'" class="put">' +
                 '</div>' + 
                 '<div class="clear">' + '</div>' +
             '</div>' +
@@ -159,20 +168,67 @@ $(function(){
         '</div>';
         $(".thing:last").removeClass("thing-last");
         $(html).appendTo("#main1");
-        $("input").attr("readonly","readonly");
-        $('#shebei').unbind()
-        $(".button .msg").css("display","none");
-        $(".button button").text("绑定司机")
-        $(".button button").unbind()
-        $(".button button").click(function() {
-			bindDrivers()
-		})
 	}
 	
 	$(".button button").click(function() {
-		submit(10000,3000)
+		submitCarInfo ()
 	})
-
+	
+	function submitCarInfo () {
+		
+		var buyhour = $("#buyHour").eq(0).val()
+		var buyData = $("#buyData").eq(0).val()
+		var brandId = $('#shebei').attr("brandId")
+    	var modelId = $('#shebei').attr("modelId")
+    	var typeId = $('#shebei').attr("typeId")
+		if (!typeId||!brandId||!modelId||!buyhour||!buyData) {
+			alert("信息不完整")
+			return
+		}else{
+			if (!$("#currentHour").eq(0).val()) {
+				showInfo(10000,3000)
+			}	
+		}
+		sleep(0.5)
+		var currentHour = $("#currentHour").eq(0).val()
+		var totalhour = $("#totalHour").eq(0).val()
+		if (!typeId||!brandId||!modelId||!totalhour||!buyhour||!buyData||!currentHour) {
+			alert("信息不完整")
+			return
+		}
+		
+		var submitData = 
+	       {
+	       		"Equipment":
+						{
+						WeiXinOpenID:22222222,
+						VehicleType:typeId,
+						BrandId:brandId,
+						ModelId:modelId,
+						PurchaseDate:buyData,
+						BuyHours:buyhour,
+						RegistrationHours:totalhour
+						}
+	       }
+	    submitData = JSON.stringify(submitData)
+	    function mysuccess(){
+	    	$("input").attr("readonly","readonly");
+	        $('#shebei').unbind()
+	        $(".button .msg").css("display","none");
+	        $(".button button").text("绑定司机")
+	        $(".button button").unbind()
+	        $(".button button").click(function() {
+				bindDrivers()
+			})
+	    }
+	    
+	    function myerror(){
+	    	alert("提交失败，请重试")
+	    }
+	    
+	    CreateEquipment(submitData,mysuccess,myerror)
+	}
+	
 	function bindDrivers() {
 		var html = '<div class="driversDiv" >' + 
 		'<div class="selectDriversDiv">' +
@@ -196,25 +252,87 @@ $(function(){
 		$(".selectDriversDiv .SMSclick").click(function() {
 			$("#personalInfo").remove();
 			$("#workInfo").remove();
-			queryDrivers()
-		})
+			findDriverByPhone();	
+		})		
 		
-		$(".button #bindDriver").click(function(){
+	}
+	
+	function findDriverByPhone() {
+		var phoneNum = $(".selectDriversDiv .personalInfoTitleLeft").attr("value")
+		var info = 
+		{
+			ContactsQuery:
+				{
+				MobilePhone:phoneNum
+				}
+		}
+		info = JSON.stringify(info);
+		function mysus(thedata){
+			console.log("thedata")
+			console.log(thedata.Drivers)
+			if (thedata.Drivers) {
+				queryDrivers(thedata)
+				var name = thedata.Drivers[0].ContactName
+				var phoneNum = thedata.Drivers[0].MobilePhone
+				var ContactId = thedata.Drivers[0].ContactId
+				var EquipmentId = $('#shebei').attr("modelId")
+				$(".button #bindDriver").click(function(){
+					bindDriverToServer(EquipmentId,ContactId,name,phoneNum)
+				})
+			}else{
+				$(".button #bindDriver").unbind()
+				alert("当前手机号没有绑定司机")
+			}
+		}
+		function myerror(thedata) {
+			$(".button #bindDriver").unbind()
+			alert("数据错误")
+		}
+		
+		if (!phoneNum||isNaN(phoneNum)) {
+			alert("手机号不能为空")
+			console.log("手机号不能为空"+phoneNum)
+		} else{
+			RetrieveMultipleDrivers(info,mysus,myerror)
+		}
+	}
+	
+	function bindDriverToServer(EquipmentId,ContactId,name,phoneNum) {
+		var startdate = $("#driverStartDate").val();
+		var workTime = $("#driverWorkTime").val();
+		if (!EquipmentId||!ContactId||!startdate||!workTime) {
+			alert("信息不完整")
+			return
+		}
+		var driverInfo = {
+			"EquipmentDriver":
+				{
+				"EquipmentId":EquipmentId,
+				"DriverId":ContactId,
+				"EmploymentStartDate":startdate,
+				"ServiceHours":workTime
+				}
+		}
+		driverInfo = JSON.stringify(driverInfo)
+		CreateEquipmentDriver(driverInfo,success,myerror)
+		function success () {
 			if (!$("#showDriver .bindInfo .bindLeftInfo").eq(0).text()){
 				$("#showDriver").css("display","block")
-				var thistext = "李四 1333333333"
+				var thistext = name +"  "+ phoneNum
 				$("#showDriver .bindInfo .bindLeftInfo").eq(0).text(thistext)
 				freeBindEvent ()
 			}else{
 				$("#showDriver .bindInfo").eq(0).clone().appendTo($("#showDriver"))
-				var thistext = "李四 1333333333"
+				var thistext = name +"  "+ phoneNum
 				$("#showDriver .bindInfo .bindLeftInfo").eq(0).text(thistext)
-				freeBindEvent ()
+				freeBindEvent()
 			}
 			$(".driversDiv").remove();
-		})
+		}
 		
-		
+		function myerror () {
+			alert("服务器错误，请稍后重试")
+		}
 	}
 	
 	function freeBindEvent () {
@@ -231,11 +349,17 @@ $(function(){
 		})
 	}
 	
-	function queryDrivers() {
-		var name = "张三"
-		var phoneNum = 13333333333;
-		var startDate = "2015-10-10";
-		var workTime = 1000;
+	function sleep(n) {
+	    var start = new Date().getTime();
+	    while(true)  if(new Date().getTime()-start > n) break;
+    }
+	
+	function queryDrivers(thisdata) {
+		var name = thisdata.Drivers[0].ContactName
+		var phoneNum = thisdata.Drivers[0].MobilePhone
+		var myDate = new Date(); 
+		var startDate = myDate.toLocaleDateString()
+		var workTime = 0;
 		var html1 = '<div id="personalInfo" class="mainDriver">' +
 		'<div class="thing">' +
             '<div class="right">' +
@@ -250,7 +374,7 @@ $(function(){
         '<div class="thing thing-last">' +
             '<div class="right">' +
                 '<div class="right-left">' +
-                    '<input type="text" value="'+phoneNum+'" class="put">' +
+                    '<input type="text"  value="'+phoneNum+'" class="put">' +
                 '</div>' + 
                 '<div class="clear">' + '</div>' +
             '</div>' +
@@ -262,7 +386,7 @@ $(function(){
 		'<div class="thing">' +
             '<div class="right">' +
                 '<div class="right-left">' +
-                    '<input type="text" value="'+startDate+'" class="put">' +
+                    '<input type="date" id="driverStartDate" value="'+startDate+'" class="put">' +
                 '</div>' + 
                 '<div class="clear">' + '</div>' +
             '</div>' +
@@ -272,7 +396,7 @@ $(function(){
         '<div class="thing thing-last">' +
             '<div class="right">' +
                 '<div class="right-left">' +
-                    '<input type="text" value="'+workTime+'" class="put">' +
+                    '<input type="text" id="driverWorkTime" value="'+workTime+'" class="put">' +
                 '</div>' + 
                 '<div class="clear">' + '</div>' +
             '</div>' +

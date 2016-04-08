@@ -6,9 +6,6 @@ $(function(){
 		$('ul li:first-child .myCarInput').eq(2).text(i);
 		$('ul li:first-child .myCarInput').eq(3).text(i);
 		$("ul li div button:first-child").click(function(){
-			/*this.parent.css("display","none")*/
-			//alert("222")
-			//this.closest('li').css("display","none");
 			$(this).parents("li:first").css("display","none")
 		});
 		$("ul li:first-child").clone(true).appendTo("ul");
