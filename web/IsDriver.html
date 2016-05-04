@@ -7,104 +7,106 @@
     <link rel="stylesheet" href="css/icon/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/index2.css">
     <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/services/httpService.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
 </head>
 <body>
     <div id="driver" >
-        <div class="driver-name">张强</div>
+        <div class="driver-name" id="name"></div>
         <div class="driver-info">
             <ul>
                 <li class=" info-li">
                     <div class="info-name">入行年月</div>
-                    <div class="info-time"><input type="text" value="2012-10"/></div>
+                    <div class="info-time"><div id="inTime">2016-01</div></div>
                 </li>
                 <li class=" info-li">
                     <div class="info-name">累计小时数</div>
-                    <div class="info-time color-time"><input type="text" value="1000" class="color-ipt"/></div>
+                    <div class="info-time color-time"><div id="allHours" class="color-ipt">0</div></div>
                 </li>
                 <li class=" info-li">
                     <div class="info-name">当前操作设备</div>
-                    <div class="info-time" style="font-size: 14px">卡特彼特 336D</div>
+                    <div class="info-time" style="font-size: 14px" id="equip"></div>
                 </li>
                 <li class=" info-li">
                     <div class="info-name">已为老板服务T</div>
-                    <div class="info-time color-time"><input type="text" value="800" class="color-ipt"/></div>
+                    <div class="info-time color-time"><div id="servHours" class="color-ipt">0</div></div>
                 </li>
                 <div class="clear"></div>
             </ul>
         </div>
         <div class="clear"></div>
         <div class="item border-item">
-            <ul>
+            <ul type="wajue" style="display: none">
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li1-1">6</div>
+                    <div class="li-right" style="color: #5663b5">0</div>
                     <div class="li-left">挖沟</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li1-2">6</div>
+                    <div class="li-right" style="color: #5663b5">0</div>
                     <div class="li-left">整平</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li1-3">6</div>
+                    <div class="li-right" style="color: #5663b5">0</div>
                     <div class="li-left">甩坡</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li1-4">6</div>
+                    <div class="li-right" style="color: #5663b5">0</div>
                     <div class="li-left">装车</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li1-5">6</div>
+                    <div class="li-right" style="color: #5663b5">0</div>
                     <div class="li-left">隧道</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li1-6">6</div>
+                    <div class="li-right" style="color: #5663b5">0</div>
                     <div class="li-left">绿化</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li1-7">6</div>
+                    <div class="li-right" style="color: #5663b5">0</div>
                     <div class="li-left">河道</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li1-8">6</div>
+                    <div class="li-right" style="color: #5663b5">0</div>
                     <div class="li-left">破碎</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li1-9">6</div>
+                    <div class="li-right" style="color: #5663b5">0</div>
                     <div class="li-left">拆楼</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li1-10">6</div>
+                    <div class="li-right" style="color: #5663b5">0</div>
                     <div class="li-left">其他</div>
                     <div class="clear"></div>
                 </li>
                 <div class="clear"></div>
             </ul>
-            <ul>
+            <ul type="zhuangzai" style="display: none">
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li2-1">6</div>
+                    <div class="li-right" style="color: #5663b5" >0</div>
                     <div class="li-left">土石装车</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li2-2">6</div>
+                    <div class="li-right" style="color: #5663b5" >0</div>
                     <div class="li-left">矿山装车</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li2-3">6</div>
+                    <div class="li-right" style="color: #5663b5" >0</div>
                     <div class="li-left">搅拌站装料</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right" style="color: #5663b5" id="li2-4">6</div>
+                    <div class="li-right" style="color: #5663b5" >0</div>
                     <div class="li-left">其他</div>
                     <div class="clear"></div>
                 </li>
@@ -116,8 +118,8 @@
                 <ul>
                     <th>日期</th>
                     <th>设备</th>
-                    <th>正常T</th>
-                    <th>加班T</th>
+                    <th>状态</th>
+                    <th>当日H</th>
                 </ul>
                 <!--<tr>-->
                     <!--<td>10-20</td>-->
@@ -141,35 +143,86 @@
 
 <script>
     function initLayout(data){
-        data = [
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
-            {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        var map = []
+        // RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+sessionStorage.getItem('openID')+'"}}',
+        RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+10000+'"}}',
+        function(res){
+            console.log(res)
+            if(res.ReturnValue == "未能查询到司机的详细信息!"){
+                alert("请先录入个人资料")
+                return
+            }
+            $("#name").text(res.DriverName)
+            $("#inTime").text(res.JoinCareerDate.substring(0,7))
+            $("#equip").text(res.BrandName + res.ModelName)
+            res.ServiceHours ? $("#servHours").text(res.ServiceHours) : $("#servHours").text(0);
+            if(res.VehicleType == 1){
+                $("#allHours").text(res.Grab_TotalHours)
+                $("[type=wajue]").css({"display":""});
+                $("[type=zhuangzai]").css({"display":"none"});
+                map = ["Grab_WG","Grab_ZP","Grab_SP","Grab_ZC","Grab_SD","Grab_LH","Grab_HD","Grab_PS","Grab_CL","Grab_CL"]
+                $("[type=wajue] .li-right").each(function(k,v){
+                    $(this).text(res[map[k]])
+                })
+            }else if(res.VehicleType == 2){
+                $("#allHours").text(res.Loader_TotalHours)
+                $("[type=wajue]").css({"display":"none"});
+                $("[type=zhuangzai]").css({"display":""});
+                map = ["Loader_TSZC","Loader_KSZC","Loader_JBZZL","Loader_Other"]
+                $("[type=zhuangzai] .li-right").each(function(k,v){
+                    $(this).text(res[map[k]])
+                })
+            }
+            $.each(res.EquipmentWorks, function(i,v){
+                var html = "<tr>";
+                html += "<td>"+ v.WorkDate.substring(0,7)+"</td>";
+                html += "<td>"+ v.BrandName+v.ModelName+"</td>";
+                html += "<td>"+ v.WorkStatusName+"</td>";
+                html += "<td>"+ v.WorkHours+"</td>";
+                
+                html += "</tr>";
+                $("#tableList").append(html);
+                })
+        },function(res){
 
-        ];
-        $.each(data, function(i,v){
-            var html = "<tr>";
-            html += "<td>"+ v.date+"</td>";
-            html += "<td>"+ v.shebei+"</td>";
-            html += "<td>"+ v.normal+"</td>";
-            html += "<td>"+ v.extra+"</td>";
-            
-            html += "</tr>";
-            $("#tableList").append(html);
         })
+        
+        
+        // data = [
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+        //     {date:"10-20",shebei:"卡特皮特336D",normal:8,extra:3},
+
+        // ];
+        // $.each(data, function(i,v){
+            
+        // })
 //        $("#recordBtn").css({"position":"relative"});
 //        $("#recordBtn").css({"bottom":20});
     }
     $(function(){
+        // if(!sessionStorage.getItem('openID')){
+        //     // GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
+        //     GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
+        //         if(res.UserInfo.openid){
+        //             sessionStorage.setItem('openID',res.UserInfo.openid)
+        //         }
+        //         initLayout();
+        //     },function(res){
+
+        //     })
+        // }else{
+        //     initLayout();
+        // }
         initLayout()
     })
 </script>

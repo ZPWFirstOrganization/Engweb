@@ -1,29 +1,87 @@
+var appID = 'wx2ff0552251b21515';
 var person = new Object();
 var programs = [];
 var docs = [];
-var smsCode = "2345"
+var smsCode = ""
 //司机类型 1 表示挖掘机 2 表示装载机
 var driverType = 1
-
 $(function(){
-	$(document).ready(function(){
-		$('#shebei').click(function(){
-			$.choose({
-				callback:function(v){
-					$('#shebei').text(v);
-				}
-			})
-		});
-	})
+	// wx.config({
+	//     debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+	//     appId: '', // 必填，公众号的唯一标识
+	//     timestamp: , // 必填，生成签名的时间戳
+	//     nonceStr: '', // 必填，生成签名的随机串
+	//     signature: '',// 必填，签名，见附录1
+	//     jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+	// });
+	// $(document).ready(function(){
+		
+	// })
+	// var access_code=$.getUrlParam('code');
+	// if (access_code){
+	// 	GetWeiXinUserInfo('{"Code":'+access_code+'}',function(res){
+	// 		initLayout();
+	// 	},function(res){
 
-	initLayout();
+	// 	})
+	// }else{
+	// 	var fromurl=location.href;
+ //        var url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+appID+'&redirect_uri='+encodeURIComponent(fromurl)+'&response_type=code&scope=snsapi_base&state=STATE%23wechat_redirect&connect_redirect=1#wechat_redirect';
+ //        location.href=url;
+	// }
+	//alert("CODE:"+$.getUrlParam('code'))
+	if(!sessionStorage.getItem('openID')){
+		GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
+			if(res.UserInfo.openid){
+				sessionStorage.setItem('openID',res.UserInfo.openid)
+			}
+			initLayout();
+		},function(res){
+
+		})
+	}else{
+		initLayout();
+	}
+	
+	// initLayout();
 	//console.log($("#TimeArea1 div div .put"));
 })
 
 function initLayout(){
-
-	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"100000000"}}',
+	var isCarPop = false
+	$('#shebei').click(function(){
+		$(":input").blur();
+		setTimeout(function () {
+			if(!isCarPop){
+				$("body").showLoading();
+				$.choose({
+					callback:function(v1,v2,v3,v4){
+						isCarPop = true
+						$("body").hideLoading();
+						console.log(v1,v2,v3,v4)
+						$('#shebei').val(v1);
+						person.VehicleBrandId = v2;
+						person.VehicleModelId = v3;
+						driverType = v4;
+						if(driverType == 1){
+							$("[show=driver1]").css({"display":""});
+							$("[show=driver2]").css({"display":"none"});
+						}else{
+							$("[show=driver2]").css({"display":""});
+							$("[show=driver1]").css({"display":"none"});
+						}
+					}
+				})
+			}else{
+            	$(".equipment-list").css({"display":"block"});
+            	$(".selectMyCarDiv").css({"display":"block"});
+			}
+		},100)
+	});
+	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
+	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10000 +'"}}',
 	function(res){
+		// alert(JSON.stringify(res))
 		console.log("查询联系人:",res);
 		//未查询到联系人
 		if(res.ReturnValue == "未能查询到该联系人的详细信息!"){
@@ -58,7 +116,7 @@ function initLayout(){
 			$("[show=hasregisted]").css({"display":""});
 			$("[show=regist]").css({"display":"none"});
 			$(".button button").text("修改资料");
-			// $(".button button").addClass("btnpositive");
+			$(".button button").addClass("btnpositive");
 			if (person.ContactType == 1){
 				$("[show=master]").css({"display":""});
 				var maps = ["ContactTypeName","ContactName","MobilePhone","","OwnerRepresent"];
@@ -78,14 +136,14 @@ function initLayout(){
 					if(i != 3){
 						$(this).text(person[maps[i]]);
 					}else{
-						$(this).text(person.VehicleBrandId+person.VehicleModelId);
+						$(this).text(person.VehicleBrandName+person.VehicleModelName);
 					}
 				})
 			}
 			$("#personIcon").attr("src","../"+person.PhotoUrl);
 		}
 	},function(res){
-
+		// alert(JSON.stringify(res))
 	})
 	var type = 1
 	var a = false
@@ -134,6 +192,7 @@ function initLayout(){
 
 function ruleSelect(e){
 	if(e.value==1){
+		$('#shebei').val("");
 		$("[show=master]").css({"display":"block"})
 		$("[show=driver]").css({"display":"none"})
 		$("[show=driver1]").css({"display":"none"})
@@ -144,8 +203,8 @@ function ruleSelect(e){
 	}else{
 		$("[show=master]").css({"display":"none"})
 		$("[show=driver]").css({"display":"block"})
-		$("[show=driver1]").css({"display":"none"})
-		$("[show=driver2]").css({"display":"none"})
+		// $("[show=driver1]").css({"display":"none"})
+		// $("[show=driver2]").css({"display":"none"})
 		// $("#masterProgram").css({"display":"none"})
 		// $("#TimeArea1").css({"display":"block"})
 		// $("#TimeArea2").css({"display":"block"})
@@ -160,10 +219,15 @@ function getVerificationbtn(){
 	if ($(".verificationbtn").text() != "获得验证码"){
 		return;
 	}
+	$("body").showLoading();
 	var time = 60;
 	var interval;
 	SendRegisterSMS('{"MobilePhone":'+$("#phone").val()+'}',function(res){
+		$("body").hideLoading();
 		console.log(res)
+		if (res.VerificationCode){
+			smsCode = res.VerificationCode;
+		}
 		interval = setInterval(function(){
 			if (time > 0){
 				$(".verificationbtn").text(time+"秒后重新获取");
@@ -171,10 +235,11 @@ function getVerificationbtn(){
 			}else{
 				$(".verificationbtn").text("获得验证码");
 				time = 60;
-				window.clearInterval(interval)
+				window.clearInterval(interval);
 			}
 		},1000)
 	},function(res){
+		$("body").hideLoading();
 		alert("网络不稳定，请稍后再试")
 	})
 	
@@ -217,24 +282,25 @@ function picChange(e){
 function checkSubmit(){
 	var msg = "pass";
 	if($("#name").val() == "") {
-		msg = "";
-	}else if($("#name").val() == "") {
-		msg = "";
-	}else if($("#name").val() == "") {
-		msg = "";
-	}else if($("#name").val() == "") {
-		msg = "";
-	}else if($("#name").val() == "") {
-		msg = "";
+		msg = "请输入姓名";
+	}else if($("#phone").val() == "") {
+		msg = "请输入手机号码";
+	}else if($("#driverCar").css("display") != "none" && $("#shebei").val() == "") {
+		msg = "请选择设备";
+	}else if($("#personDecription").val() == "") {
+		msg = "请输入个人描述";
+	// }else if($("#name").val() == "") {
+	// 	msg = "";
 	}
 	return msg;
 }
 function bundleData(){
-	person.WeiXinOpenID = "100000000";
+	// person.WeiXinOpenID = sessionStorage.getItem('openID');
+	person.WeiXinOpenID = 10001;
 	person.ContactName = $("#name").val();
 	person.MobilePhone = $("#phone").val();
 	person.ContactType = $("#ruleSelect").val();
-	person.PhotoRepresent = $("#isDaiyan").is(':checked');
+	// person.PhotoRepresent = $("#isDaiyan").is(':checked');
 	person.JoinCareerDate = $("#joinTime").val();
 	person.OwnerRepresent = $("#personDecription").val();
 	person.DriverRepresent = $("#personDecription").val();
@@ -252,17 +318,31 @@ function bundleData(){
 				// person[v1] = false;
 			})
 		})
-	}else if($("#ruleSelect").val() == 2) {
+	}else if($("#ruleSelect").val() == 2 && driverType == 1) {
 		var maps = ["Grab_WG","Grab_ZP","Grab_SP","Grab_ZC","Grab_SD","Grab_LH","Grab_HD","Grab_PS","Grab_CL","Grab_Other"]
 		$("#TimeArea1 div div .put").each(function (i, v) {
-			person[maps[i]] = v.value;
+			person[maps[i]] = parseInt(v.value);
+		})
+	}else if($("#ruleSelect").val() == 2 && driverType == 2) {
+		var maps = ["Loader_TSZC","Loader_KSZC","Loader_JBZZL","Loader_Other"]
+		$("#TimeArea2 div div .put").each(function (i, v) {
+			person[maps[i]] = parseInt(v.value);
 		})
 	}
 	console.log(person)
 }
 function submit(){
 	if(!$(".button button").hasClass("btnpositive")){
-		self.location = 'personInfoUpdate.html'
+		// self.location = 'personInfoUpdate.html'
+		return;
+	}
+	if($(".button button").text() == "修改资料"){
+		self.location = 'personInfoUpdate.html';
+		return;
+	}
+	var msg = checkSubmit();
+	if (msg != "pass"){
+		alert(msg);
 		return;
 	}
 	bundleData();
@@ -270,12 +350,14 @@ function submit(){
 	CreateContact('{"Contact":{'+JSON.stringify(person)+'}}',function(res){
 		$("body").hideLoading();
 		console.log("suc:",res)
-		if(ReturnStatus = "E"){
-			alert(ReturnValue)
+		if(res.ReturnStatus = "E"){
+			alert(res.ReturnValue)
+			return;
 		}
+		window.location.reload();
 	},function(res){
 		$("body").hideLoading();
-		console.log("err:",res)
+		alert("网络不稳定，请稍后再试")
 	})
 }
 

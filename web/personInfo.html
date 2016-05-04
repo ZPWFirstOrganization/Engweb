@@ -52,7 +52,7 @@
             <div class="left">手机</div>
             <div class="clear"></div>
         </div>
-        <div class="thing-nopadding thing-last" name="special" style="border-top: 1px solid #c0c0c0;" show="regist" style="display: none">
+        <div class="thing-nopadding thing-last" name="special" style="border-top: 1px solid #c0c0c0;display: none;padding-top: 7px;padding-bottom: 7px" show="regist">
                 <div class="right">
                 <button class="verificationbtn" onclick="getVerificationbtn()">获得验证码</button>
                 </div>
@@ -63,7 +63,7 @@
         </div>
     </div>
     <div class="content">
-        <div class="thing">
+        <!-- <div class="thing">
             <div class="right">
                 <div class="right-right" show="regist" style="display: none">
                     <i class="fa fa-angle-right imgfa"></i>
@@ -81,7 +81,7 @@
             <input type="checkbox" id="isDaiyan" value="true" show="regist" style="display: none" checked="checked"/>
             </div>
             <div class="clear"></div>
-        </div>
+        </div> -->
         <!--<div class="thing">-->
             <!--<div class="right" style="margin-right: 15px">-->
                 <!--<div class="right-left">-->
@@ -107,9 +107,9 @@
                 <div class="right-right" show="regist" style="display: none">
                     <i class="fa fa-angle-right"></i>
                 </div>
-                <div class="right-left" show="regist" style="display: none">
-                    <input placeholder="必填" id="shebei" class="put" style="width: 80%" />
-                    <div show="hasregisted">pc-2009</div>
+                <div class="right-left">
+                    <input placeholder="必填" show="regist" id="shebei" class="put" style="width: 80%"/>
+                    <div show="hasregisted"></div>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -147,7 +147,7 @@
 <!--                 <div class="right-right">
                     <i class="fa fa-angle-right"></i>
                 </div> -->
-                <input type="date" class="right-left" value="1970-01-01" style="text-align: right;" id="birthday">
+                <input type="date" class="right-left" value="1982-01-01" style="text-align: right;" id="birthday">
                     <!-- 1970-01-01 -->
                 </input>
                 <div class="clear"></div>
@@ -160,7 +160,7 @@
 <!--                 <div class="right-right">
                     <i class="fa fa-angle-right"></i>
                 </div> -->
-                <input type="month" class="right-left" value="2016-01" style="text-align: right;" id="joinTime">
+                <input type="month" class="right-left" value="2000-01" style="text-align: right;" id="joinTime">
                     <!-- 1970-01-01 -->
                 </input>
                 <div class="clear"></div>
@@ -168,7 +168,7 @@
             <div class="left">入行时间</div>
             <div class="clear"></div>
         </div>
-        <div class="thing thing-last" style="display: none;" id="TimeArea1" show="driver1" style="border-top:1px solid #c0c0c0;" style="display: none">
+        <div class="thing thing-last" id="TimeArea1" show="driver1" style="border-top:1px solid #c0c0c0;display: none">
                 <div>我的技能和小时数</div>
                 <div class="wrapper">
                     <div class="row">
@@ -193,7 +193,7 @@
                     </div>
                 </div>
         </div>
-        <div class="thing thing-last" style="display: none;" id="TimeArea2" show="driver2" style="display: none">
+        <div class="thing thing-last" id="TimeArea2" show="driver2" style="display: none;border-top: 1px solid #c0c0c0;">
                 <div class="left">我的技能和小时数</div>
                 <div class="wrapper">
                     <div class="row">
@@ -212,7 +212,8 @@
         <button class="btn" onclick="submit()">提交</button>
     </div>
     <script type="text/javascript" src="js/services/httpService.js"></script>
-    <script type="text/javascript" src="js/controller/personInfoCtrl.js"></script>
     <script type="text/javascript" src="js/controller/selectCar.js"></script>
+    <script type="text/javascript" src="js/controller/personInfoCtrl.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </body>
 </html>

@@ -142,9 +142,37 @@ function CreateEquipmentDriverWork(data,suc,err){
     invokeMethod(url, data,suc,err);
 }
 
-//设备司机报工
-function CreateEquipmentDriverWork(data,suc,err){
-    var url = "/Equipment/EquipmentServices.svc/CreateEquipmentDriverWork";
+//获取用户信息
+function GetWeiXinUserInfo(data,suc,err){
+    var url = "/WeiXin/WeiXinUserServices.svc/GetWeiXinUserInfo";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//查询机主下关联的司机列表信息
+function RetrieveMultipleEquipmentDrivers(data,suc,err){
+    var url = "/Contact/ContactServices.svc/RetrieveMultipleEquipmentDrivers";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//机主查询单条设备司机详细信息
+function RetrieveSingleEquipmentDriver(data,suc,err){
+    var url = "/Contact/ContactServices.svc/RetrieveSingleEquipmentDriver";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//司机查询单条设备司机详细信息
+function RetrieveSingleDriver(data,suc,err){
+    var url = "/Contact/ContactServices.svc/RetrieveSingleDriver";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
+//每日报工-设备档案查询
+function RetrieveMultipleEquipmentStatus(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/RetrieveMultipleEquipmentStatus";
     var data = data
     invokeMethod(url, data,suc,err);
 }

@@ -1,28 +1,47 @@
 var person = new Object();
 var programs = [];
 var docs = [];
-var smsCode = "2345"
+var smsCode = ""
 //司机类型 1 表示挖掘机 2 表示装载机
 var driverType = 1
 
 $(function(){
-	$(document).ready(function(){
-		$('#shebei').click(function(){
-			$.choose({
-				callback:function(v){
-					$('#shebei').text(v);
-				}
-			})
-		});
-	})
-
 	initLayout();
 	//console.log($("#TimeArea1 div div .put"));
 })
 
 function initLayout(){
-
-	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"100000000"}}',
+	var isCarPop = false
+	$('#shebei').click(function(){
+		$(":input").blur();
+		setTimeout(function () {
+			if(!isCarPop){
+				$("body").showLoading();
+				$.choose({
+					callback:function(v1,v2,v3,v4){
+						isCarPop = true
+						$("body").hideLoading();
+						console.log(v1,v2,v3,v4)
+						$('#shebei').val(v1);
+						person.VehicleBrandId = v2;
+						person.VehicleModelId = v3;
+						driverType = v4;
+						if(driverType == 1){
+							$("[show=driver1]").css({"display":""});
+							$("[show=driver2]").css({"display":"none"});
+						}else{
+							$("[show=driver2]").css({"display":""});
+							$("[show=driver1]").css({"display":"none"});
+						}
+					}
+				})
+			}else{
+            	$(".equipment-list").css({"display":"block"});
+            	$(".selectMyCarDiv").css({"display":"block"});
+			}
+		},100)
+	});
+	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
 	function(res){
 		console.log("查询联系人:",res);
 		//未查询到联系人
@@ -43,10 +62,6 @@ function initLayout(){
 			if (person.ContactType == 1){
 				rulOption = '<option value="1" selected>机主</option><option value="2">司机</option>';
 				$("[show=master]").css({"display":""});
-				maps = ["ContactName","MobilePhone"];
-				$("[action=update]").each(function(i,v){
-					$(this).val(person[maps[i]])
-				});
 				$("#personDecription").text(person.OwnerRepresent)
 				maps = ["ProjectType_GLQL","ProjectType_YLLH","ProjectType_CJFC","ProjectType_KSCJ","ProjectType_NLSL","ProjectType_Other"]
 				$(".thing .wrapper .row .btn").each(function(i,v){
@@ -58,7 +73,14 @@ function initLayout(){
 				})
 			}else{
 				rulOption = '<option value="1">机主</option><option value="2" selected>司机</option>';
+				$("#driverCar").css({"display":""});
+				$("#shebei").val(person.VehicleBrandName+person.VehicleModelName);
+				$("#personDecription").val(person.DriverRepresent);
 			}
+			maps = ["ContactName","MobilePhone"];
+			$("[action=update]").each(function(i,v){
+				$(this).val(person[maps[i]])
+			});
 			$("#ruleSelect").append(rulOption);
 			$("#isDaiyan").attr("checked",person.PhotoRepresent == "true")
 			$("#personIcon").attr("src","../"+person.PhotoUrl);
@@ -113,6 +135,7 @@ function initLayout(){
 
 function ruleSelect(e){
 	if(e.value==1){
+		$('#shebei').val("");
 		$("[show=master]").css({"display":"block"})
 		$("[show=driver]").css({"display":"none"})
 		$("[show=driver1]").css({"display":"none"})
@@ -184,47 +207,38 @@ function picChange(e){
 		var _img = new Image();
 		_img.src = this.result;
 		_img.onload = function(){
-			// var MAX_HEIGHT = 400
-			// if(_img.height > MAX_HEIGHT) { 
-			// // 宽度等比例缩放 *= 
-			// _img.width *= MAX_HEIGHT / _img.height; 
-			// _img.height = MAX_HEIGHT; 
-			// } 
 			// 将图像绘制到canvas上  
 			var _canvas = document.createElement("canvas")
 			_canvas.width = _img.width;
 	        _canvas.height = _img.height;
 	        var _context = _canvas.getContext('2d');
 	        _context.drawImage(_img,0,0);
-	        person.PhotoBase64 = _canvas.toDataURL('image/jpeg');
+	        person.PhotoBase64 = _canvas.toDataURL('image/jpeg',0.5);
 		}
-		
-		//img_area.innerHTML = '<div class="sitetip">图片img标签展示：</div><img src="'+this.result+'" alt="" style="width:100px;height:100px"/>';
 	}
-	//$("#personIcon").src("")
 }
 
 function checkSubmit(){
 	var msg = "pass";
 	if($("#name").val() == "") {
-		msg = "";
-	}else if($("#name").val() == "") {
-		msg = "";
-	}else if($("#name").val() == "") {
-		msg = "";
-	}else if($("#name").val() == "") {
-		msg = "";
-	}else if($("#name").val() == "") {
-		msg = "";
+		msg = "请输入姓名";
+	// }else if($("#phone").val() == "") {
+	// 	msg = "请输入手机号码";
+	}else if($("#driverCar").css("display") != "none" && $("#shebei").val() == "") {
+		msg = "请选择设备";
+	}else if($("#personDecription").val() == "") {
+		msg = "请输入个人描述";
+	// }else if($("#name").val() == "") {
+	// 	msg = "";
 	}
 	return msg;
 }
 function bundleData(){
-	person.WeiXinOpenID = "100000000";
+	person.WeiXinOpenID = sessionStorage.getItem('openID');
 	person.ContactName = $("#name").val();
 	person.MobilePhone = $("#phone").val();
 	person.ContactType = $("#ruleSelect").val();
-	person.PhotoRepresent = $("#isDaiyan").is(':checked');
+	// person.PhotoRepresent = $("#isDaiyan").is(':checked');
 	person.JoinCareerDate = $("#joinTime").val();
 	person.OwnerRepresent = $("#personDecription").val();
 	person.DriverRepresent = $("#personDecription").val();
@@ -242,16 +256,26 @@ function bundleData(){
 				// person[v1] = false;
 			})
 		})
-	}else if($("#ruleSelect").val() == 2) {
+	}else if($("#ruleSelect").val() == 2 && driverType == 1) {
 		var maps = ["Grab_WG","Grab_ZP","Grab_SP","Grab_ZC","Grab_SD","Grab_LH","Grab_HD","Grab_PS","Grab_CL","Grab_Other"]
 		$("#TimeArea1 div div .put").each(function (i, v) {
-			person[maps[i]] = v.value;
+			person[maps[i]] = parseInt(v.value);
+		})
+	}else if($("#ruleSelect").val() == 2 && driverType == 2) {
+		var maps = ["Loader_TSZC","Loader_KSZC","Loader_JBZZL","Loader_Other"]
+		$("#TimeArea2 div div .put").each(function (i, v) {
+			person[maps[i]] = parseInt(v.value);
 		})
 	}
 	console.log(person)
 }
 function submit(){
-	if(!$(".button button").hasClass("btnpositive")){
+	// if(!$(".button button").hasClass("btnpositive")){
+	// 	return;
+	// }
+	var msg = checkSubmit();
+	if (msg != "pass"){
+		alert(msg);
 		return;
 	}
 	bundleData();
