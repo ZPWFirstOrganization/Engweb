@@ -1,11 +1,11 @@
 $(function(){
 	var data = {
 		EquipmentsQuery : {
-			WeiXinOpenID : 11111111
+			WeiXinOpenID : 10002
 		}
 	};
 	data = JSON.stringify(data);
-	RetrieveMultipleEquipments(data,suc,err)
+	RetrieveMultipleEquipmentDrivers(data,success,error)
 	function success(data){
 		for (var i = 0; i < 10; i++) {
 			$('ul li:first-child div div').eq(0).text("张强"+ i);
