@@ -237,7 +237,7 @@ $(function(){
 			'<button class="SMSclick">查询</button>'+
 		'</div>' +
 		'<div class="button">' + 
-        '<button id="bindDriver">绑定</button>'+
+        '<button id="bindDriver">绑定</button>'+'<button id="unbindDriver">取消</button>'+
     '</div>' +
 		'</div>';
 		$("body").append(html)
@@ -250,6 +250,9 @@ $(function(){
 				$(this).val("请输入手机号查询")
 			}
 		})
+		$(".button #unbindDriver").click(function(){
+			$(".driversDiv").remove();
+				})
 		$(".selectDriversDiv .SMSclick").click(function() {
 			$("#personalInfo").remove();
 			$("#workInfo").remove();

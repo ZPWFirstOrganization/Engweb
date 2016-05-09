@@ -1,7 +1,8 @@
 $(function(){
+	var myOpenId = sessionStorage.getItem('openID')
 	var data = {
 		EquipmentDriversQuery : {
-			WeiXinOpenID : 11111111
+			WeiXinOpenID : myOpenId
 		}
 	};
 	data = JSON.stringify(data);

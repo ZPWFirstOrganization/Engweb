@@ -5,6 +5,7 @@ $(function(){
 				"EquipmentId":"0ced7514-64fa-e511-9417-ab581d3f6b3c"
 				}
 		}
+	
 	data = JSON.stringify(data);
 	function success(data){
 		if (!data.EquipmentDrivers) {
@@ -37,6 +38,21 @@ $(function(){
 		console.log(msg)
 	}
 	
+	function getOpenId() {
+		if(!sessionStorage.getItem('openID')){
+			GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
+				if(res.UserInfo.openid){
+					sessionStorage.setItem('openID',res.UserInfo.openid)
+				}
+			},function(res){
+				sessionStorage.setItem('openID',res.UserInfo.openid)
+			})
+		}else{
+			console.log("noOpenId")
+		}
+	}
+	
+	getOpenId()
 	RetrieveSingleEquipment(data,success,error)
 	$("#cars").click(function() {
 		window.location.href = "equipments.html"
@@ -45,3 +61,5 @@ $(function(){
 		window.location.href = "myDrivers.html"
 	})
 })
+
+
