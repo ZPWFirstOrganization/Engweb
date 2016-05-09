@@ -4,6 +4,7 @@ var docs = [];
 var smsCode = ""
 //司机类型 1 表示挖掘机 2 表示装载机
 var driverType = 1
+var isNewImg = false;
 var imgIds = [];
 var imgServerId = "";
 
@@ -211,6 +212,7 @@ function picChange(e){
 	    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
 	    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
 	    success: function (res) {
+	    	isNewImg = true;
 	        imgIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
 	        $("#personIcon").attr("src",imgIds[0]);
 	    }
@@ -239,19 +241,23 @@ function picChange(e){
 }
 
 function upLoadImg(callback){
-	wx.uploadImage({
-	    localId: imgIds[0], // 需要上传的图片的本地ID，由chooseImage接口获得
-	    isShowProgressTips: 0, // 默认为1，显示进度提示
-	    success: function (res) {
-	    	alert(JSON.stringify(res));
-	        imgServerId = res.serverId; // 返回图片的服务器端ID
-	        // $('#name').val(res.serverId);
-	        return callback();
-	    },
-	    fail: function(){
-	    	alert("网络异常，请稍后再试");
-	    }
-	});
+	if(isNewImg){
+		wx.uploadImage({
+		    localId: imgIds[0], // 需要上传的图片的本地ID，由chooseImage接口获得
+		    isShowProgressTips: 0, // 默认为1，显示进度提示
+		    success: function (res) {
+		    	alert(JSON.stringify(res));
+		        imgServerId = res.serverId; // 返回图片的服务器端ID
+		        // $('#name').val(res.serverId);
+		        return callback();
+		    },
+		    fail: function(){
+		    	alert("网络异常，请稍后再试");
+		    }
+		});
+	}else{
+		return callback();
+	}
 }
 
 function checkSubmit(){
@@ -264,8 +270,8 @@ function checkSubmit(){
 		msg = "请选择设备";
 	}else if($("#personDecription").val() == "") {
 		msg = "请输入个人描述";
-	}else if(imgServerId == "") {
-		msg = "请选择照片";
+	// }else if(imgServerId == "") {
+	// 	msg = "请选择照片";
 	}
 	return msg;
 }

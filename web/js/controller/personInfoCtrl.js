@@ -88,7 +88,7 @@ function initLayout(){
 		},100)
 	});
 	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
-	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10000 +'"}}',
+	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10003 +'"}}',
 	function(res){
 		// alert(JSON.stringify(res))
 		console.log("查询联系人:",res);
@@ -320,17 +320,18 @@ function checkSubmit(){
 		msg = "请选择设备";
 	}else if($("#personDecription").val() == "") {
 		msg = "请输入个人描述";
-	}else if(imgServerId == "") {
+	}else if(!imgIds[0]) {
 		msg = "请选择照片";
 	}
 	return msg;
 }
 function bundleData(){
 	person.WeiXinOpenID = sessionStorage.getItem('openID');
-	// person.WeiXinOpenID = 10001;
+	// person.WeiXinOpenID = 10003;
 	person.ContactName = $("#name").val();
 	person.MobilePhone = $("#phone").val();
 	person.ContactType = $("#ruleSelect").val();
+	alert(imgServerId)
 	person.PhotoWxparameter = imgServerId;
 	person.PhotoRepresent = $("#isDaiyan").is(':checked');
 	person.JoinCareerDate = $("#joinTime").val();
