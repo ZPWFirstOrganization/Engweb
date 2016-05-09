@@ -1,20 +1,12 @@
 $(function(){
-	var data ={
-		"Equipment":
-				{
-				"EquipmentId":"0ced7514-64fa-e511-9417-ab581d3f6b3c"
-				}
-		}
-	
-	data = JSON.stringify(data);
 	function success(data){
-		if (!data.EquipmentDrivers) {
+		if (!data.EquipmentStatus) {
 			$('ul li:first-child div div').parents("li:first").css("display","none")
 			return
 		}
-		for (var i=0;i<=data.EquipmentDrivers.length-1;i++) {
+		for (var i=0;i<=data.EquipmentStatus.length-1;i++) {
 			$('ul li:first-child div div').eq(0).text(data.EquipmentNumber);
-			$('ul li:first-child div div').eq(1).text(data.EquipmentDrivers[i].DriverName);
+			$('ul li:first-child div div').eq(1).text(data.EquipmentStatus[i].DriverName);
 			$('ul li:first-child .myCarInput').eq(0).text("正常作业");
 			$('ul li:first-child .myCarInput').eq(1).text(100);
 			$('ul li:first-child .myCarInput').eq(2).text(data.RegistrationHours);
@@ -43,17 +35,35 @@ $(function(){
 			GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
 				if(res.UserInfo.openid){
 					sessionStorage.setItem('openID',res.UserInfo.openid)
+					init()
 				}
 			},function(res){
-				sessionStorage.setItem('openID',res.UserInfo.openid)
+				// sessionStorage.setItem('openID',res.UserInfo.openid)
+				// init(res.UserInfo.openid)
+				console.log("cannot get openId")
 			})
 		}else{
-			console.log("noOpenId")
+			init()		
 		}
 	}
 	
+	
 	getOpenId()
-	RetrieveSingleEquipment(data,success,error)
+	function init(){
+		var myOpenId = sessionStorage.getItem('openID')
+		var data ={
+		"EquipmentStatusQuery":
+				{
+				"WeiXinUserType":"Owner",
+				"WeiXinOpenID":myOpenId
+
+				}
+		}
+	
+		data = JSON.stringify(data);
+		RetrieveMultipleEquipmentStatus(data,success,error)
+	}
+	
 	$("#cars").click(function() {
 		window.location.href = "equipments.html"
 	})
