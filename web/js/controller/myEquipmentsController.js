@@ -1,9 +1,10 @@
 $(function(){
+	var myOpenId = sessionStorage.getItem('openID')
 	var data = 
 		{
 		EquipmentsQuery:
 			{
-			WeiXinOpenID:11111111
+			WeiXinOpenID:myOpenId
 			}
 		}
 	function success (mydata) {
