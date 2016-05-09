@@ -6,14 +6,21 @@ var smsCode = ""
 //司机类型 1 表示挖掘机 2 表示装载机
 var driverType = 1
 $(function(){
-	// wx.config({
-	//     debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-	//     appId: '', // 必填，公众号的唯一标识
-	//     timestamp: , // 必填，生成签名的时间戳
-	//     nonceStr: '', // 必填，生成签名的随机串
-	//     signature: '',// 必填，签名，见附录1
-	//     jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-	// });
+	GetWeChatConfig('{"Request":{"PageUrl":"'+window.location.href+'"}}',
+		function(res){
+			// alert(res.ConfigInfo.Signature)
+			wx.config({
+			    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+			    appId: res.ConfigInfo.AppId, // 必填，公众号的唯一标识
+			    timestamp:res.ConfigInfo.Timestamp, // 必填，生成签名的时间戳
+			    nonceStr: res.ConfigInfo.NonceStr, // 必填，生成签名的随机串
+			    signature: res.ConfigInfo.Signature,// 必填，签名，见附录1
+			    jsApiList: ['chooseImage','previewImage','uploadImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+			});
+		},function(res){
+			
+	})
+	
 	// $(document).ready(function(){
 		
 	// })
@@ -78,8 +85,8 @@ function initLayout(){
 			}
 		},100)
 	});
-	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
-	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10000 +'"}}',
+	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
+	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10000 +'"}}',
 	function(res){
 		// alert(JSON.stringify(res))
 		console.log("查询联系人:",res);
@@ -255,28 +262,49 @@ $("#SMScode").on('input',function(e){
 
 
 	
-
+var imgIds = [];
 function picChange(e){
-	var file = e.files[0];
-	if(!/image\/\w+/.test(file.type)){
-		alert("请确保文件为图像类型");
-		return false;
-	}
-	var reader = new FileReader();
-	reader.readAsDataURL(file);
-	reader.onload = function(e){
-		$("#personIcon").attr("src",this.result);
-		var _img = new Image();
-		_img.src = this.result;
-		_img.onload = function(){
-			var _canvas = document.createElement("canvas")
-			_canvas.width = _img.width;
-	        _canvas.height = _img.height;
-	        var _context = _canvas.getContext('2d');
-	        _context.drawImage(_img,0,0);
-	        person.PhotoBase64 = _canvas.toDataURL('image/jpeg',0.5);
-		}	
-	}
+	wx.chooseImage({
+	    count: 1, // 默认9
+	    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+	    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+	    success: function (res) {
+	        imgIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+	        $("#personIcon").attr("src",imgIds[0]);
+	    }
+	});
+	// var file = e.files[0];
+	// if(!/image\/\w+/.test(file.type)){
+	// 	alert("请确保文件为图像类型");
+	// 	return false;
+	// }
+	// var reader = new FileReader();
+	// reader.readAsDataURL(file);
+	// reader.onload = function(e){
+	// 	$("#personIcon").attr("src",this.result);
+	// 	var _img = new Image();
+	// 	_img.src = this.result;
+	// 	_img.onload = function(){
+	// 		var _canvas = document.createElement("canvas")
+	// 		_canvas.width = _img.width;
+	//         _canvas.height = _img.height;
+	//         var _context = _canvas.getContext('2d');
+	//         _context.drawImage(_img,0,0);
+	//         person.PhotoBase64 = _canvas.toDataURL('image/jpeg',0.5);
+	// 	}	
+	// }
+}
+
+function upLoadImg(){
+	wx.uploadImage({
+	    localId: imgIds[0], // 需要上传的图片的本地ID，由chooseImage接口获得
+	    isShowProgressTips: 1, // 默认为1，显示进度提示
+	    success: function (res) {
+	    	alert(JSON.stringify(res));
+	        var serverId = res.serverId; // 返回图片的服务器端ID
+	        // $('#name').val(res.serverId);
+	    }
+	});
 }
 
 function checkSubmit(){
@@ -295,8 +323,8 @@ function checkSubmit(){
 	return msg;
 }
 function bundleData(){
-	// person.WeiXinOpenID = sessionStorage.getItem('openID');
-	person.WeiXinOpenID = 10001;
+	person.WeiXinOpenID = sessionStorage.getItem('openID');
+	// person.WeiXinOpenID = 10001;
 	person.ContactName = $("#name").val();
 	person.MobilePhone = $("#phone").val();
 	person.ContactType = $("#ruleSelect").val();

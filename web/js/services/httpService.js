@@ -176,3 +176,9 @@ function RetrieveMultipleEquipmentStatus(data,suc,err){
     var data = data
     invokeMethod(url, data,suc,err);
 }
+
+//获取微信JSSDK接口
+function GetWeChatConfig(data,suc,err){
+    var url = "/WeiXin/WeChatJsSDKServices.svc/GetWeChatConfig";
+    invokeMethod(url,data,suc,err);
+}
