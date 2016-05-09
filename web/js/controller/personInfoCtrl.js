@@ -5,6 +5,8 @@ var docs = [];
 var smsCode = ""
 //司机类型 1 表示挖掘机 2 表示装载机
 var driverType = 1
+var imgIds = [];
+var imgServerId = "";
 $(function(){
 	GetWeChatConfig('{"Request":{"PageUrl":"'+window.location.href+'"}}',
 		function(res){
@@ -260,9 +262,6 @@ $("#SMScode").on('input',function(e){
 	}
 }); 
 
-
-	
-var imgIds = [];
 function picChange(e){
 	wx.chooseImage({
 	    count: 1, // 默认9
@@ -295,14 +294,18 @@ function picChange(e){
 	// }
 }
 
-function upLoadImg(){
+function upLoadImg(callback){
 	wx.uploadImage({
 	    localId: imgIds[0], // 需要上传的图片的本地ID，由chooseImage接口获得
-	    isShowProgressTips: 1, // 默认为1，显示进度提示
+	    isShowProgressTips: 0, // 默认为1，显示进度提示
 	    success: function (res) {
 	    	alert(JSON.stringify(res));
-	        var serverId = res.serverId; // 返回图片的服务器端ID
+	        imgServerId = res.serverId; // 返回图片的服务器端ID
 	        // $('#name').val(res.serverId);
+	        return callback();
+	    },
+	    fail: function(){
+	    	alert("网络异常，请稍后再试");
 	    }
 	});
 }
@@ -317,8 +320,8 @@ function checkSubmit(){
 		msg = "请选择设备";
 	}else if($("#personDecription").val() == "") {
 		msg = "请输入个人描述";
-	// }else if($("#name").val() == "") {
-	// 	msg = "";
+	}else if(imgServerId == "") {
+		msg = "请选择照片";
 	}
 	return msg;
 }
@@ -328,7 +331,8 @@ function bundleData(){
 	person.ContactName = $("#name").val();
 	person.MobilePhone = $("#phone").val();
 	person.ContactType = $("#ruleSelect").val();
-	// person.PhotoRepresent = $("#isDaiyan").is(':checked');
+	person.PhotoWxparameter = imgServerId;
+	person.PhotoRepresent = $("#isDaiyan").is(':checked');
 	person.JoinCareerDate = $("#joinTime").val();
 	person.OwnerRepresent = $("#personDecription").val();
 	person.DriverRepresent = $("#personDecription").val();
@@ -373,40 +377,21 @@ function submit(){
 		alert(msg);
 		return;
 	}
-	bundleData();
-	$("body").showLoading();
-	CreateContact('{"Contact":{'+JSON.stringify(person)+'}}',function(res){
-		$("body").hideLoading();
-		console.log("suc:",res)
-		if(res.ReturnStatus = "E"){
-			alert(res.ReturnValue)
-			return;
-		}
-		window.location.reload();
-	},function(res){
-		$("body").hideLoading();
-		alert("网络不稳定，请稍后再试")
-	})
-}
-
-function programClick(e,id){
-	// var dom = $("#"+ e.id);
-	// if (dom.hasClass("positive")){
-	// 	$.each(programs, function(i,v){
-	// 		if(v == id){
-	// 			programs.splice(i,0);
-	// 			docs.splice(i,0);
-	// 		}
-	// 	})
-	// 	dom.removeClass("positive");
-	// }else{
-	// 	if (programs.length>=3){
-	// 		programs.shift();
-	// 		docs[0].removeClass("positive");
-	// 		docs.shift();
-	// 	}
-	// 	dom.addClass("positive");
-	// 	programs.push(id);
-	// 	docs.push(dom);
-	// }
+	//先上传图片
+	upLoadImg(function(){
+		bundleData();
+		$("body").showLoading();
+		CreateContact('{"Contact":{'+JSON.stringify(person)+'}}',function(res){
+			$("body").hideLoading();
+			console.log("suc:",res)
+			if(res.ReturnStatus == "E"){
+				alert(res.ReturnValue)
+				return;
+			}
+			window.location.reload();
+		},function(res){
+			$("body").hideLoading();
+			alert("网络不稳定，请稍后再试")
+		})
+	});
 }

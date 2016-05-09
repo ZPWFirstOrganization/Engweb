@@ -4,10 +4,24 @@ var docs = [];
 var smsCode = ""
 //司机类型 1 表示挖掘机 2 表示装载机
 var driverType = 1
+var imgIds = [];
+var imgServerId = "";
 
 $(function(){
+	GetWeChatConfig('{"Request":{"PageUrl":"'+window.location.href+'"}}',
+		function(res){
+			wx.config({
+			    debug: false, 
+			    appId: res.ConfigInfo.AppId,
+			    timestamp:res.ConfigInfo.Timestamp,
+			    nonceStr: res.ConfigInfo.NonceStr,
+			    signature: res.ConfigInfo.Signature,
+			    jsApiList: ['chooseImage','previewImage','uploadImage']
+			});
+		},function(res){
+			
+	})
 	initLayout();
-	//console.log($("#TimeArea1 div div .put"));
 })
 
 function initLayout(){
@@ -191,31 +205,53 @@ $("#SMScode").on('input',function(e){
 	}
 }); 
 
-
-	
-
 function picChange(e){
-	var file = e.files[0];
-	if(!/image\/\w+/.test(file.type)){
-		alert("请确保文件为图像类型");
-		return false;
-	}
-	var reader = new FileReader();
-	reader.readAsDataURL(file);
-	reader.onload = function(e){
-		$("#personIcon").attr("src",this.result);
-		var _img = new Image();
-		_img.src = this.result;
-		_img.onload = function(){
-			// 将图像绘制到canvas上  
-			var _canvas = document.createElement("canvas")
-			_canvas.width = _img.width;
-	        _canvas.height = _img.height;
-	        var _context = _canvas.getContext('2d');
-	        _context.drawImage(_img,0,0);
-	        person.PhotoBase64 = _canvas.toDataURL('image/jpeg',0.5);
-		}
-	}
+	wx.chooseImage({
+	    count: 1, // 默认9
+	    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+	    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+	    success: function (res) {
+	        imgIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+	        $("#personIcon").attr("src",imgIds[0]);
+	    }
+	});
+	// var file = e.files[0];
+	// if(!/image\/\w+/.test(file.type)){
+	// 	alert("请确保文件为图像类型");
+	// 	return false;
+	// }
+	// var reader = new FileReader();
+	// reader.readAsDataURL(file);
+	// reader.onload = function(e){
+	// 	$("#personIcon").attr("src",this.result);
+	// 	var _img = new Image();
+	// 	_img.src = this.result;
+	// 	_img.onload = function(){
+	// 		// 将图像绘制到canvas上  
+	// 		var _canvas = document.createElement("canvas")
+	// 		_canvas.width = _img.width;
+	//         _canvas.height = _img.height;
+	//         var _context = _canvas.getContext('2d');
+	//         _context.drawImage(_img,0,0);
+	//         person.PhotoBase64 = _canvas.toDataURL('image/jpeg',0.5);
+	// 	}
+	// }
+}
+
+function upLoadImg(callback){
+	wx.uploadImage({
+	    localId: imgIds[0], // 需要上传的图片的本地ID，由chooseImage接口获得
+	    isShowProgressTips: 0, // 默认为1，显示进度提示
+	    success: function (res) {
+	    	alert(JSON.stringify(res));
+	        imgServerId = res.serverId; // 返回图片的服务器端ID
+	        // $('#name').val(res.serverId);
+	        return callback();
+	    },
+	    fail: function(){
+	    	alert("网络异常，请稍后再试");
+	    }
+	});
 }
 
 function checkSubmit(){
@@ -228,8 +264,8 @@ function checkSubmit(){
 		msg = "请选择设备";
 	}else if($("#personDecription").val() == "") {
 		msg = "请输入个人描述";
-	// }else if($("#name").val() == "") {
-	// 	msg = "";
+	}else if(imgServerId == "") {
+		msg = "请选择照片";
 	}
 	return msg;
 }
@@ -279,17 +315,19 @@ function submit(){
 		return;
 	}
 	bundleData();
-	$("body").showLoading();
-	UpdateContact('{"Contact":{'+JSON.stringify(person)+'}}',function(res){
-		$("body").hideLoading();
-		console.log("suc:",res)
-		if(res.ReturnStatus == "E"){
-			alert(res.ReturnValue)
-		}
-		self.location = 'personInfo.html'
-	},function(res){
-		$("body").hideLoading();
-		console.log("err:",res)
+	upLoadImg(function(){
+		$("body").showLoading();
+		UpdateContact('{"Contact":{'+JSON.stringify(person)+'}}',function(res){
+			$("body").hideLoading();
+			console.log("suc:",res)
+			if(res.ReturnStatus == "E"){
+				alert(res.ReturnValue)
+			}
+			self.location = 'personInfo.html'
+		},function(res){
+			$("body").hideLoading();
+			console.log("err:",res)
+		})
 	})
 }
 
