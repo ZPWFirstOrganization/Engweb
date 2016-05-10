@@ -430,7 +430,7 @@ a {
 .selectMyCarDiv{
 	color: #FF9C0A;
 	border-bottom: 1px solid #cccccc;
-	height: 30px;
+	height: 45px;
 	background: #fff;
     width: 100%;
     position: fixed;
@@ -615,9 +615,15 @@ a {
     width: 100%;
     height:100%;
     left: 0;
-    top:30px;
+    top:45px;
     background: #fff;
     z-index: 11;
+}
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+}
+input::-webkit-outer-spin-button {
+-webkit-appearance: none;
 }
 .equipment-list .el-left{
     width: 150px;
