@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>司机信息</title>
+    <title>我是司机</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="css/icon/css/font-awesome.min.css"/>
@@ -17,7 +17,7 @@
             <ul>
                 <li class=" info-li">
                     <div class="info-name">入行年月</div>
-                    <div class="info-time"><div id="inTime">2016-01</div></div>
+                    <div class="info-time"><div id="inTime">暂无</div></div>
                 </li>
                 <li class=" info-li">
                     <div class="info-name">累计小时数</div>
@@ -25,7 +25,7 @@
                 </li>
                 <li class=" info-li">
                     <div class="info-name">当前操作设备</div>
-                    <div class="info-time" style="font-size: 14px" id="equip"></div>
+                    <div class="info-time" style="font-size: 14px" id="equip">暂无</div>
                 </li>
                 <li class=" info-li">
                     <div class="info-name">已为老板服务T</div>
@@ -142,17 +142,19 @@
     </div>
 
 <script>
+    var isRegusted = false;
     var driverType = 1;
     function initLayout(data){
         var map = []
-        // RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+sessionStorage.getItem('openID')+'"}}',
-        RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+10000+'"}}',
+        RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+sessionStorage.getItem('openID')+'"}}',
+        // RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+10000+'"}}',
         function(res){
             console.log(res)
             if(res.ReturnValue == "未能查询到司机的详细信息!"){
                 alert("请先录入个人资料")
                 return
             }
+            isRegusted = true;
             driverType = res.VehicleType
             $("#name").text(res.DriverName)
             $("#inTime").text(res.JoinCareerDate.substring(0,7))
@@ -228,6 +230,10 @@
         initLayout()
     })
     function recordDay(){
+        if(!isRegusted){
+            alert("请先录入个人资料")
+            return
+        }
         self.location='eachday.html?VehicleType=' + driverType;
     }
 </script>

@@ -107,7 +107,7 @@ $.choose=function(opt){
 		            $('.el-right').on('click',"li",function(){
 		                $('.el-right li').removeClass('hover-li');
 		                $(this).addClass('hover-li');
-		                opt.callback($('.el-left li').html()+" "+$('.el-right .hover-li').html(),$('.el-right .hover-li').attr("brandId"),$('.el-right .hover-li').attr("modelId"),carType);
+		                opt.callback($('.el-left hover-li').html()+" "+$('.el-right .hover-li').html(),$('.el-right .hover-li').attr("brandId"),$('.el-right .hover-li').attr("modelId"),carType);
 		                setTimeout(function() {
 		                	$(".equipment-list").css({"display":"none"});
 		                	$(".selectMyCarDiv").css({"display":"none"});

@@ -26,7 +26,7 @@ a {
 }
 .content .thing{
     border-bottom: 1px solid #c0c0c0;
-    padding: 7px 0;
+    padding: 7px 0px 7px 0px;
 }
 
 .content .thing-nopadding{
@@ -239,10 +239,11 @@ a {
     line-height: 30px;
 }
 #driver .driver-info .info-li .info-name{
+    font-size: 15px;
     color: #bababa;
 }
 #driver .driver-info .info-li .info-time{
-    font-size: 20px;
+    font-size: 21px;
     font-weight: bold;
 }
 #driver .driver-info .info-li .color-time{

@@ -7,6 +7,7 @@ var smsCode = ""
 var driverType = 1
 var imgIds = [];
 var imgServerId = "";
+var access_token = "";
 $(function(){
 	GetWeChatConfig('{"Request":{"PageUrl":"'+window.location.href+'"}}',
 		function(res){
@@ -41,6 +42,7 @@ $(function(){
 	//alert("CODE:"+$.getUrlParam('code'))
 	if(!sessionStorage.getItem('openID')){
 		GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
+			// alert(JSON.stringify(res))
 			if(res.UserInfo.openid){
 				sessionStorage.setItem('openID',res.UserInfo.openid)
 			}
@@ -88,7 +90,7 @@ function initLayout(){
 		},100)
 	});
 	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
-	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10003 +'"}}',
+	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10006 +'"}}',
 	function(res){
 		// alert(JSON.stringify(res))
 		console.log("查询联系人:",res);
@@ -128,7 +130,7 @@ function initLayout(){
 			$(".button button").addClass("btnpositive");
 			if (person.ContactType == 1){
 				$("[show=master]").css({"display":""});
-				var maps = ["ContactTypeName","ContactName","MobilePhone","","OwnerRepresent"];
+				var maps = ["ContactTypeName","ContactName","MobilePhone","","","OwnerRepresent"];
 				$("div[show=hasregisted]").each(function(i,v) {
 					$(this).text(person[maps[i]]);
 				})
@@ -140,7 +142,7 @@ function initLayout(){
 				})
 			}else{
 				$("[show=driver]").css({"display":""});
-				var maps = ["ContactTypeName","ContactName","MobilePhone","","DriverRepresent"];
+				var maps = ["ContactTypeName","ContactName","MobilePhone","","","DriverRepresent"];
 				$("div[show=hasregisted]").each(function(i,v) {
 					if(i != 3){
 						$(this).text(person[maps[i]]);
@@ -299,7 +301,7 @@ function upLoadImg(callback){
 	    localId: imgIds[0], // 需要上传的图片的本地ID，由chooseImage接口获得
 	    isShowProgressTips: 0, // 默认为1，显示进度提示
 	    success: function (res) {
-	    	alert(JSON.stringify(res));
+	    	// alert(JSON.stringify(res));
 	        imgServerId = res.serverId; // 返回图片的服务器端ID
 	        // $('#name').val(res.serverId);
 	        return callback();
@@ -327,11 +329,12 @@ function checkSubmit(){
 }
 function bundleData(){
 	person.WeiXinOpenID = sessionStorage.getItem('openID');
-	// person.WeiXinOpenID = 10003;
+	// person.WeiXinOpenID = 10005;
 	person.ContactName = $("#name").val();
 	person.MobilePhone = $("#phone").val();
+	// person.MobilePhone = '18883170582';
 	person.ContactType = $("#ruleSelect").val();
-	alert(imgServerId)
+	// alert(imgServerId)
 	person.PhotoWxparameter = imgServerId;
 	person.PhotoRepresent = $("#isDaiyan").is(':checked');
 	person.JoinCareerDate = $("#joinTime").val();
@@ -384,7 +387,7 @@ function submit(){
 		$("body").showLoading();
 		CreateContact('{"Contact":{'+JSON.stringify(person)+'}}',function(res){
 			$("body").hideLoading();
-			console.log("suc:",res)
+			// alert(JSON.stringify(res))
 			if(res.ReturnStatus == "E"){
 				alert(res.ReturnValue)
 				return;
