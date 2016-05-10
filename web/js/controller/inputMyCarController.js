@@ -44,13 +44,13 @@ $(function(){
 		
 		RetrieveMultipleBrandModel(mydata,success,error)
 	    function selectCars () {
-	    	var ohtml= 
+	    	var mhtml= 
 	    	'<div class="selectMyCarDiv">' +
-		    	'<button id="LoaderCar" class="selectdMyCarBtnClass selectMycarBtn" style="margin-left: 30%;">装载机</button>' +
-		    	'<button id="excavatingCar" class="selectMycarBtn" style="margin-right: 30%;">挖掘机</button>' +
+		    	'<button id="excavatingCar" class="selectdMyCarBtnClass selectMycarBtn" style="margin-left: 30%;">挖掘机</button>' +
+		    	'<button id="LoaderCar" class="selectMycarBtn" style="margin-right: 30%;">装载机</button>' +
 	    	'</div>'
 	    	
-		    $('body').append(ohtml);
+		    $('body').append(mhtml);
 		    $(".selectMyCarDiv > button").each(function() {
 	            	$(this).click(function(i,v) {
 	            		inBtnClick($(this))
@@ -98,7 +98,7 @@ $(function(){
 		            $('.el-right').on('click',"li",function(){
 		                $('.el-right li').removeClass('hover-li');
 		                $(this).addClass('hover-li');
-		                opt.callback($('.el-left li').html()+" "+$('.el-right .hover-li').html(),$('.el-right .hover-li').attr("brandId"),$('.el-right .hover-li').attr("modelId"),$('.el-right .hover-li').attr("typeId"));
+		                opt.callback($('.el-left .hover-li').html()+" "+$('.el-right .hover-li').html(),$('.el-right .hover-li').attr("brandId"),$('.el-right .hover-li').attr("modelId"),$('.el-right .hover-li').attr("typeId"));
 		                setTimeout(function() {
 		                	$(".equipment-list").remove();
 		                	$(".selectMyCarDiv").remove(); 
@@ -126,7 +126,7 @@ $(function(){
 		   			}
 		   			
 		   		} else{
-		   			createList(type1Data,1)
+		   			createList(type2Data,2)
 		   		}
 		   	}
 		   	
@@ -179,9 +179,9 @@ $(function(){
 		var buyhour = $("#buyHour").eq(0).val()
 		var buyData = $("#buyData").eq(0).val()
 		var brandId = $('#shebei').attr("brandId")
-    	var modelId = $('#shebei').attr("modelId")
-    	var typeId = $('#shebei').attr("typeId")
-    	var thisWeiId = window.location.href.split("=")[1]
+	    	var modelId = $('#shebei').attr("modelId")
+	    	var typeId = $('#shebei').attr("typeId")
+	    	var thisWeiId = window.location.href.split("=")[1]
 		if (!typeId||!brandId||!modelId||!buyhour||!buyData) {
 			alert("信息不完整")
 			return
@@ -198,11 +198,17 @@ $(function(){
 			return
 		}
 		buyData=buyData.replace("/","-");
+		var myOpenId = sessionStorage.getItem('openID')
+		if (!myOpenId) {
+			alert("微信发生错误,请稍后再试.")
+			console.log("没有取到openID")
+			return
+		}
 		var submitData = 
 	       {
 	       		"Equipment":
 						{
-						WeiXinOpenID:22222222,
+						WeiXinOpenID:myOpenId,
 						VehicleType:typeId,
 						BrandId:brandId,
 						ModelId:modelId,
@@ -233,7 +239,7 @@ $(function(){
 	function bindDrivers() {
 		var html = '<div class="driversDiv" >' + 
 		'<div class="selectDriversDiv">' +
-			'<input class="personalInfoTitleLeft SMSInput" value="请输入手机号查询"/>' +
+			'<input type="number" style＝"-webkit-appearance：none" class="personalInfoTitleLeft SMSInput" value="请输入手机号查询"/>' +
 			'<button class="SMSclick">查询</button>'+
 		'</div>' +
 		'<div class="button">' + 
