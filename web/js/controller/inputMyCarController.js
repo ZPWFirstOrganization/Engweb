@@ -46,8 +46,8 @@ $(function(){
 	    function selectCars () {
 	    	var mhtml= 
 	    	'<div class="selectMyCarDiv">' +
-		    	'<button id="excavatingCar" class="selectdMyCarBtnClass selectMycarBtn" style="margin-left: 30%;">挖掘机</button>' +
-		    	'<button id="LoaderCar" class="selectMycarBtn" style="margin-right: 30%;">装载机</button>' +
+		    	'<button id="LoaderCar" class="selectdMyCarBtnClass selectMycarBtn selectMycarBtnLeft" style="margin-left: 30%;">挖掘机</button>' +
+		    	'<button id="excavatingCar" class="selectMycarBtn selectMycarBtnRight" style="margin-right: 30%;">装载机</button>' +
 	    	'</div>'
 	    	
 		    $('body').append(mhtml);
@@ -126,7 +126,7 @@ $(function(){
 		   			}
 		   			
 		   		} else{
-		   			createList(type2Data,2)
+		   			createList(type1Data,1)
 		   		}
 		   	}
 		   	
