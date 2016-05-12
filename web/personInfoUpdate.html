@@ -26,13 +26,13 @@
             <div class="left">我是</div>
             <div class="clear"></div>
         </div>
-        <div class="thing">
+        <div class="thing" style="border-bottom: 0">
             <div class="right" style="margin-right: 15px">
                 <div class="right-right">
                     <!-- <i class="fa fa-angle-right"></i> -->
                 </div>
                 <div class="right-left">
-                    <input type="text" placeholder="必填" class="put" id="name" action="update">
+                    <input type="text" placeholder="必填" class="put" id="name" action="update" style="width: 80%">
                 </div>
                 <div class="clear"></div>
             </div>
@@ -136,7 +136,7 @@
     <div name="special" show="update" style="display: none">
     <div class="msg"><i class="fa fa-exclamation-circle"></i> 以下信息提交后不可再修改，请真实正确填写</div>
     <div class="content">
-        <div class="thing thing-last" style="display: none;" id="TimeArea1" show="driver1" style="border-top:1px solid #c0c0c0;" style="display: none">
+        <div class="thing thing-last" id="TimeArea1" show="driver1" style="border-top:1px solid #c0c0c0;display: none">
                 <div>我的技能和小时数</div>
                 <div class="wrapper">
                     <div class="row">
@@ -161,12 +161,12 @@
                     </div>
                 </div>
         </div>
-        <div class="thing thing-last" style="display: none;" id="TimeArea2" show="driver2" style="display: none">
+        <div class="thing thing-last" style="border-top:1px solid #c0c0c0;display: none" id="TimeArea2" show="driver2">
                 <div class="left">我的技能和小时数</div>
                 <div class="wrapper">
                     <div class="row">
                         <a class="puttxt">土石装车</a><input class="put" type="tel"  value="0"/>
-                        <a class="puttxt">矿山装车</a><input class="put" type="tel"  value="0"/>
+                        <a class="puttxt">矿山装车</a><input class="put" type="tel"  value="0" style="width: 50px"/>
                     </div>
                     <div class="row">
                         <a class="puttxt">搅拌站装料</a><input class="put" type="tel"  value="0"/>
@@ -182,5 +182,6 @@
     <script type="text/javascript" src="js/services/httpService.js"></script>
     <script type="text/javascript" src="js/controller/personInfoUpdateCtrl.js"></script>
     <script type="text/javascript" src="js/controller/selectCar.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </body>
 </html>

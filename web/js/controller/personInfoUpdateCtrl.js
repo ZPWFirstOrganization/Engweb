@@ -27,6 +27,9 @@ $(function(){
 
 function initLayout(){
 	var isCarPop = false
+	$("input").focus(function(e){
+		$(this).select();
+	})
 	$('#shebei').click(function(){
 		$(":input").blur();
 		setTimeout(function () {
@@ -42,11 +45,21 @@ function initLayout(){
 						person.VehicleModelId = v3;
 						driverType = v4;
 						if(driverType == 1){
-							$("[show=driver1]").css({"display":""});
-							$("[show=driver2]").css({"display":"none"});
+							if(!person.Grab_TotalHours > 0){
+								$("[name=special]").css({"display":""})
+								$("[show=driver1]").css({"display":""});
+								$("[show=driver2]").css({"display":"none"});
+							}else{
+								$("[name=special]").css({"display":"none"})
+							}
 						}else{
-							$("[show=driver2]").css({"display":""});
-							$("[show=driver1]").css({"display":"none"});
+							if(!person.Loader_TotalHours > 0){
+								$("[name=special]").css({"display":""})
+								$("[show=driver2]").css({"display":""});
+								$("[show=driver1]").css({"display":"none"});
+							}else{
+								$("[name=special]").css({"display":"none"})
+							}
 						}
 					}
 				})
@@ -57,6 +70,7 @@ function initLayout(){
 		},100)
 	});
 	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
+	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10007 +'"}}',
 	function(res){
 		console.log("查询联系人:",res);
 		//未查询到联系人
@@ -153,8 +167,12 @@ function ruleSelect(e){
 		$('#shebei').val("");
 		$("[show=master]").css({"display":"block"})
 		$("[show=driver]").css({"display":"none"})
-		$("[show=driver1]").css({"display":"none"})
-		$("[show=driver2]").css({"display":"none"})
+		$("[name=special]").css({"display":"none"})
+		$("[name=special] input").each(function(i,v){
+			$(this).val(0);
+		})
+		// $("[show=driver1]").css({"display":"none"})
+		// $("[show=driver2]").css({"display":"none"})
 		// $("#masterProgram").css({"display":"block"})
 		// $("#TimeArea1").css({"display":"none"})
 		// $("#TimeArea2").css({"display":"none"})
@@ -280,7 +298,7 @@ function bundleData(){
 	person.ContactName = $("#name").val();
 	person.MobilePhone = $("#phone").val();
 	person.ContactType = $("#ruleSelect").val();
-	// person.PhotoRepresent = $("#isDaiyan").is(':checked');
+	person.PhotoRepresent = $("#isDaiyan").is(':checked');
 	person.JoinCareerDate = $("#joinTime").val();
 	person.OwnerRepresent = $("#personDecription").val();
 	person.DriverRepresent = $("#personDecription").val();

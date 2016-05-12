@@ -7,7 +7,6 @@ var smsCode = ""
 var driverType = 1
 var imgIds = [];
 var imgServerId = "";
-var access_token = "";
 $(function(){
 	GetWeChatConfig('{"Request":{"PageUrl":"'+window.location.href+'"}}',
 		function(res){
@@ -60,6 +59,9 @@ $(function(){
 
 function initLayout(){
 	var isCarPop = false
+	$("input").focus(function(e){
+		$(this).select();
+	})
 	$('#shebei').click(function(){
 		$(":input").blur();
 		setTimeout(function () {
@@ -90,7 +92,7 @@ function initLayout(){
 		},100)
 	});
 	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
-	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10006 +'"}}',
+	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10007 +'"}}',
 	function(res){
 		// alert(JSON.stringify(res))
 		console.log("查询联系人:",res);
@@ -144,7 +146,7 @@ function initLayout(){
 				$("[show=driver]").css({"display":""});
 				var maps = ["ContactTypeName","ContactName","MobilePhone","","","DriverRepresent"];
 				$("div[show=hasregisted]").each(function(i,v) {
-					if(i != 3){
+					if(i != 4){
 						$(this).text(person[maps[i]]);
 					}else{
 						$(this).text(person.VehicleBrandName+person.VehicleModelName);
@@ -329,10 +331,10 @@ function checkSubmit(){
 }
 function bundleData(){
 	person.WeiXinOpenID = sessionStorage.getItem('openID');
-	// person.WeiXinOpenID = 10005;
+	// person.WeiXinOpenID = 10007;
 	person.ContactName = $("#name").val();
 	person.MobilePhone = $("#phone").val();
-	// person.MobilePhone = '18883170582';
+	// person.MobilePhone = '18883170583';
 	person.ContactType = $("#ruleSelect").val();
 	// alert(imgServerId)
 	person.PhotoWxparameter = imgServerId;
