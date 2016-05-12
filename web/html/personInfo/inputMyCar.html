@@ -46,7 +46,7 @@
                 <!--<div class="right-right">
                     <i class="fa fa-angle-right"></i>
                 </div>-->
-                <div class="right-left">
+                <div class="right-left" style="margin-right:0px">
                     <input id="buyData" type="month" value="2010-01" class="put">
                 </div>
                 <div class="clear"></div>
@@ -71,14 +71,17 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="left">登记时小时数</div>
+            <div class="left">登记平台时小时数</div>
             <div class="clear"></div>
         </div>
     </div>
     <div id="showDriver" class="bindedDrivers">
         <div class="bindTitle">已绑定司机</div>
         <div class="bindInfo">
-        	<div class="bindLeftInfo" ></div>
+        	<div class="bindLeftInfo" >
+        		<div id="binDName" style="float:left;" ></div>
+        		<div id="binDPhone" style="float:right;" ></div>
+        	</div>
         	<div class="freeBind">解绑</div>
         </div>
     </div>

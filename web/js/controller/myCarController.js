@@ -2,7 +2,8 @@ $(function(){
 	function success(data){
 		if (!data.EquipmentStatus) {
 			$('ul li:first-child div div').parents("li:first").css("display","none")
-			return
+			window.location.href = "equipments.html"
+			//return
 		}
 		for (var i=0;i<=data.EquipmentStatus.length-1;i++) {
 			$('ul li:first-child div div').eq(0).text(data.EquipmentNumber);
