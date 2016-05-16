@@ -134,9 +134,9 @@ $(function(){
 	            var html='';
 	            $.each(data.Brands[index].Models,function(i,v){
 	                if(i==0){
-	                    html+='<li class="hover-li" typeId='+thistype+' brandId='+data.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+	                    html+='<li class="hover-li" typeId='+thistype+' brandId='+data.Brands[index].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
 	                }else{
-	                    html+=' <li typeId='+thistype+' brandId='+data.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+	                    html+=' <li typeId='+thistype+' brandId='+data.Brands[index].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
 	                }
 	            });
 	            $('.el-right ul').html(html);
@@ -242,7 +242,7 @@ $(function(){
 			'<input type="number" style＝"-webkit-appearance：none" class="personalInfoTitleLeft SMSInput" value="请输入手机号查询"/>' +
 			'<button class="SMSclick">查询</button>'+
 		'</div>' +
-		'<div class="button">' + 
+		'<div class="button" style="position:absolute;">' + 
         '<button id="bindDriver">绑定</button>'+'<button id="unbindDriver">取消</button>'+
     '</div>' +
 		'</div>';
@@ -291,7 +291,7 @@ $(function(){
 				})
 			}else{
 				$(".button #bindDriver").unbind()
-				alert("当前手机号没有绑定司机")
+				alert("当前手机号没有匹配的司机")
 			}
 		}
 		function myerror(thedata) {
@@ -327,15 +327,15 @@ $(function(){
 		driverInfo = JSON.stringify(driverInfo)
 		CreateEquipmentDriver(driverInfo,success,myerror)
 		function success () {
-			if (!$("#showDriver .bindInfo .bindLeftInfo").eq(0).text()){
+			if (!$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text()){
 				$("#showDriver").css("display","block")
-				var thistext = name +"  "+ phoneNum
-				$("#showDriver .bindInfo .bindLeftInfo").eq(0).text(thistext)
+				$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text(name)
+				$("#showDriver .bindInfo .bindLeftInfo #binDPhone").eq(0).text(phoneNum)
 				freeBindEvent ()
 			}else{
 				$("#showDriver .bindInfo").eq(0).clone().appendTo($("#showDriver"))
-				var thistext = name +"  "+ phoneNum
-				$("#showDriver .bindInfo .bindLeftInfo").eq(0).text(thistext)
+				$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text(name)
+				$("#showDriver .bindInfo .bindLeftInfo #binDPhone").eq(0).text(phoneNum)
 				freeBindEvent()
 			}
 			$(".driversDiv").remove();
@@ -351,7 +351,7 @@ $(function(){
 		$(".freeBind").each(function() {
 			$(this).click(function() {
 				if ($(".freeBind").length <= 1) {
-					$("#showDriver .bindInfo .bindLeftInfo").eq(0).text("")
+					$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text("")
 					$("#showDriver").css("display","none")
 				}else{
 					$(this).parent(".bindInfo").remove()
@@ -383,6 +383,8 @@ $(function(){
 		var phoneNum = thisdata.Drivers[0].MobilePhone
 		var myDate = new Date(); 
 		var startDate = myDate.toLocaleDateString()
+		startDate = startDate.replace(/\//g,"-")
+		startDate = startDate.replace(/-/,"-0")
 		var workTime = 0;
 		var html1 = '<div id="personalInfo" class="mainDriver">' +
 		'<div class="thing">' +
@@ -408,7 +410,7 @@ $(function(){
         
         var html2 = '<div id="workInfo" class="mainDriver">' +
 		'<div class="thing">' +
-            '<div class="right">' +
+            '<div class="right" style="margin-right:5px;">' +
                 '<div class="right-left">' +
                     '<input type="date" id="driverStartDate" value="'+startDate+'" class="put">' +
                 '</div>' + 
@@ -420,7 +422,7 @@ $(function(){
         '<div class="thing thing-last">' +
             '<div class="right">' +
                 '<div class="right-left">' +
-                    '<input type="text" id="driverWorkTime" value="'+workTime+'" class="put">' +
+                    '<input type="number" id="driverWorkTime" value="'+workTime+'" class="put">' +
                 '</div>' + 
                 '<div class="clear">' + '</div>' +
             '</div>' +

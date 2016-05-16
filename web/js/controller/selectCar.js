@@ -145,9 +145,9 @@ $.choose=function(opt){
 	            var html='';
 	            $.each(data.Brands[index].Models,function(i,v){
 	                if(i==0){
-	                    html+='<li class="hover-li" brandId='+data.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+	                    html+='<li class="hover-li" brandId='+data.Brands[index].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
 	                }else{
-	                    html+=' <li brandId='+data.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+	                    html+=' <li brandId='+data.Brands[index].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
 	                }
 	            });
 	            $('.el-right ul').html(html);
