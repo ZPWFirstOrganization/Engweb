@@ -14,9 +14,9 @@ $(function(){
 			return
 		}
 		for (var i = 0; i <= mydata.Equipments.length-1; i++) {
-			$('ul li:first-child div div').eq(0).text(mydata.Equipments[i].EquipmentNumber);
+			$('ul li:first-child div div').eq(0).text(mydata.Equipments[i].BrandName + mydata.Equipments[i].ModelName);
 			$('ul li:first-child .myCarInput').eq(0).text(mydata.Equipments[i].PurchaseDate);
-			$('ul li:first-child .myCarInput').eq(1).text(mydata.Equipments[i].BuyHours);
+			$('ul li:first-child .myCarInput').eq(1).text(mydata.Equipments[i].ServiceHours);
 			$('ul li:first-child .myCarInput').eq(2).text(mydata.Equipments[i].RegistrationHours);
 			$('ul li:first-child .myCarInput').eq(3).text(mydata.Equipments[i].CurrentHours);
 			$("ul li div button:first-child").attr("EquipmentId",mydata.Equipments[i].EquipmentId)
@@ -24,7 +24,7 @@ $(function(){
 				//alert($(this).attr("EquipmentId"))
 				removeEquipment($(this).attr("EquipmentId"),$(this))
 			});
-			if (i>0) {
+			if (i!=data.EquipmentDrivers.length - 1) {
 				$("ul li:first-child").clone(true).appendTo("ul");
 			}
 		}
