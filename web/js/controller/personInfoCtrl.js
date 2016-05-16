@@ -92,7 +92,7 @@ function initLayout(){
 		},100)
 	});
 	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
-	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10007 +'"}}',
+	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10009 +'"}}',
 	function(res){
 		// alert(JSON.stringify(res))
 		console.log("查询联系人:",res);
@@ -331,12 +331,11 @@ function checkSubmit(){
 }
 function bundleData(){
 	person.WeiXinOpenID = sessionStorage.getItem('openID');
-	// person.WeiXinOpenID = 10007;
+	// person.WeiXinOpenID = 10009;
 	person.ContactName = $("#name").val();
 	person.MobilePhone = $("#phone").val();
-	// person.MobilePhone = '18883170583';
+	// person.MobilePhone = '18883170586';
 	person.ContactType = $("#ruleSelect").val();
-	// alert(imgServerId)
 	person.PhotoWxparameter = imgServerId;
 	person.PhotoRepresent = $("#isDaiyan").is(':checked');
 	person.JoinCareerDate = $("#joinTime").val();

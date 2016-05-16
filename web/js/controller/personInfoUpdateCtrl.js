@@ -1,4 +1,5 @@
 var person = new Object();
+var oldData = new Object();
 var programs = [];
 var docs = [];
 var smsCode = ""
@@ -45,7 +46,7 @@ function initLayout(){
 						person.VehicleModelId = v3;
 						driverType = v4;
 						if(driverType == 1){
-							if(!person.Grab_TotalHours > 0){
+							if(!oldData.Grab_TotalHours > 0){
 								$("[name=special]").css({"display":""})
 								$("[show=driver1]").css({"display":""});
 								$("[show=driver2]").css({"display":"none"});
@@ -53,7 +54,7 @@ function initLayout(){
 								$("[name=special]").css({"display":"none"})
 							}
 						}else{
-							if(!person.Loader_TotalHours > 0){
+							if(!oldData.Loader_TotalHours > 0){
 								$("[name=special]").css({"display":""})
 								$("[show=driver2]").css({"display":""});
 								$("[show=driver1]").css({"display":"none"});
@@ -70,7 +71,7 @@ function initLayout(){
 		},100)
 	});
 	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
-	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10007 +'"}}',
+	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10009 +'"}}',
 	function(res){
 		console.log("查询联系人:",res);
 		//未查询到联系人
@@ -81,20 +82,20 @@ function initLayout(){
 			// $("[show=master]").css({"display":""})
 		//查询到联系人
 		}else{
-			person = res;
+			oldData = res;
 			$("[show=hasregisted]").css({"display":""});
 			$("[show=regist]").css({"display":"none"});
 			// $(".button button").text("修改资料");
 			// $(".button button").addClass("btnpositive");
 			var rulOption = '';
 			var maps = [];
-			if (person.ContactType == 1){
+			if (oldData.ContactType == 1){
 				rulOption = '<option value="1" selected>机主</option><option value="2">司机</option>';
 				$("[show=master]").css({"display":""});
-				$("#personDecription").text(person.OwnerRepresent)
+				$("#personDecription").text(oldData.OwnerRepresent)
 				maps = ["ProjectType_GLQL","ProjectType_YLLH","ProjectType_CJFC","ProjectType_KSCJ","ProjectType_NLSL","ProjectType_Other"]
 				$(".thing .wrapper .row .btn").each(function(i,v){
-					if(person[maps[i]] == "true"){
+					if(oldData[maps[i]] == "true"){
 						$(this).addClass("positive");
 						programs.push($(this).attr("index"))
 						docs.push($(this));
@@ -103,16 +104,16 @@ function initLayout(){
 			}else{
 				rulOption = '<option value="1">机主</option><option value="2" selected>司机</option>';
 				$("#driverCar").css({"display":""});
-				$("#shebei").val(person.VehicleBrandName+person.VehicleModelName);
-				$("#personDecription").val(person.DriverRepresent);
+				$("#shebei").val(oldData.VehicleBrandName+oldData.VehicleModelName);
+				$("#personDecription").val(oldData.DriverRepresent);
 			}
 			maps = ["ContactName","MobilePhone"];
 			$("[action=update]").each(function(i,v){
-				$(this).val(person[maps[i]])
+				$(this).val(oldData[maps[i]])
 			});
 			$("#ruleSelect").append(rulOption);
-			$("#isDaiyan").attr("checked",person.PhotoRepresent == "true")
-			$("#personIcon").attr("src","../"+person.PhotoUrl);
+			$("#isDaiyan").attr("checked",oldData.PhotoRepresent == "true")
+			$("#personIcon").attr("src","../"+oldData.PhotoUrl);
 		}
 	},function(res){
 
@@ -296,13 +297,13 @@ function checkSubmit(){
 function bundleData(){
 	person.WeiXinOpenID = sessionStorage.getItem('openID');
 	person.ContactName = $("#name").val();
-	person.MobilePhone = $("#phone").val();
+	// person.MobilePhone = $("#phone").val();
 	person.ContactType = $("#ruleSelect").val();
 	person.PhotoRepresent = $("#isDaiyan").is(':checked');
 	person.JoinCareerDate = $("#joinTime").val();
 	person.OwnerRepresent = $("#personDecription").val();
 	person.DriverRepresent = $("#personDecription").val();
-	person.Birthday =  $("#birthday").val();
+	// person.Birthday =  $("#birthday").val();
 	if($("#ruleSelect").val() == 1){
 		var maps = ["ProjectType_GLQL","ProjectType_YLLH","ProjectType_CJFC","ProjectType_KSCJ","ProjectType_NLSL","ProjectType_Other"]
 		$.each(maps, function(i,v){
@@ -316,18 +317,19 @@ function bundleData(){
 				// person[v1] = false;
 			})
 		})
-	}else if($("#ruleSelect").val() == 2 && driverType == 1) {
+	}else if($("#ruleSelect").val() == 2 && driverType == 1 && !oldData.Grab_TotalHours) {
 		var maps = ["Grab_WG","Grab_ZP","Grab_SP","Grab_ZC","Grab_SD","Grab_LH","Grab_HD","Grab_PS","Grab_CL","Grab_Other"]
 		$("#TimeArea1 div div .put").each(function (i, v) {
 			person[maps[i]] = parseInt(v.value);
 		})
-	}else if($("#ruleSelect").val() == 2 && driverType == 2) {
+	}else if($("#ruleSelect").val() == 2 && driverType == 2 && !oldData.Loader_TotalHours) {
 		var maps = ["Loader_TSZC","Loader_KSZC","Loader_JBZZL","Loader_Other"]
 		$("#TimeArea2 div div .put").each(function (i, v) {
 			person[maps[i]] = parseInt(v.value);
 		})
 	}
-	console.log(person)
+	// console.log(person)
+	// alert(JSON.stringify(person))
 }
 function submit(){
 	// if(!$(".button button").hasClass("btnpositive")){

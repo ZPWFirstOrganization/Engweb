@@ -143,19 +143,20 @@
 
 <script>
     var isRegusted = false;
-    var driverType = 1;
+    var person = new Object();
     function initLayout(data){
         var map = []
         RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+sessionStorage.getItem('openID')+'"}}',
-        // RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+10000+'"}}',
+        // RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+10001+'"}}',
         function(res){
-            console.log(res)
+            // console.log(res)
+            // alert(JSON.stringify(res))
+            person = res;
             if(res.ReturnValue == "未能查询到司机的详细信息!"){
                 alert("请先录入个人资料")
                 return
             }
             isRegusted = true;
-            driverType = res.VehicleType
             $("#name").text(res.DriverName)
             $("#inTime").text(res.JoinCareerDate.substring(0,7))
             $("#equip").text(res.BrandName + res.ModelName)
@@ -233,8 +234,11 @@
         if(!isRegusted){
             alert("请先录入个人资料")
             return
+        }else if(!person.VehicleType){
+            alert("请先绑定操作设备")
+            return
         }
-        self.location='eachday.html?VehicleType=' + driverType;
+        self.location='eachday.html?VehicleType=' + res.VehicleType;
     }
 </script>
 </body>
