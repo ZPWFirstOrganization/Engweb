@@ -47,7 +47,6 @@ $(function(){
 		}
 		thisdata = JSON.stringify(thisdata)
 		function suc () {
-			alert("1")
 			thisEle.parents("li:first").css("display","none")
 		}
 		

@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'SimHei';
+    font-family: SimHei,"黑体";
     font-size: 15px;
 }
 ul,li{
@@ -332,7 +332,7 @@ a {
 	text-align: center;
 	color: black;
     line-height: 30px;
-    font-size: 16px;
+    font-size: 17px;
     width: 100%;
 }
 .driverTitle{
