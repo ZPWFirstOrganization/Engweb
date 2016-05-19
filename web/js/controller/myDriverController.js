@@ -9,6 +9,7 @@ $(function(){
 	RetrieveMultipleEquipmentDrivers(data,success,error)
 	function success(data){
 		if (!data||!data.EquipmentDrivers||data.EquipmentDrivers.length <= 0) {
+			$('ul').css("display","none")
 			if (data&&data.ReturnValue) {
 				alert(data.ReturnValue)
 			}else{

@@ -30,6 +30,13 @@ function RetrieveMultipleModel(data,suc,err){
     invokeMethod(url, data,suc,err);
 }
 
+//每日动态
+function RetrieveMultipleEquipmentDailyStatus(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/RetrieveMultipleEquipmentDailyStatus";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}
+
 //获取品牌型号
 function RetrieveMultipleBrandModel(data,suc,err){
     var url = "/BaseData/BaseDataServices.svc/RetrieveMultipleBrandModel";
