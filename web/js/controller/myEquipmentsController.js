@@ -24,7 +24,7 @@ $(function(){
 				//alert($(this).attr("EquipmentId"))
 				removeEquipment($(this).attr("EquipmentId"),$(this))
 			});
-			if (i!=data.EquipmentDrivers.length - 1) {
+			if (i!=mydata.Equipments.length - 1) {
 				$("ul li:first-child").clone(true).appendTo("ul");
 			}
 		}
