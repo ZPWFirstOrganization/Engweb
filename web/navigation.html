@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="css/icon/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/animate.min.css"/>
     <link rel="stylesheet" href="css/index2.css">
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script type="text/javascript" src="js/services/httpService.js"></script>
 	<title>我为自己代言</title>
 </head>
 <body style="overflow: hidden;margin-top: 0;margin-left: 0;background-color: #666666" scroll="no">
@@ -16,11 +19,11 @@
 	<div class="music"> <i class="fa fa-music" onclick="playMusic()"></i></div>
 	<div class="people">
 	    <div style="height:150px">
-	        <div class="name" style="display: none;">我是李自忠</div>
-	        <div class="old" style="display: none">25岁，入行12年</div>
+	        <div class="name" style="display: none"></div>
+	        <div class="old" style="display: none"></div>
 	        <div class="tag" style="display: none">乘着朋友圈的东风为您而来</div>
 	    </div>
-	    <div class="img" style="display: none"><div class="back"></div><img src="images/raw_1456592576.png" alt=""/></div>
+	    <div class="img" style="display: none"><div class="back"></div><img id="personImg" src="images/raw_1456592576.png" alt=""/></div>
 	</div>
 	<div class="down" onclick="nextPage(1)"><i class="fa fa-angle-down"></i></div>
 </div>
@@ -29,18 +32,14 @@
 	<div class="music"> <i class="fa fa-music" onclick="playMusic()"></i></div>
 <div style="height: 250px;">
     <div class="machine">
-        <div class="machine-number"><span class="machine-num">3</span>台挖掘机</div>
+        <div class="machine-num" style="float: left;"></div><div class="machine-number" style="float: left;"></div>
         <div class="machine-info">
-            <ul>
-                <li>卡特彼特 336D、</li>
-                <li>小松 PC200-8、</li>
-                <li>日立 ZX200</li>
-            </ul>
             <div class="clear"></div>
         </div>
     </div>
     <div class="count">
         <div class="count-info"><span class="count-num">3</span>名司机</div>
+        <!-- <a style="background-color: white;float: right;height: 1px;width: 130px"></a> -->
         <div class="count-info">平均驾龄 <span class="count-num">3</span>年</div>
         <div class="count-info">平均驾驶 <span class="count-num">3500</span>小时</div>
     </div>
@@ -50,7 +49,7 @@
         <div class="work-title-content">参与最多的工程</div>
     </div>
     <div class="work-info">
-        <ul>
+<!--         <ul>
             <li class="li-bg">
                 <div class="back"></div>
                 <div class="nav-content">公路桥梁</div>
@@ -63,7 +62,7 @@
                 <div class="back" style="background: #AAD825"></div>
                 <div class="nav-content">农林水利</div>
             </li>
-        </ul>
+        </ul> -->
         <div class="clear"></div>
     </div>
 </div>
@@ -75,23 +74,23 @@
 <div style="height: 395px">
     <div class="mic">
         <div class="mic-name">累计驾驶挖掘机</div>
-        <div class="mic-time"><span class="mic-num">3500</span>小时</div>
+        <div class="mic-time"><span class="mic-num"></span>小时</div>
     </div>
     <div class="mic-best-number">
         <div class="mic-more-time">小时数最多的3个技能</div>
         <div class="clear"></div>
         <div class="mic-info">
             <div class="info-1">
-                <div class="info-top">挖沟</div>
-                <div class="info-bottom">1500H</div>
+                <div class="info-top"></div>
+                <div class="info-bottom"></div>
             </div>
             <div class="info-2">
-                <div class="info-top">整平</div>
-                <div class="info-bottom">800H</div>
+                <div class="info-top"></div>
+                <div class="info-bottom"></div>
             </div>
             <div class="info-3">
-                <div class="info-top">甩陂</div>
-                <div class="info-bottom">500H</div>
+                <div class="info-top"></div>
+                <div class="info-bottom"></div>
             </div>
             <div class="clear"></div>
         </div>
@@ -99,7 +98,7 @@
 </div>
 <div class="mic-type">
     <div class="mic-type-title">最熟悉的机型</div>
-    <div class="mic-type-name">小松PC200-8</div>
+    <div class="mic-type-name"></div>
     <div class="clear"></div>
 </div>
 <div class="down" onclick="nextPage(2)"><i class="fa fa-angle-down"></i></div>
@@ -109,29 +108,204 @@
 <div class="music"> <i class="fa fa-music" onclick="playMusic()"></i></div>
 <div class="self-introduction">
     <div class="me">我 </div>
-    <div class="me-description">诚实稳重、踏实勤快、技术好、会日常保养、希望在成都附近找中挖开</div>
+    <div class="me-description"></div>
 </div>
 <div class="height"></div>
 <div class="self-phone">
     <div class="phone-title">如果您需要我这样的，<br>来个电话吧，我们细聊！</div>
     <div class="phone">
         <i class="fa fa-phone"></i>
-        18735387115
+        <a></a>
     </div>
 </div>
-<div class="represent" style="background-color: #7487f2;padding: 5px;border-radius: 10px;"><a href="#">我也为自己代言</a></div>
+<div class="represent" style="color: white;background-color: #7487f2;padding: 5px;border-radius: 10px;" onclick="share()">我也为自己代言</div>
 <!-- <div class="down"><i class="fa fa-angle-down"></i></div> -->
 <div>
 <script type="text/javascript">
+    var person = new Object();
+    var showPage2Id = "#";
+    var openID = "";
 	$(function(){
+        GetWeChatConfig('{"Request":{"PageUrl":"'+window.location.href+'"}}',
+            function(res){
+                wx.config({
+                    debug: false,
+                    appId: res.ConfigInfo.AppId,
+                    timestamp:res.ConfigInfo.Timestamp,
+                    nonceStr: res.ConfigInfo.NonceStr,
+                    signature: res.ConfigInfo.Signature,
+                    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone'] 
+                });
+            },function(res){
+                
+        })
+
         document.body.addEventListener('touchmove', function (event) {
             event.preventDefault();
         }, false);
-        initLayout()
+        if($.getUrlParam('key')){
+            initLayout();
+        }else if(!sessionStorage.getItem('openID')){
+            GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
+                // alert(JSON.stringify(res))
+                if(res.UserInfo.openid){
+                    sessionStorage.setItem('openID',res.UserInfo.openid)
+                }
+                initLayout();
+            },function(res){
+
+            })
+        }else{
+            initLayout();
+        }
         animpage1()
     })
     function initLayout(){
+        openID = ($.getUrlParam('key'))?$.getUrlParam('key'):sessionStorage.getItem('openID');
+        // EndorseMyself('{"Request":{"WeiXinOpenID":"'+ openID +'"}}',
+        EndorseMyself('{"Request":{"WeiXinOpenID":"'+ 10001 +'"}}',
+            function(res){
+                // alert(JSON.stringify(res))
+                person = res;
+                wx.ready(function(){
+                    var shareData = new Object();
+                    shareData.title = "工程帮手";
+                    shareData.desc = "";
+                    shareData.link = "http://www.beekun.cn/Engweb/navigation.html?key="+openID;
+                    shareData.imageUrl = 'http://www.beekun.cn/Engweb/images/share.png';
+                    if(person.UserType == 1){
+                        shareData.desc = person.AllEquipment_VehicleTypeNames+"等"+person.AllEquipment_Number+"台"+((person.MostEquipment_VehicleTypeName)?person.MostEquipment_VehicleTypeName:"设备")+"熟悉"+person.ProjectType_1+"、"+person.ProjectType_2+"、"+person.ProjectType_3+"，找活"
+                    }else{
+                        var equip = "设备";
+                        var driveH = 0;
+                        var skills = "";
+                        if(person.VehicleType == 1){
+                            driveH = person.Grab_TotalHours;
+                            skills = person.Grab_Skill_1_Name+"、"+person.Grab_Skill_2_Name+"、"+person.Grab_Skill_3_Name;
+                            equip = "挖掘机";
+                        }else if(person.VehicleType == 2){
+                            driveH = person.Loader_TotalHours;
+                            skills = person.Loader_Skill_1_Name+"、"+person.Loader_Skill_2_Name+"、"+person.Loader_Skill_3_Name;
+                            equip = "装载机"
+                        }else{
 
+                        }
+                        shareData.desc = "驾驶"+equip+driveH+"小时，擅长"+skills+"，熟悉操作"+person.FamiliarBrandName+person.FamiliarModelName+"，找工作";
+                    }
+                    wx.onMenuShareTimeline({
+                        title: shareData.desc, // 分享标题
+                        link: shareData.link, // 分享链接
+                        imgUrl: shareData.imageUrl,
+                        success: function (res) { 
+                        },
+                        cancel: function (res) { 
+                        }
+                    });
+                    wx.onMenuShareAppMessage({
+                        title: shareData.title, // 分享标题
+                        desc: shareData.desc, // 分享描述
+                        link: shareData.link, // 分享链接
+                        imgUrl: shareData.imageUrl, // 分享图标
+                        success: function () { 
+                        },
+                        cancel: function () {
+                        }
+                    });
+                    wx.onMenuShareQQ({
+                        title: shareData.title, // 分享标题
+                        desc: shareData.desc, // 分享描述
+                        link: shareData.link, // 分享链接
+                        imgUrl: shareData.imageUrl, // 分享图标
+                        success: function () { 
+                        },
+                        cancel: function () { 
+                        }
+                    });
+                    wx.onMenuShareWeibo({
+                        title: shareData.title, // 分享标题
+                        desc: shareData.desc, // 分享描述
+                        link: shareData.link, // 分享链接
+                        imgUrl: shareData.imageUrl, // 分享图标
+                        success: function () { 
+                        },
+                        cancel: function () { 
+                        }
+                    });
+                    wx.onMenuShareQZone({
+                        title: shareData.title, // 分享标题
+                        desc: shareData.desc, // 分享描述
+                        link: shareData.link, // 分享链接
+                        imgUrl: shareData.imageUrl, // 分享图标
+                        success: function () {
+                        },
+                        cancel: function () {
+                        }
+                    });
+
+                })
+                $(".name").text("我是"+person.UserFullName);
+                $(".old").text(res.UserAge+"岁，入行"+person.JoinCareerYears+"年");
+                if(person.UserType == 1){
+                    showPage2Id = "#page2";
+                    
+                    $(".machine-number").text("台"+((person.MostEquipment_VehicleTypeName)?person.MostEquipment_VehicleTypeName:"设备"));
+                    $(".machine-num").text((person.AllEquipment_Number)?person.AllEquipment_Number:"0");
+                    $(".machine-info").text((person.AllEquipment_VehicleTypeNames)?person.AllEquipment_VehicleTypeNames:"");
+                    var map = ["Equipment_DriverNumber","Equipment_Average_JoinCareerYears","Equipment_Average_DriverHours"]
+                    $(".count-num").each(function(i,v){
+                        if(person[map[i]]){
+                            $(this).text(person[map[i]]);
+                        }else{
+                            $(this).text("0");
+                        }
+                    })
+                    var html = "<ul>";
+                    if(person.ProjectType_1){
+                         html += '<li class="li-bg"><div class="back"></div><div class="nav-content">'+person.ProjectType_1+'</div></li>'
+                    }
+                    if(person.ProjectType_2){
+                        html += '<li class="li-bg"><div class="back" style="background: #29ABE2"></div><div class="nav-content">'+person.ProjectType_2+'</div></li>'
+                    }
+                    if(person.ProjectType_3){
+                        html += '<li class="li-bg"><div class="back" style="background: #AAD825"></div><div class="nav-content">'+person.ProjectType_3+'</div></li>'
+                    }
+                    html += "</ul>";
+                    $(".work-info").append(html);
+                }else if(person.UserType == 2){
+                    showPage2Id = "#page2-2";
+                    if(person.VehicleType == 1){
+                        $(".mic-name").text("累计驾驶挖掘机");
+                        $(".mic-time .mic-num").text(person.Grab_TotalHours);
+                        $(".info-1 .info-top").text(person.Grab_Skill_1_Name);
+                        $(".info-1 .info-bottom").text(person.Grab_Skill_1_Value+"H");
+                        $(".info-2 .info-top").text(person.Grab_Skill_2_Name);
+                        $(".info-2 .info-bottom").text(person.Grab_Skill_2_Value+"H");
+                        $(".info-3 .info-top").text(person.Grab_Skill_3_Name);
+                        $(".info-3 .info-bottom").text(person.Grab_Skill_3_Value+"H");
+                    }else{
+                        $(".mic-name").text("累计驾驶装载机");
+                        $(".mic-time .mic-num").text(person.Loader_TotalHours);
+                        $(".info-1 .info-top").text(person.Loader_Skill_1_Name);
+                        $(".info-1 .info-bottom").text(person.Loader_Skill_1_Value+"H");
+                        $(".info-2 .info-top").text(person.Loader_Skill_2_Name);
+                        $(".info-2 .info-bottom").text(person.Loader_Skill_2_Value+"H");
+                        $(".info-3 .info-top").text(person.Loader_Skill_3_Name);
+                        $(".info-3 .info-bottom").text(person.Loader_Skill_3_Value+"H");
+                    }
+                $(".mic-type-name").text(person.FamiliarBrandName+person.FamiliarModelName);                    
+
+                }
+                if(person.PhotoUrl){$("#personImg").attr("src","../"+person.PhotoUrl)};
+                $(".me-description").text(person.Represent);
+                $(".phone a").text(person.MobilePhone);
+                $(".phone a").attr("href","tel:"+person.MobilePhone);
+            },
+            function(res){
+
+            })
+    }
+    function share(){
+        
     }
     function playMusic(){
         if($("#musicAudio")[0].paused){
@@ -146,14 +320,19 @@
     function nextPage(current){
         if (current == 1){
             $("#page1").addClass("bounceOutUp animated");
-            $("#page2").css({"display":"block"})
-            $("#page2").removeClass("bounceOutDown animated");
+            $(showPage2Id).css({"display":"block"})
+            $(showPage2Id).removeClass("bounceOutDown animated");
 
-            $("#page2").addClass("bounceInUp animated");
-            setTimeout("animpage2()",500);
+            $(showPage2Id).addClass("bounceInUp animated");
+
+            if(person.UserType == 1){
+                setTimeout("animpage2()",500);
+            }else if(person.UserType == 2){
+                setTimeout("animpage2_2()",500);
+            }
         }else if(current == 2){
-            $("#page2").removeClass("bounceInUp animated");
-            $("#page2").addClass("bounceOutUp animated");
+            $(showPage2Id).removeClass("bounceInUp animated");
+            $(showPage2Id).addClass("bounceOutUp animated");
             $("#page3").css({"display":"block"})
             $("#page3").removeClass("bounceOutDown animated");
             $("#page3").addClass("bounceInUp animated");
@@ -165,8 +344,8 @@
     }
     function lastPage(current){
         if (current == 2){
-            $("#page2").removeClass("bounceInUp animated");
-            $("#page2").addClass("bounceOutDown animated");
+            $(showPage2Id).removeClass("bounceInUp animated");
+            $(showPage2Id).addClass("bounceOutDown animated");
             // $("#page1").css({"display":"block"})
             $("#page1").removeClass("bounceOutUp animated");
             $("#page1").addClass("bounceInDown animated");
@@ -174,8 +353,8 @@
             $("#page3").removeClass("bounceInUp animated");
             $("#page3").addClass("bounceOutDown animated");
             // $("#page2").css({"display":"block"})
-            $("#page2").removeClass("bounceOutUp animated");
-            $("#page2").addClass("bounceInDown animated");
+            $(showPage2Id).removeClass("bounceOutUp animated");
+            $(showPage2Id).addClass("bounceInDown animated");
         }
         // $("#page2-2").css({"display":"block"})
         // $("#page2-2").addClass("bounceInUp animated");
@@ -231,7 +410,7 @@
             $animate2.fadeIn(800);
         },1000);
         setTimeout(function(){
-            $animate3=$('.back');
+            $animate3=$('.li-bg');
             $animate3.fadeIn(2000);
         },1000);
     }
@@ -275,14 +454,12 @@
             $animate1=$('.self-phone');
             $animate1.fadeIn(800);
         },1100);
-
-        setTimeout(function(){
-            $animate2=$('.represent');
-            $animate2.show().removeClass('rotateInUpLeft animated').addClass('rotateInUpLeft animated');
-            // setTimeout(function(){
-            //     $animate2.removeClass('rotateInUpLeft animated');
-            // }, 1000);
-        },1500);
+        if($.getUrlParam('key')){
+            setTimeout(function(){
+                $animate2=$('.represent');
+                $animate2.show().removeClass('rotateInUpLeft animated').addClass('rotateInUpLeft animated');
+            },1500);
+        }
     }
 </script>
 </body>

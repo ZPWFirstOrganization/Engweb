@@ -182,3 +182,9 @@ function GetWeChatConfig(data,suc,err){
     var url = "/WeiXin/WeChatJsSDKServices.svc/GetWeChatConfig";
     invokeMethod(url,data,suc,err);
 }
+
+//我为自己代言
+function EndorseMyself(data,suc,err){
+    var url = "/Contact/ContactServices.svc/EndorseMyself";
+    invokeMethod(url,data,suc,err);
+}

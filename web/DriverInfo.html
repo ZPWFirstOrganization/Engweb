@@ -17,7 +17,7 @@
             <ul>
                 <li class=" info-li">
                     <div class="info-name">入行年月</div>
-                    <div class="info-time"><div id="inTime">2016-01</div></div>
+                    <div class="info-time"><div id="inTime">暂无</div></div>
                 </li>
                 <li class=" info-li">
                     <div class="info-name">累计小时数</div>
@@ -25,7 +25,7 @@
                 </li>
                 <li class=" info-li">
                     <div class="info-name">当前操作设备</div>
-                    <div class="info-time" style="font-size: 14px" id="equip"></div>
+                    <div class="info-time" style="font-size: 14px" id="equip">暂无</div>
                 </li>
                 <li class=" info-li">
                     <div class="info-name">已为老板服务T</div>
@@ -136,22 +136,24 @@
             </table>
         </div>
         <!--<div style="height: 60px"></div>-->
-        <div style="position: fixed;bottom: 0;left: 0;right: 0;background-color: white">
-            <button class="search-btn" id="recordBtn"  onclick="self.location='eachday.html'">记录努力的一天</button>
-        </div>
+<!--         <div style="position: fixed;bottom: 0;left: 0;right: 0;background-color: white">
+            <button class="search-btn" id="recordBtn"  onclick="recordDay()">记录努力的一天</button>
+        </div> -->
     </div>
 
 <script>
+    var person = new Object();
     function initLayout(data){
         var map = []
-        // RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+sessionStorage.getItem('openID')+'"}}',
-        RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+$.getUrlParam('driverId')+'"}}',
+        RetrieveSingleEquipmentDriver('{"EquipmentDriver":{"EquipmentOwnerId":"'+sessionStorage.getItem('EquipmentOwnerId')+'","DriverId":"'+sessionStorage.getItem('DriverId')+'"}}',
         function(res){
-            console.log(res)
-            if(res.ReturnValue == "未能查询到司机的详细信息!"){
-                alert("请先录入个人资料")
-                return
-            }
+            // console.log(res)
+            // alert(JSON.stringify(res))
+            person = res;
+            // if(res.ReturnValue == "未能查询到司机的详细信息!"){
+            //     alert("请先录入个人资料")
+            //     return
+            // }
             $("#name").text(res.DriverName)
             $("#inTime").text(res.JoinCareerDate.substring(0,7))
             $("#equip").text(res.BrandName + res.ModelName)
@@ -225,6 +227,7 @@
         // }
         initLayout()
     })
+
 </script>
 </body>
 </html>

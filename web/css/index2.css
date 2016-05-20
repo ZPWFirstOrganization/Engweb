@@ -613,10 +613,12 @@ a {
     font-size: 22px;
     border-bottom: 1px solid #ffffff;
 }
-.machine .machine-number .machine-num{
+.machine .machine-num{
+    height: 40px;
     font-size: 28px;
     color: #FF9C0A;
     font-weight: bold;
+    border-bottom: 1px solid #ffffff;
 }
 .machine .machine-info{
     margin-top: 15px;
@@ -628,8 +630,9 @@ a {
     line-height: 30px;
 }
 .count{
-    margin-top: 30px;
-    margin-right: 20px;
+    position: absolute;
+    top:100px;
+    right: 20px;
     display: none;
 }
 .count .count-info{
@@ -663,7 +666,7 @@ a {
 .work .work-info{
     margin-top: 20px;
 }
-.work .work-info li{
+.work .work-info .li-bg{
     margin: 0 5px;
     float: left;
     width: 90px;
@@ -673,8 +676,9 @@ a {
     text-align: center;
     position: relative;
     background: none;
+    display: none;
 }
-.work .work-info li .back{
+.work .work-info .li-bg .back{
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -684,7 +688,6 @@ a {
     top:0;
     right:0;
     z-index:1;
-    display: none;
 }
 .work .work-info li .nav-content{
     position: absolute;
@@ -762,16 +765,20 @@ a {
     float: left;
 }
 .mic-best-number .mic-info .info-1 .info-top{
-    font-size: 26px;
+    font-size: 20px;
+    padding-top: 40px;
+}
+.mic-best-number .mic-info .info-2 .info-top{
+    font-size: 20px;
+    padding-top: 30px;
+}
+.mic-best-number .mic-info .info-3 .info-top{
+    font-size: 20px;
     padding-top: 25px;
 }
-.mic-best-number .mic-info .info-top{
-    font-size: 26px;
-    padding-top: 15px;
-}
 .mic-best-number .mic-info .info-bottom{
-    font-size: 22px;
-    line-height: 40px;
+    font-size: 20px;
+    line-height: 22px;
 }
 .mic-best-number .mic-more-time{
     float: right;
@@ -843,6 +850,10 @@ a {
     font-size: 26px;
     margin-top: 10px;
 }
+.self-phone .phone a{
+    color: #ffffff;
+    font-size: 26px;
+}
 .self-phone .phone .fa-phone{
     display: inline-block;
     width: 30px;
@@ -857,8 +868,9 @@ a {
 .represent{
     position: absolute;
     bottom: 50px;
-    left: 50%;
-    margin-left: -77px;
+    left: 30%;
+    width: 40%;
+    text-align: center;
     display: none;
 }
 .represent a{
