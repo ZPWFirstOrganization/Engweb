@@ -152,33 +152,33 @@
             // console.log(res)
             // alert(JSON.stringify(res))
             person = res;
-            if(res.ReturnValue == "未能查询到司机的详细信息!"){
+            if(person.ReturnValue == "未能查询到司机的详细信息!"){
                 alert("请先录入个人资料")
                 return
             }
             isRegusted = true;
-            $("#name").text(res.DriverName)
-            $("#inTime").text(res.JoinCareerDate.substring(0,7))
-            $("#equip").text(res.BrandName + res.ModelName)
-            res.ServiceHours ? $("#servHours").text(res.ServiceHours) : $("#servHours").text(0);
-            if(res.VehicleType == 1){
-                $("#allHours").text(res.Grab_TotalHours)
+            $("#name").text(person.DriverName)
+            $("#inTime").text(person.JoinCareerDate.substring(0,7))
+            $("#equip").text(person.BrandName + person.ModelName)
+            person.ServiceHours ? $("#servHours").text(person.ServiceHours) : $("#servHours").text(0);
+            if(person.VehicleType == 1){
+                $("#allHours").text(person.Grab_TotalHours)
                 $("[type=wajue]").css({"display":""});
                 $("[type=zhuangzai]").css({"display":"none"});
                 map = ["Grab_WG","Grab_ZP","Grab_SP","Grab_ZC","Grab_SD","Grab_LH","Grab_HD","Grab_PS","Grab_CL","Grab_CL"]
                 $("[type=wajue] .li-right").each(function(k,v){
-                    $(this).text(res[map[k]])
+                    $(this).text(person[map[k]])
                 })
-            }else if(res.VehicleType == 2){
-                $("#allHours").text(res.Loader_TotalHours)
+            }else if(person.VehicleType == 2){
+                $("#allHours").text(person.Loader_TotalHours)
                 $("[type=wajue]").css({"display":"none"});
                 $("[type=zhuangzai]").css({"display":""});
                 map = ["Loader_TSZC","Loader_KSZC","Loader_JBZZL","Loader_Other"]
                 $("[type=zhuangzai] .li-right").each(function(k,v){
-                    $(this).text(res[map[k]])
+                    $(this).text(person[map[k]])
                 })
             }
-            $.each(res.EquipmentWorks, function(i,v){
+            $.each(person.EquipmentWorks, function(i,v){
                 var html = "<tr>";
                 html += "<td>"+ v.WorkDate.substring(0,7)+"</td>";
                 html += "<td>"+ v.BrandName+v.ModelName+"</td>";
@@ -215,20 +215,21 @@
 //        $("#recordBtn").css({"bottom":20});
     }
     $(function(){
-        // if(!sessionStorage.getItem('openID')){
-        //     // GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
-        //     GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
-        //         if(res.UserInfo.openid){
-        //             sessionStorage.setItem('openID',res.UserInfo.openid)
-        //         }
-        //         initLayout();
-        //     },function(res){
+        if(!sessionStorage.getItem('openID')){
+            // GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
+            GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
+                if(res.UserInfo.openid){
+                    sessionStorage.setItem('openID',res.UserInfo.openid)
+                }
+                initLayout();
+            },function(res){
 
-        //     })
-        // }else{
-        //     initLayout();
-        // }
-        initLayout()
+            })
+        }else{
+            initLayout();
+        }
+
+        // initLayout()
     })
     function recordDay(){
         if(!isRegusted){
@@ -238,7 +239,7 @@
             alert("请先绑定操作设备")
             return
         }
-        self.location='eachday.html?VehicleType=' + res.VehicleType;
+        self.location='eachday.html?VehicleType=' + person.VehicleType + "&driverId=" + person.DriverId;
     }
 </script>
 </body>

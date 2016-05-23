@@ -195,3 +195,10 @@ function EndorseMyself(data,suc,err){
     var url = "/Contact/ContactServices.svc/EndorseMyself";
     invokeMethod(url,data,suc,err);
 }
+
+//查询司机下的多条设备档案
+function RetrieveMultipleDriverEquipments(data,suc,err){
+    var url = "/Equipment/EquipmentServices.svc/RetrieveMultipleDriverEquipments";
+    var data = data
+    invokeMethod(url, data,suc,err);
+}

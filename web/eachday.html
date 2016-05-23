@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/index2.css">
     <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/services/httpService.js"></script>
 </head>
 <body>
     <div class="content">
@@ -26,103 +27,102 @@
         </div>
         <div class="thing">
             <div class="right">
-                <div class="right-right">
+<!--                 <div class="right-right">
                     <i class="fa fa-angle-right"></i>
-                </div>
-                <div class="right-left">
-                    小松 PC2310-8
-                </div>
+                </div> -->
+                <select class="right-left" id="equipSelect" onchange="equipSelet(this)">
+                </select>
                 <div class="clear"></div>
             </div>
             <div class="left">操作设备</div>
             <div class="clear"></div>
         </div>
         <div class="item">
-            <ul>
+            <ul style="display: none">
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-1" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-1" onchange="seletChange(this,0)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">挖沟</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-2" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-2" onchange="seletChange(this,1)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">整平</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-3" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-3" onchange="seletChange(this,2)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">甩坡</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-4" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-4" onchange="seletChange(this,3)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">装车</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-5" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-5" onchange="seletChange(this,4)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">隧道</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-6" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-6" onchange="seletChange(this,5)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">绿化</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-7" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-7" onchange="seletChange(this,6)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">河道</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-8" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-8" onchange="seletChange(this,7)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">破碎</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-9" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-9" onchange="seletChange(this,8)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">拆楼</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-10" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="1" id="select1-10" onchange="seletChange(this,9)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">其他</div>
                     <div class="clear"></div>
                 </li>
                 <div class="clear"></div>
             </ul>
-            <ul>
+            <ul style="display: none">
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="2" id="select2-1" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="2" id="select2-1" onchange="seletChange(this,0)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">土石装车</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="2" id="select2-2" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="2" id="select2-2" onchange="seletChange(this,1)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">矿山装车</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
-                    <div class="li-right"><select  class="ipt" roletype="2" class="ipt" id="select2-3" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <div class="li-right"><select  class="ipt" roletype="2" id="select2-3" onchange="seletChange(this,2)" onfocus="selectFocus(this)">
                     </select></div>
                     <div class="li-left">搅拌站装料</div>
                     <div class="clear"></div>
                 </li>
                 <li class="item-li">
                     <div class="li-right">
-                    <select  class="ipt" selected class="ipt" roletype="2" id="select2-4" onchange="seletChange(this)" onfocus="selectFocus(this)">
+                    <select  class="ipt" selected class="ipt" roletype="2" id="select2-4" onchange="seletChange(this,3)" onfocus="selectFocus(this)">
                        
                     </select>
                     </div>
@@ -157,37 +157,59 @@
     </div>
     <div class="button" style="right: 0;left: 0;bottom: 70px;position: fixed;">
         <div class="msg"><i class="fa fa-exclamation-circle"></i> 提交后不可修改哦</div>
-        <button class="btn btnpositive" onclick="self.location='IsDriver.html'">提交</button>
+        <button class="btn btnpositive" onclick="submit()">提交</button>
     </div>
 <script>
     var oldValue = 0;
+    // var currentEquipType = "";
+    var subData = new Object();
     $(function(){
-        initLayout()
+        initLayout();
+
     })
     function initLayout(){
+        RetrieveMultipleDriverEquipments('{"DriverEquipmentsQuery":{"WeiXinOpenID":"'+sessionStorage.getItem('openID')+'"}}',
+        // RetrieveMultipleDriverEquipments('{"DriverEquipmentsQuery":{"WeiXinOpenID":"' + 10001 +'"}}',
+        function(res){
+            var equipOption = "";
+            $.each(res.EquipmentWorks, function(i,v){
+                equipOption += '<option value="' + v.EquipmentId +'"'+ ((i==1)?'selected':'') + 'equiptype="'+v.VehicleType+'">'+v.BrandName+v.ModelName+'</option>';
+            })
+            $("#equipSelect").append(equipOption);
+            // currentEquipType = res.EquipmentWorks[0].VehicleType;
+            $($("ul")[res.EquipmentWorks[0].VehicleType-1]).css({"display":"block"});
+        },function(res){
+
+        })
         $("#dateTnput").val((new Date()).format("isoDate"))
         var option = '<option value="0" selected>0</option>  <option value="1">1</option>                        <option value="2">2</option>                        <option value="3">3</option>                        <option value="4">4</option>                        <option value="5">5</option>                        <option value="6">6</option>                        <option value="7">7</option>                        <option value="8">8</option>                        <option value="9">9</option>                        <option value="10">10</option>                        <option value="11">11</option>                        <option value="12">12</option>                        <option value="13">13</option>                        <option value="14">14</option>                        <option value="15">15</option>                        <option value="16">16</option>'
-        $("select").append(option)
-        $($(".item ul")[parseInt($.getUrlParam('VehicleType')) - 1]).css({"display":"none"})
+        $(".ipt").append(option);
     }
-    function seletChange(e) {
-        var sum = 0
+    var map1 = ["Grab_WG","Grab_ZP","Grab_SP","Grab_ZC","Grab_SD","Grab_LH","Grab_HD","Grab_PS","Grab_CL","Grab_Other",];
+    var map2 = ["Grab_TSZC","Grab_KSZC","Grab_JBZZL","Grab_Other"];
+
+    function seletChange(e,index) {
+        var sum = 0;
         if (e.getAttribute("roletype") == 1) {
-            for (var i = 1; i <= 10; i++) {
+            for (var i = 0; i <= 9; i++) {
                 sum += parseInt($("#select1-"+i).val());
+                subData[map1[i]] = parseInt($("#select1-"+i).val());
             }
             if(sum > 16){
                 alert("总小时数超过16，请重新输入");
                 $("#"+ e.id).val(oldValue)
+                subData[map1[index]] = oldValue;
                 return
             }
         } else {
-            for (var i = 1; i <= 4; i++) {
+            for (var i = 0; i <= 3; i++) {
                 sum += parseInt($("#select2-"+i).val());
+                subData[map2[i]] = parseInt($("#select2-"+i).val());
             }
             if(sum > 16){
                 alert("总小时数超过16，请重新输入");
                 $("#"+ e.id).val(oldValue)
+                subData[map2[index]] = oldValue;
                 return
             }
         }
@@ -196,6 +218,41 @@
     function selectFocus(e){
        oldValue =  parseInt($("#"+ e.id).val());
         console.log(oldValue)
+    }
+    function bundleData(){
+        subData.DriverId = $.getUrlParam("driverId");
+        subData.EquipmentId = $("#equipSelect").val();
+        subData.WorkDate = $("#dateTnput").val();
+        subData.WorkHours = parseInt($("#hours").text());
+    }
+    function submit(){
+        bundleData();
+        $("body").showLoading();
+        CreateEquipmentDriverWork('{"EquipmentDriverWork":{'+JSON.stringify(subData)+'}}',function(res){
+            $("body").hideLoading();
+            self.location='IsDriver.html';
+        },function(res){
+            $("body").hideLoading();
+            alert("网络异常，请稍后再试")
+        })
+    }
+    function equipSelet(e){
+        $(".ipt").val(0);
+        $("#hours").text(0);
+        $.each(map1,function(i,v){
+            subData[v] = 0;
+        })
+        $.each(map2,function(i,v){
+            subData[v] = 0;
+        })
+        var type = parseInt(e.options[e.selectedIndex].getAttribute("equiptype"));
+        if(type == 1){
+            $($("ul")[0]).css({"display":"block"});
+            $($("ul")[1]).css({"display":"none"});
+        }else if(type == 2){
+            $($("ul")[1]).css({"display":"block"});
+            $($("ul")[0]).css({"display":"none"});
+        }
     }
 </script>
 </body>

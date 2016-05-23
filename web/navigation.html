@@ -162,8 +162,8 @@
     })
     function initLayout(){
         openID = ($.getUrlParam('key'))?$.getUrlParam('key'):sessionStorage.getItem('openID');
-        // EndorseMyself('{"Request":{"WeiXinOpenID":"'+ openID +'"}}',
-        EndorseMyself('{"Request":{"WeiXinOpenID":"'+ 10001 +'"}}',
+        EndorseMyself('{"Request":{"WeiXinOpenID":"'+ openID +'"}}',
+        // EndorseMyself('{"Request":{"WeiXinOpenID":"'+ 10001 +'"}}',
             function(res){
                 // alert(JSON.stringify(res))
                 person = res;
