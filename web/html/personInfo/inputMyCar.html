@@ -9,22 +9,6 @@
     <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
     <script src="js/controller/inputMyCarController.js"></script>
     <script type="text/javascript" src="js/services/httpService.js"></script>
-    <script>
-    	$(document).ready(function() {
-	    	$(function(){
-	            $('#shebei').focus(function(){
-	                $.choose({
-	                    callback:function(v,s,t,z){
-	                        $('#shebei').val(v);
-	                        $('#shebei').attr("brandId",s);
-	                        $('#shebei').attr("modelId",t);
-	                        $('#shebei').attr("typeId",z);
-	                    }
-	                })
-	            })
-	        })
-    	})
-    </script>
 </head>
 <body style=" margin:0px; height:100%; "> 
     <div id="main1">
@@ -88,6 +72,35 @@
     <div class="button">
         <div class="msg"><i class="fa fa-exclamation-circle"></i> 提交后不可修改哦</div>
         <button id="submitBtn" functype="submit" >提交</button>
+        <div class="delectBtn" id="myDelectBtn" >删除设备</div>
     </div>
+    <script type="text/javascript">
+    var thisTime = window.location.href.split("=")[1]
+    var thisEquipmentId = sessionStorage.getItem('currentEquipmentId')
+    sessionStorage.setItem('currentEquipmentId',null)
+    if (thisTime&&thisEquipmentId) {
+    		$(document).ready(function() {
+		    	$(function(){
+		                $.check(thisEquipmentId)
+		        })
+	    	})
+    } else{
+    		$("#myDelectBtn").css("display","none");
+    	 	$(document).ready(function() {
+		    	$(function(){
+		            $('#shebei').focus(function(){
+		                $.choose({
+		                    callback:function(v,s,t,z){
+		                        $('#shebei').val(v);
+		                        $('#shebei').attr("brandId",s);
+		                        $('#shebei').attr("modelId",t);
+		                        $('#shebei').attr("typeId",z);
+		                    }
+		                })
+		            })
+		        })
+	    	})
+	 }
+    </script>
 </body>
 </html>

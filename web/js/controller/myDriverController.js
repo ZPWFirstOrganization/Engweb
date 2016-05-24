@@ -23,8 +23,12 @@ $(function(){
 			$('ul li:first-child .driverInput').eq(0).text(data.EquipmentDrivers[i].EmploymentStartDate);
 			$('ul li:first-child .driverInput').eq(1).text(data.EquipmentDrivers[i].ServiceHours);		
 			$("ul li:first-child").click({mydata:data.EquipmentDrivers[i]},function(event) {
-				alert(event.data.mydata.DriverId)
-				window.location.href=''
+				//alert(event.data.mydata.DriverId)
+				var a = confirm("确定要拨打"+data.EquipmentDrivers[i].DriverName+"的电话吗")	
+				if (a) {
+					window.location.href = 'tel://' + data.EquipmentDrivers[i].MobilePhone;
+				}
+				
 			})
 			if (i!=data.EquipmentDrivers.length - 1) {
 				$("ul li:first-child").clone(true).appendTo("ul");
