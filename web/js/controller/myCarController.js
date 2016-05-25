@@ -36,23 +36,22 @@ $(function(){
 	}
 	
 	function getOpenId() {
-		sessionStorage.setItem('openID',"o_3jVt-TNytKWeN_6UDnLhktknYo")
-		init()
-//		if(!sessionStorage.getItem('openID')){
-//			GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
-//				if(res.UserInfo.openid){
-//					sessionStorage.setItem('openID',res.UserInfo.openid)
-//					//sessionStorage.setItem('openID',"o_3jVt-TNytKWeN_6UDnLhktknYo")
-//					init()
-//				}
-//			},function(res){
-//				// sessionStorage.setItem('openID',res.UserInfo.openid)
-//				// init(res.UserInfo.openid)
-//				console.log("cannot get openId")
-//			})
-//		}else{
-//			init()		
-//		}
+//		sessionStorage.setItem('openID',"o_3jVt-TNytKWeN_6UDnLhktknYo")
+//		init()
+		if(!sessionStorage.getItem('openID')){
+			GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
+				if(res.UserInfo.openid){
+					sessionStorage.setItem('openID',res.UserInfo.openid)
+					init()
+				}
+			},function(res){
+				// sessionStorage.setItem('openID',res.UserInfo.openid)
+				// init(res.UserInfo.openid)
+				console.log("cannot get openId")
+			})
+		}else{
+			init()		
+		}
 	}
 	
 	
