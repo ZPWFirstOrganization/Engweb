@@ -2,7 +2,7 @@ $(function(){
 	function success(data){
 		console.log("对了")
 		console.log(data)
-		if (!data.EquipmentDailyStatus) {
+		if (!data.EquipmentDailyStatus||data.EquipmentDailyStatus.length < 1) {
 			$('ul li:first-child div div').parents("li:first").css("display","none")
 			//window.location.href = "equipments.html"
 			return
@@ -36,8 +36,9 @@ $(function(){
 	}
 	
 	function getOpenId() {
-//		sessionStorage.setItem('openID',"o_3jVt-TNytKWeN_6UDnLhktknYo")
-//		init()
+//		sessionStorage.setItem('openID',"o_3jVt-TNytKWeN_6UDnLhktknYo")//用于本地测试
+//		init()//用于本地测试
+
 		if(!sessionStorage.getItem('openID')){
 			GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
 				if(res.UserInfo.openid){
@@ -47,7 +48,9 @@ $(function(){
 			},function(res){
 				// sessionStorage.setItem('openID',res.UserInfo.openid)
 				// init(res.UserInfo.openid)
-				console.log("cannot get openId")
+				sessionStorage.setItem('openID',null)
+				init()
+				alert("微信openId获取失败，请退出重试")
 			})
 		}else{
 			init()		
