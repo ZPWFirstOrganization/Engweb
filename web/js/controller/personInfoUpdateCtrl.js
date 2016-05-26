@@ -71,7 +71,7 @@ function initLayout(){
 		},100)
 	});
 	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
-	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10009 +'"}}',
+	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ "o_3jVt8gsb-zjTYNlMwDfQr57hHk" +'"}}',
 	function(res){
 		console.log("查询联系人:",res);
 		//未查询到联系人
@@ -118,49 +118,6 @@ function initLayout(){
 	},function(res){
 
 	})
-	var type = 1
-	var a = false
-	if(a){
-		// $("[show=hasregisted]").css({"display":""});
-		// $("[show=regist]").css({"display":"none"});
-		// $(".button button").text("修改资料")
-		// $(".button button").addClass("btnpositive")
-		// if (type == 1){
-		// 	$("[show=master]").css({"display":""})
-		// 	var maps = ["ContactTypeName","ContactName","MobilePhone","PhotoUrl","OwnerRepresent"];
-		// 	$("div[show=hasregisted]").each(function(i,v) { 
-		// 		this.text(person[maps[i]]);
-		// 	})
-		// }else{
-		// 	$("[show=driver]").css({"display":""})
-		// }
-	}else{
-		// $("[show=hasregisted]").css({"display":"none"});
-		// $("[show=regist]").css({"display":""});
-		// $("[show=master]").css({"display":""})
-		// $(".thing .wrapper .row .btn").click(function(e){
-		// 	var dom = $("#"+ this.id);
-		// 	if (dom.hasClass("positive")){
-		// 		$.each(programs, function(i,v){
-		// 			if(v == $(this).attr("index")){
-		// 				programs.splice(i,0);
-		// 				docs.splice(i,0);
-		// 			}
-		// 		})
-		// 		dom.removeClass("positive");
-		// 	}else{
-		// 		if (programs.length>=3){
-		// 			programs.shift();
-		// 			docs[0].removeClass("positive");
-		// 			docs.shift();
-		// 		}
-		// 		dom.addClass("positive");
-		// 		programs.push($(this).attr("index"));
-		// 		docs.push(dom);
-		// 	}
-		// })
-	}
-	
 }
 
 function ruleSelect(e){
@@ -236,27 +193,6 @@ function picChange(e){
 	        $("#personIcon").attr("src",imgIds[0]);
 	    }
 	});
-	// var file = e.files[0];
-	// if(!/image\/\w+/.test(file.type)){
-	// 	alert("请确保文件为图像类型");
-	// 	return false;
-	// }
-	// var reader = new FileReader();
-	// reader.readAsDataURL(file);
-	// reader.onload = function(e){
-	// 	$("#personIcon").attr("src",this.result);
-	// 	var _img = new Image();
-	// 	_img.src = this.result;
-	// 	_img.onload = function(){
-	// 		// 将图像绘制到canvas上  
-	// 		var _canvas = document.createElement("canvas")
-	// 		_canvas.width = _img.width;
-	//         _canvas.height = _img.height;
-	//         var _context = _canvas.getContext('2d');
-	//         _context.drawImage(_img,0,0);
-	//         person.PhotoBase64 = _canvas.toDataURL('image/jpeg',0.5);
-	// 	}
-	// }
 }
 
 function upLoadImg(callback){
@@ -267,7 +203,7 @@ function upLoadImg(callback){
 		    success: function (res) {
 		    	// alert(JSON.stringify(res));
 		        imgServerId = res.serverId; // 返回图片的服务器端ID
-		        person.PhotoWxparameter = imgServerId
+		        person.PhotoWxparameter = imgServerId;
 		        // $('#name').val(res.serverId);
 		        return callback();
 		    },
@@ -297,6 +233,7 @@ function checkSubmit(){
 }
 function bundleData(){
 	person.WeiXinOpenID = sessionStorage.getItem('openID');
+	// person.WeiXinOpenID = "o_3jVt8gsb-zjTYNlMwDfQr57hHk";
 	person.ContactName = $("#name").val();
 	// person.MobilePhone = $("#phone").val();
 	person.ContactType = $("#ruleSelect").val();

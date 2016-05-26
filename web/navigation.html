@@ -38,10 +38,10 @@
         </div>
     </div>
     <div class="count">
-        <div class="count-info"><span class="count-num">3</span>名司机</div>
+        <div class="count-info"><span class="count-num"></span>名司机</div>
         <!-- <a style="background-color: white;float: right;height: 1px;width: 130px"></a> -->
-        <div class="count-info">平均驾龄 <span class="count-num">3</span>年</div>
-        <div class="count-info">平均驾驶 <span class="count-num">3500</span>小时</div>
+        <div class="count-info">平均驾龄 <span class="count-num"></span>年</div>
+        <div class="count-info">平均驾驶 <span class="count-num"></span>小时</div>
     </div>
 </div>
 <div class="work">
@@ -73,7 +73,7 @@
 <div class="music"> <i class="fa fa-music" onclick="playMusic()"></i></div>
 <div style="height: 395px">
     <div class="mic">
-        <div class="mic-name">累计驾驶挖掘机</div>
+        <div class="mic-name"></div>
         <div class="mic-time"><span class="mic-num"></span>小时</div>
     </div>
     <div class="mic-best-number">
@@ -163,7 +163,7 @@
     function initLayout(){
         openID = ($.getUrlParam('key'))?$.getUrlParam('key'):sessionStorage.getItem('openID');
         EndorseMyself('{"Request":{"WeiXinOpenID":"'+ openID +'"}}',
-        // EndorseMyself('{"Request":{"WeiXinOpenID":"'+ 10001 +'"}}',
+        // EndorseMyself('{"Request":{"WeiXinOpenID":"'+ "o_3jVt8gsb-zjTYNlMwDfQr57hHk" +'"}}',
             function(res){
                 // alert(JSON.stringify(res))
                 person = res;
@@ -248,9 +248,9 @@
                 if(person.UserType == 1){
                     showPage2Id = "#page2";
                     
-                    $(".machine-number").text("台"+((person.MostEquipment_VehicleTypeName)?person.MostEquipment_VehicleTypeName:"设备"));
+                    $(".machine-number").text("台"+((person.AllEquipment_VehicleTypeNames)?person.AllEquipment_VehicleTypeNames:"设备"));
                     $(".machine-num").text((person.AllEquipment_Number)?person.AllEquipment_Number:"0");
-                    $(".machine-info").text((person.AllEquipment_VehicleTypeNames)?person.AllEquipment_VehicleTypeNames:"");
+                    // $(".machine-info").text((person.AllEquipment_VehicleTypeNames)?person.AllEquipment_VehicleTypeNames:"");
                     var map = ["Equipment_DriverNumber","Equipment_Average_JoinCareerYears","Equipment_Average_DriverHours"]
                     $(".count-num").each(function(i,v){
                         if(person[map[i]]){

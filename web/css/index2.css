@@ -243,7 +243,7 @@ a {
     color: #bababa;
 }
 #driver .driver-info .info-li .info-time{
-    font-size: 21px;
+    font-size: 22px;
     font-weight: bold;
 }
 #driver .driver-info .info-li .color-time{
@@ -773,17 +773,22 @@ a {
     padding-top: 30px;
 }
 .mic-best-number .mic-info .info-3 .info-top{
-    font-size: 20px;
+    font-size: 15px;
     padding-top: 25px;
 }
 .mic-best-number .mic-info .info-bottom{
     font-size: 20px;
     line-height: 22px;
 }
+.mic-best-number .mic-info .info-3 .info-bottom{
+    font-size: 15px;
+    line-height: 22px;
+}
 .mic-best-number .mic-more-time{
     float: right;
     width: 220px;
     margin-right: 20px;
+    text-align: right;
     line-height: 40px;
     font-size: 22px;
     color: #ffffff;
@@ -796,6 +801,9 @@ a {
     display: none;
 }
 .mic-type .mic-type-title{
+    float: right;
+    text-align: right;
+    margin-right: 0;
     width: 140px;
     line-height: 40px;
     font-size: 22px;
@@ -803,6 +811,9 @@ a {
     border-bottom: 1px solid #ffffff;
 }
 .mic-type  .mic-type-name{
+    float: right;
+    width: 100%;
+    text-align: right;
     margin-top: 5px;
     font-size: 28px;
     color: #FF9C0A;

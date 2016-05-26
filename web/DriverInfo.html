@@ -177,8 +177,8 @@
             }
             $.each(res.EquipmentWorks, function(i,v){
                 var html = "<tr>";
-                html += "<td>"+ v.WorkDate.substring(0,7)+"</td>";
-                html += "<td>"+ v.BrandName+v.ModelName+"</td>";
+                html += "<td>"+ v.WorkDate.substring(5,v.WorkDate.length)+"</td>";
+                html += "<td style='text-align: left;'>"+ v.BrandName+v.ModelName+"</td>";
                 html += "<td>"+ v.WorkStatusName+"</td>";
                 html += "<td>"+ v.WorkHours+"</td>";
                 
