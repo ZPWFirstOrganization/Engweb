@@ -3,202 +3,210 @@
  */
 $(function(){
 	$.choose=function(opt){
-	    var mydata = {
-			VehicleType:
-				{
-					VehicleType:1
-				}
-		};
-		var mydata1 = {
-			VehicleType:
-				{
-					VehicleType:2
-				}
-		};
-		mydata = JSON.stringify(mydata);
-		mydata1 = JSON.stringify(mydata1);
-		var type1Data,type2Data
-		function success(thisdata) {
-			//window.choose_data=thisdata;
-			type1Data = thisdata
-			RetrieveMultipleBrandModel(mydata1,success1,error)
-			/*for (var i=0;i<thisdata.Equipments.length;i++) 
-			{		
-				if (thisdata.Equipments[i].VehicleType == 1) {
-					wajueji.push(thisdata.Equipments[i])
-				}else{
-					zhuangzaiji.push(thisdata.Equipments[i])
-				}
-			}*/
+		    var mydata = {
+				VehicleType:
+					{
+						VehicleType:1
+					}
+			};
+			var mydata1 = {
+				VehicleType:
+					{
+						VehicleType:2
+					}
+			};
+			mydata = JSON.stringify(mydata);
+			mydata1 = JSON.stringify(mydata1);
+			var type1Data,type2Data
+			function success(thisdata) {
+				//window.choose_data=thisdata;
+				type1Data = thisdata
+				RetrieveMultipleBrandModel(mydata1,success1,error)
+				/*for (var i=0;i<thisdata.Equipments.length;i++) 
+				{		
+					if (thisdata.Equipments[i].VehicleType == 1) {
+						wajueji.push(thisdata.Equipments[i])
+					}else{
+						zhuangzaiji.push(thisdata.Equipments[i])
+					}
+				}*/
+			}
+			function success1(thisdata) {
+				type2Data=thisdata
+				console.log("type2Data")
+				console.log(type2Data)
+				selectCars()
+			}
+			function error(thisdata) {
+				console.log("error:")
+				console.log(thisdata)
+			}
+			
+			RetrieveMultipleBrandModel(mydata,success,error)
+		    function selectCars () {
+		    	var mhtml= 
+		    	'<div class="selectMyCarDiv">' +
+			    	'<button id="LoaderCar" class="selectdMyCarBtnClass selectMycarBtn selectMycarBtnLeft" style="margin-left: 30%;">挖掘机</button>' +
+			    	'<button id="excavatingCar" class="selectMycarBtn selectMycarBtnRight" style="margin-right: 30%;">装载机</button>' +
+		    	'</div>'
+		    	
+			    $('body').append(mhtml);
+			    $(".selectMyCarDiv > button").each(function() {
+		            	$(this).click(function(i,v) {
+		            		inBtnClick($(this))
+		            	})
+		           });
+		        $(".selectMyCarDiv > button").eq(0).click()
+		        //window.choose_data.root
+		        //window.choose_data.root_data
+		        function createList(thisdata,typeId) {
+		        	var thistype = typeId
+			        var html = '<div class="equipment-list">'+
+			            ' <div class="el-left">'+
+			            '   <ul>';
+			        $.each(thisdata.Brands,function(i,v){
+			            if(i==0){
+			                html+='<li class="hover-li">'+v.BrandName+'</li>';
+			            }else{
+			                html+=' <li>'+v.BrandName+'</li>';
+			            }
+			        });
+			        html+=  '       </ul>'+
+			            '   </div>'+
+			            '   <div class="el-right">'+
+			            '       <ul>';
+			        $.each(thisdata.Brands[0].Models,function(i,v){
+			            if(i==0){
+			                html+='<li class="hover-li" typeId='+thistype+' brandId='+thisdata.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+			            }else{
+			                html+=' <li typeId='+thistype+' brandId='+thisdata.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+			            }
+			        });
+			        html+=  '       </ul>'+
+			            '   </div>'+
+			            '</div>';
+			        var obj=$('.equipment-list');
+			        if(!obj[0]){
+			            $('body').append(html);
+			            obj=$('.equipment-list');
+			            $('.el-left').on('click',"li",function(){
+			                var index= $(this).index();
+			                $('.el-left li').removeClass('hover-li');
+			                $(this).addClass('hover-li');
+			                erji_fn(index,thisdata,thistype);
+			            })
+			            $('.el-right').on('click',"li",function(){
+			                $('.el-right li').removeClass('hover-li');
+			                $(this).addClass('hover-li');
+			                opt.callback($('.el-left .hover-li').html()+" "+$('.el-right .hover-li').html(),$('.el-right .hover-li').attr("brandId"),$('.el-right .hover-li').attr("modelId"),$('.el-right .hover-li').attr("typeId"));
+			                setTimeout(function() {
+			                	$(".equipment-list").remove();
+			                	$(".selectMyCarDiv").remove(); 
+			                	
+			                },500)
+			                 
+			            })
+			        }else{
+			            obj.show();
+			        }	
+		        }
+	        
+		        function inBtnClick(thisEvent){
+		        	var index = thisEvent.attr("id");
+			   		$(".selectMyCarDiv > button").each(function(i,v) {
+			   				$(this).removeClass("selectdMyCarBtnClass")
+			   			})
+			   		thisEvent.addClass("selectdMyCarBtnClass")
+			   		if ($(".equipment-list").length >　0) {
+			   			$(".equipment-list").remove();
+			   			if (index == "LoaderCar") {
+			   				createList(type1Data,1)
+			   			}else{
+			   				createList(type2Data,2)
+			   			}
+			   			
+			   		} else{
+			   			createList(type1Data,1)
+			   		}
+			   	}
+			   	
+		        function erji_fn(index,data,thistype){
+		            var html='';
+		            $.each(data.Brands[index].Models,function(i,v){
+		                if(i==0){
+		                    html+='<li class="hover-li" typeId='+thistype+' brandId='+data.Brands[index].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+		                }else{
+		                    html+=' <li typeId='+thistype+' brandId='+data.Brands[index].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
+		                }
+		            });
+		            $('.el-right ul').html(html);
+		        }
+		    }
 		}
-		function success1(thisdata) {
-			type2Data=thisdata
-			console.log("type2Data")
-			console.log(type2Data)
-			selectCars()
-		}
-		function error(thisdata) {
-			console.log("error:")
-			console.log(thisdata)
+	
+	$.check=function(thisEquipmentId) {
+		var equipmentData = 
+		    			{
+		       		"Equipment":
+							{
+							"EquipmentId":thisEquipmentId
+							}
+		       		}
+    		equipmentData = JSON.stringify(equipmentData)
+    		RetrieveSingleEquipment(equipmentData,checkSuc,checkErr)
+    		sessionStorage.setItem('currentEquipmentId',null)
+		
+		function checkSuc(data) {
+			console.log(data)
+			$('#shebei').val(data.BrandName + data.ModelName)
+			$('#shebei').unbind()
+			$('#shebei').attr("EquipmentId",data.EquipmentId)
+			var nowdate = data.PurchaseDate.split("-");
+			$("#buyData").val(nowdate[0]+"-"+nowdate[1])
+			$('#buyData').unbind()
+			$("#buyHour").val(data.BuyHours)
+			$('#buyHour').unbind()
+			$("#inputHour").val(data.RegistrationHours)
+			$('#inputHour').unbind()
+			showInfo(data.BuyHours,data.RegistrationHours)
+			if (data&&data.EquipmentDrivers&&data.EquipmentDrivers.length > 0) {
+	        		for (var i = 0; i < data.EquipmentDrivers.length; i++) {
+		        		inputDriverInfo(data.EquipmentDrivers[i].DriverName,data.EquipmentDrivers[i].DriverPhone,data.EquipmentDrivers[i].EquipmentDriverId)
+		        }
+	        }
+			doFuncAfterSubmit(data.EquipmentId)
 		}
 		
-		RetrieveMultipleBrandModel(mydata,success,error)
-	    function selectCars () {
-	    	var mhtml= 
-	    	'<div class="selectMyCarDiv">' +
-		    	'<button id="LoaderCar" class="selectdMyCarBtnClass selectMycarBtn selectMycarBtnLeft" style="margin-left: 30%;">挖掘机</button>' +
-		    	'<button id="excavatingCar" class="selectMycarBtn selectMycarBtnRight" style="margin-right: 30%;">装载机</button>' +
-	    	'</div>'
-	    	
-		    $('body').append(mhtml);
-		    $(".selectMyCarDiv > button").each(function() {
-	            	$(this).click(function(i,v) {
-	            		inBtnClick($(this))
-	            	})
-	           });
-	        $(".selectMyCarDiv > button").eq(0).click()
-	        //window.choose_data.root
-	        //window.choose_data.root_data
-	        function createList(thisdata,typeId) {
-	        	var thistype = typeId
-		        var html = '<div class="equipment-list">'+
-		            ' <div class="el-left">'+
-		            '   <ul>';
-		        $.each(thisdata.Brands,function(i,v){
-		            if(i==0){
-		                html+='<li class="hover-li">'+v.BrandName+'</li>';
-		            }else{
-		                html+=' <li>'+v.BrandName+'</li>';
-		            }
-		        });
-		        html+=  '       </ul>'+
-		            '   </div>'+
-		            '   <div class="el-right">'+
-		            '       <ul>';
-		        $.each(thisdata.Brands[0].Models,function(i,v){
-		            if(i==0){
-		                html+='<li class="hover-li" typeId='+thistype+' brandId='+thisdata.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
-		            }else{
-		                html+=' <li typeId='+thistype+' brandId='+thisdata.Brands[0].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
-		            }
-		        });
-		        html+=  '       </ul>'+
-		            '   </div>'+
-		            '</div>';
-		        var obj=$('.equipment-list');
-		        if(!obj[0]){
-		            $('body').append(html);
-		            obj=$('.equipment-list');
-		            $('.el-left').on('click',"li",function(){
-		                var index= $(this).index();
-		                $('.el-left li').removeClass('hover-li');
-		                $(this).addClass('hover-li');
-		                erji_fn(index,thisdata,thistype);
-		            })
-		            $('.el-right').on('click',"li",function(){
-		                $('.el-right li').removeClass('hover-li');
-		                $(this).addClass('hover-li');
-		                opt.callback($('.el-left .hover-li').html()+" "+$('.el-right .hover-li').html(),$('.el-right .hover-li').attr("brandId"),$('.el-right .hover-li').attr("modelId"),$('.el-right .hover-li').attr("typeId"));
-		                setTimeout(function() {
-		                	$(".equipment-list").remove();
-		                	$(".selectMyCarDiv").remove(); 
-		                	
-		                },500)
-		                 
-		            })
-		        }else{
-		            obj.show();
-		        }	
-	        }
-        
-	        function inBtnClick(thisEvent){
-	        	var index = thisEvent.attr("id");
-		   		$(".selectMyCarDiv > button").each(function(i,v) {
-		   				$(this).removeClass("selectdMyCarBtnClass")
-		   			})
-		   		thisEvent.addClass("selectdMyCarBtnClass")
-		   		if ($(".equipment-list").length >　0) {
-		   			$(".equipment-list").remove();
-		   			if (index == "LoaderCar") {
-		   				createList(type1Data,1)
-		   			}else{
-		   				createList(type2Data,2)
-		   			}
-		   			
-		   		} else{
-		   			createList(type1Data,1)
-		   		}
-		   	}
-		   	
-	        function erji_fn(index,data,thistype){
-	            var html='';
-	            $.each(data.Brands[index].Models,function(i,v){
-	                if(i==0){
-	                    html+='<li class="hover-li" typeId='+thistype+' brandId='+data.Brands[index].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
-	                }else{
-	                    html+=' <li typeId='+thistype+' brandId='+data.Brands[index].BrandId+' modelId='+v.ModelId+'>'+v.ModelName+'</li>';
-	                }
-	            });
-	            $('.el-right ul').html(html);
-	        }
-	    }
+		function checkErr (msg) {
+			console.log(msg)
+			alert("数据获取失败,请重试!")
+			window.location.href = "myCars.html"
+		}
 	}
-	
-	function showInfo(currentHours,totalHours){
-	    
-		var html = '<div class="thing">' +
-            '<div class="right">' +
-                '<div class="right-left">' +
-                    '<input type="text" id="currentHour" value="'+currentHours+'" class="put">' +
-                '</div>' + 
-                '<div class="clear">' + '</div>' +
-            '</div>' +
-            '<div class="left">当前小时数' + '</div>' +
-            '<div class="clear">' + '</div>' +
-        '</div>'+
-        '<div class="thing thing-last">' +
-            '<div class="right">' +
-                '<div class="right-left">' +
-                    '<input type="text" id="totalHour" value="'+totalHours+'" class="put">' +
-                '</div>' + 
-                '<div class="clear">' + '</div>' +
-            '</div>' +
-            '<div class="left">累计小时数' + '</div>' +
-            '<div class="clear">' + '</div>' +
-        '</div>';
-        $(".thing:last").removeClass("thing-last");
-        $(html).appendTo("#main1");
-	}
-	
-	$(".button button").click(function() {
-		submitCarInfo ()
-	})
 	
 	function submitCarInfo () {
 		
 		var buyhour = $("#buyHour").eq(0).val()
 		var buyData = $("#buyData").eq(0).val()
+		var inputHour = $("#inputHour").eq(0).val()
 		var brandId = $('#shebei').attr("brandId")
 	    	var modelId = $('#shebei').attr("modelId")
 	    	var typeId = $('#shebei').attr("typeId")
-	    	var thisWeiId = window.location.href.split("=")[1]
 		if (!typeId||!brandId||!modelId||!buyhour||!buyData) {
 			alert("信息不完整")
 			return
-		}else{
-			if (!$("#currentHour").eq(0).val()) {
-				showInfo(10000,3000)
-			}	
 		}
+		
 		sleep(0.5)
-		var currentHour = $("#currentHour").eq(0).val()
-		var totalhour = $("#totalHour").eq(0).val()
-		if (!typeId||!brandId||!modelId||!totalhour||!buyhour||!buyData||!currentHour) {
+//		var currentHour = $("#currentHour").eq(0).val()
+//		var totalhour = $("#totalHour").eq(0).val()
+		if (!typeId||!brandId||!modelId||!buyhour||!buyData) {
 			alert("信息不完整")
 			return
 		}
 		buyData=buyData.replace("/","-");
-		var myOpenId = sessionStorage.getItem('openID')
+		var myOpenId = sessionStorage.getItem('openID');
+//		var myOpenId = "o_3jVt-TNytKWeN_6UDnLhktknYo";
 		if (!myOpenId) {
 			alert("微信发生错误,请稍后再试.")
 			console.log("没有取到openID")
@@ -214,19 +222,36 @@ $(function(){
 						ModelId:modelId,
 						PurchaseDate:buyData,
 						BuyHours:buyhour,
-						RegistrationHours:totalhour
+						RegistrationHours:inputHour
 						}
 	       }
 	    submitData = JSON.stringify(submitData)
-	    function mysuccess(){
-	    	$("input").attr("readonly","readonly");
-	        $('#shebei').unbind()
-	        $(".button .msg").css("display","none");
-	        $(".button button").text("绑定司机")
-	        $(".button button").unbind()
-	        $(".button button").click(function() {
-				bindDrivers()
-			})
+	    function mysuccess(data){
+		    	if (data) {
+		    		var equipmentData = 
+		    			{
+		       		"Equipment":
+							{
+							"EquipmentId":data.EquipmentId
+							}
+		       	}
+		    		$('#shebei').attr("EquipmentId",data.EquipmentId)
+		    		equipmentData = JSON.stringify(equipmentData)
+		    		RetrieveSingleEquipment(equipmentData,infoSuc,infoErr)
+		    		
+		    		function infoSuc (data) {
+		    			console.log(data)
+		    			if (!$("#currentHour").eq(0).val()) {
+						showInfo(data.BuyHours,data.RegistrationHours)
+					}
+		    			doFuncAfterSubmit(data.EquipmentId)
+		    		}
+		    		
+		    		function infoErr () {
+		    			doFuncAfterSubmit()
+		    		}
+		    		
+		    	}
 	    }
 	    
 	    function myerror(){
@@ -234,6 +259,46 @@ $(function(){
 	    }
 	    
 	    CreateEquipment(submitData,mysuccess,myerror)
+	}
+	
+	function doFuncAfterSubmit(EquipmentId) {
+		$("input").attr("readonly","readonly");
+        $('#shebei').unbind()
+        $(".button .msg").css("display","none");
+        $("#myDelectBtn").css("display","block");
+        if (EquipmentId) {
+        		$("#myDelectBtn").click(function() {
+        			var msg = confirm("确定要删除这台设备吗?")
+        			if (msg) {
+        				removeEquipment(EquipmentId)
+        			}
+        		})
+        }
+        $(".button button").text("绑定司机")
+        $(".button button").unbind()
+        $(".button button").click(function() {
+			bindDrivers()
+		})
+	}
+	
+	function removeEquipment(EquipmentId) {
+		var thisdata = 
+		{
+			"Equipment":
+			{
+			"EquipmentId":EquipmentId
+			}
+		}
+		thisdata = JSON.stringify(thisdata)
+		function suc () {
+			window.location.href = "myCars.html"
+		}
+		
+		function err () {
+			alert("删除失败")
+		}
+		
+		DisableEquipment(thisdata,suc,err)
 	}
 	
 	function bindDrivers() {
@@ -267,6 +332,36 @@ $(function(){
 		
 	}
 	
+	function showInfo(currentHours,totalHours){
+	    
+		var html = '<div class="thing">' +
+            '<div class="right">' +
+                '<div class="right-left">' +
+                    '<input type="text" id="currentHour" value="'+currentHours+'" class="put">' +
+                '</div>' + 
+                '<div class="clear">' + '</div>' +
+            '</div>' +
+            '<div class="left">当前小时数' + '</div>' +
+            '<div class="clear">' + '</div>' +
+        '</div>'+
+        '<div class="thing thing-last">' +
+            '<div class="right">' +
+                '<div class="right-left">' +
+                    '<input type="text" id="totalHour" value="'+totalHours+'" class="put">' +
+                '</div>' + 
+                '<div class="clear">' + '</div>' +
+            '</div>' +
+            '<div class="left">累计服务小时数' + '</div>' +
+            '<div class="clear">' + '</div>' +
+        '</div>';
+        $(".thing:last").removeClass("thing-last");
+        $(html).appendTo("#main1");
+	}
+	
+	$(".button button").click(function() {
+		submitCarInfo ()
+	})
+	
 	function findDriverByPhone() {
 		var phoneNum = $(".selectDriversDiv .personalInfoTitleLeft").attr("value")
 		var info = 
@@ -285,7 +380,7 @@ $(function(){
 				var name = thedata.Drivers[0].ContactName
 				var phoneNum = thedata.Drivers[0].MobilePhone
 				var ContactId = thedata.Drivers[0].ContactId
-				var EquipmentId = $('#shebei').attr("modelId")
+				var EquipmentId = $('#shebei').attr("EquipmentId")
 				$(".button #bindDriver").click(function(){
 					bindDriverToServer(EquipmentId,ContactId,name,phoneNum)
 				})
@@ -310,8 +405,13 @@ $(function(){
 	function bindDriverToServer(EquipmentId,ContactId,name,phoneNum) {
 		var startdate = $("#driverStartDate").val();
 		var workTime = $("#driverWorkTime").val();
+		console.log(EquipmentId + "--" + ContactId + "--" + startdate + "--" + workTime + "--" )
 		if (!EquipmentId||!ContactId||!startdate||!workTime) {
-			alert("信息不完整")
+			if (!EquipmentId||!ContactId) {
+				alert("网络原因导致信息获取失败,请回到首页并重试.")
+			}else{
+				alert("信息不完整")
+			}
 			return
 		}
 		startdate=startdate.replace("/","-");
@@ -326,18 +426,9 @@ $(function(){
 		}
 		driverInfo = JSON.stringify(driverInfo)
 		CreateEquipmentDriver(driverInfo,success,myerror)
-		function success () {
-			if (!$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text()){
-				$("#showDriver").css("display","block")
-				$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text(name)
-				$("#showDriver .bindInfo .bindLeftInfo #binDPhone").eq(0).text(phoneNum)
-				freeBindEvent ()
-			}else{
-				$("#showDriver .bindInfo").eq(0).clone().appendTo($("#showDriver"))
-				$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text(name)
-				$("#showDriver .bindInfo .bindLeftInfo #binDPhone").eq(0).text(phoneNum)
-				freeBindEvent()
-			}
+		function success (data) {
+			console.log(data + "--------------------司机绑定返回")
+			inputDriverInfo(name,phoneNum,ContactId)
 			$(".driversDiv").remove();
 		}
 		
@@ -346,16 +437,56 @@ $(function(){
 		}
 	}
 	
+	function inputDriverInfo (name,phoneNum,ContactId) {
+			if (!$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text()){
+				$("#showDriver").css("display","block")
+				$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text(name)
+				$("#showDriver .bindInfo .bindLeftInfo #binDPhone").eq(0).text(phoneNum)
+				$("#showDriver .bindInfo .bindLeftInfo #binDPhone").eq(0).attr("driverId",ContactId)
+				freeBindEvent ()
+			}else{
+				$("#showDriver .bindInfo").eq(0).clone().appendTo($("#showDriver"))
+				$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text(name)
+				$("#showDriver .bindInfo .bindLeftInfo #binDPhone").eq(0).text(phoneNum)
+				$("#showDriver .bindInfo").eq(0).attr("driverId",ContactId)
+				$("#showDriver .bindInfo .bindLeftInfo #binDPhone").eq(0).attr("driverId",ContactId)
+				freeBindEvent()
+			}
+	}
+	
 	function freeBindEvent () {
 		$(".freeBind").unbind()
 		$(".freeBind").each(function() {
 			$(this).click(function() {
-				if ($(".freeBind").length <= 1) {
-					$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text("")
-					$("#showDriver").css("display","none")
-				}else{
-					$(this).parent(".bindInfo").remove()
-				}
+				var msg = confirm("确定要解绑吗?")
+        			if (msg) {
+	        			var contactId = $(this).parent(".bindInfo").attr("driverId")
+					var unbindData = 
+					{
+					"EquipmentDriver":
+						{
+						"EquipmentDriverId":contactId
+						}
+					}
+					unbindData = JSON.stringify(unbindData)
+					UnboundEquipmentDriver(unbindData,ubondSec,uBondErr)
+					function ubondSec (data) {
+						alert("删除成功")
+					}
+					
+					function uBondErr () {
+						alert("删除失败")
+					}
+					
+					if ($(".freeBind").length <= 1) {
+						$("#showDriver .bindInfo .bindLeftInfo #binDName").eq(0).text("")
+						$("#showDriver").css("display","none")
+					}else{
+						$(this).parent(".bindInfo").remove()
+					}
+        			}
+				
+				
 			})
 		})
 	}

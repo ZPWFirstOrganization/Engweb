@@ -7,6 +7,31 @@ $(function(){
 			WeiXinOpenID:myOpenId
 			}
 		}
+	
+	var initId = data.EquipmentsQuery.WeiXinOpenID
+	data = JSON.stringify(data)
+	RetrieveMultipleEquipments(data,success,error)
+	
+	function removeEquipment (EquipmentId,thisEle) {
+		var thisdata = 
+		{
+			"Equipment":
+			{
+			"EquipmentId":EquipmentId
+			}
+		}
+		thisdata = JSON.stringify(thisdata)
+		function suc () {
+			thisEle.parents("li:first").css("display","none")
+		}
+		
+		function err () {
+			alert("删除失败")
+		}
+		
+		DisableEquipment(thisdata,suc,err)
+	}
+	
 	function success (mydata) {
 		console.log(mydata)
 		if (!mydata.Equipments) {
@@ -32,29 +57,6 @@ $(function(){
 	
 	function error (mydata) {
 		
-	}
-	var initId = data.EquipmentsQuery.WeiXinOpenID
-	data = JSON.stringify(data)
-	RetrieveMultipleEquipments(data,success,error)
-	
-	function removeEquipment (EquipmentId,thisEle) {
-		var thisdata = 
-		{
-			"Equipment":
-			{
-			"EquipmentId":EquipmentId
-			}
-		}
-		thisdata = JSON.stringify(thisdata)
-		function suc () {
-			thisEle.parents("li:first").css("display","none")
-		}
-		
-		function err () {
-			alert("删除失败")
-		}
-		
-		DisableEquipment(thisdata,suc,err)
 	}
 	
 	$("#cars").click(function() {
