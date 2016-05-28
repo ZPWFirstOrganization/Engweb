@@ -204,6 +204,10 @@ $(function(){
 			alert("信息不完整")
 			return
 		}
+		if (inputHour<buyhour) {
+			alert("登记平台小时数必须大于等于购入小时数.")
+			return
+		}
 		buyData=buyData.replace("/","-");
 		var myOpenId = sessionStorage.getItem('openID');
 //		var myOpenId = "o_3jVt-TNytKWeN_6UDnLhktknYo";
