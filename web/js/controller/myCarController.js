@@ -42,25 +42,25 @@ $(function(){
 	
 	function getOpenId() {
 //		sessionStorage.setItem('openID',"o_3jVt-TNytKWeN_6UDnLhktknYo")//用于本地测试
-		sessionStorage.setItem('openID',"o_3jVt5mzq5Osb_nNylZlzsvw9eE")
-		init()//用于本地测试
+//		sessionStorage.setItem('openID',"o_3jVt5mzq5Osb_nNylZlzsvw9eE")
+//		init()//用于本地测试
 
-//		if(!sessionStorage.getItem('openID')){
-//			GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
-//				if(res.UserInfo.openid){
-//					sessionStorage.setItem('openID',res.UserInfo.openid)
-//					init()
-//				}
-//			},function(res){
-//				// sessionStorage.setItem('openID',res.UserInfo.openid)
-//				// init(res.UserInfo.openid)
-//				sessionStorage.setItem('openID',null)
-//				init()
-//				alert("微信openId获取失败，请退出重试")
-//			})
-//		}else{
-//			init()		
-//		}
+		if(!sessionStorage.getItem('openID')){
+			GetWeiXinUserInfo('{"WeiXinCode":{"Code":'+$.getUrlParam('code')+'}}',function(res){
+				if(res.UserInfo.openid){
+					sessionStorage.setItem('openID',res.UserInfo.openid)
+					init()
+				}
+			},function(res){
+				// sessionStorage.setItem('openID',res.UserInfo.openid)
+				// init(res.UserInfo.openid)
+				sessionStorage.setItem('openID',null)
+				init()
+				alert("微信openId获取失败，请退出重试")
+			})
+		}else{
+			init()		
+		}
 	}
 	
 	

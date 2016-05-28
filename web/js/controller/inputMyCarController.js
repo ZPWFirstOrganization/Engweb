@@ -227,6 +227,11 @@ $(function(){
 	       }
 	    submitData = JSON.stringify(submitData)
 	    function mysuccess(data){
+			console.log("%o",data);
+			if (data&&data.ReturnStatus == "E") {
+				alert(data.ReturnValue)
+				return
+			}
 		    	if (data) {
 		    		var equipmentData = 
 		    			{
@@ -236,14 +241,14 @@ $(function(){
 							}
 		       	}
 		    		$('#shebei').attr("EquipmentId",data.EquipmentId)
+		    		
 		    		equipmentData = JSON.stringify(equipmentData)
 		    		RetrieveSingleEquipment(equipmentData,infoSuc,infoErr)
 		    		
 		    		function infoSuc (data) {
-		    			console.log(data)
 		    			if (!$("#currentHour").eq(0).val()) {
-						showInfo(data.BuyHours,data.RegistrationHours)
-					}
+							showInfo(data.BuyHours,data.RegistrationHours)
+						}
 		    			doFuncAfterSubmit(data.EquipmentId)
 		    		}
 		    		
