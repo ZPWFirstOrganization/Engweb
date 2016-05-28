@@ -302,7 +302,7 @@ $(function(){
 	function bindDrivers() {
 		var html = '<div class="driversDiv" >' + 
 		'<div class="selectDriversDiv">' +
-			'<input type="number" style＝"-webkit-appearance：none" class="personalInfoTitleLeft SMSInput" value="请输入手机号查询"/>' +
+			'<input type="tel" style＝"-webkit-appearance：none" class="personalInfoTitleLeft SMSInput" value="请输入手机号查询"/>' +
 			'<button class="SMSclick">查询</button>'+
 		'</div>' +
 		'<div class="button" style="position:absolute;">' + 
@@ -536,7 +536,7 @@ $(function(){
 		'<div class="thing">' +
             '<div class="right" style="margin-right:5px;">' +
                 '<div class="right-left">' +
-                    '<input type="date" id="driverStartDate" value="'+startDate+'" class="put">' +
+                    '<input type="date" id="driverStartDate" value="'+startDate+'" style="margin-right:20px;" class="put">' +
                 '</div>' + 
                 '<div class="clear">' + '</div>' +
             '</div>' +
@@ -546,7 +546,7 @@ $(function(){
         '<div class="thing thing-last">' +
             '<div class="right">' +
                 '<div class="right-left">' +
-                    '<input type="number" id="driverWorkTime" value="'+workTime+'" class="put">' +
+                    '<input type="tel" id="driverWorkTime" value="'+workTime+'" class="put">' +
                 '</div>' + 
                 '<div class="clear">' + '</div>' +
             '</div>' +
