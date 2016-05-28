@@ -160,6 +160,7 @@ $(function(){
 			console.log(data)
 			$('#shebei').val(data.BrandName + data.ModelName)
 			$('#shebei').unbind()
+			$('#shebei').attr("EquipmentId",data.EquipmentId)
 			var nowdate = data.PurchaseDate.split("-");
 			$("#buyData").val(nowdate[0]+"-"+nowdate[1])
 			$('#buyData').unbind()
@@ -233,7 +234,8 @@ $(function(){
 							{
 							"EquipmentId":data.EquipmentId
 							}
-		       		}
+		       	}
+		    		$('#shebei').attr("EquipmentId",data.EquipmentId)
 		    		equipmentData = JSON.stringify(equipmentData)
 		    		RetrieveSingleEquipment(equipmentData,infoSuc,infoErr)
 		    		
@@ -378,7 +380,7 @@ $(function(){
 				var name = thedata.Drivers[0].ContactName
 				var phoneNum = thedata.Drivers[0].MobilePhone
 				var ContactId = thedata.Drivers[0].ContactId
-				var EquipmentId = $('#shebei').attr("modelId")
+				var EquipmentId = $('#shebei').attr("EquipmentId")
 				$(".button #bindDriver").click(function(){
 					bindDriverToServer(EquipmentId,ContactId,name,phoneNum)
 				})
@@ -403,9 +405,13 @@ $(function(){
 	function bindDriverToServer(EquipmentId,ContactId,name,phoneNum) {
 		var startdate = $("#driverStartDate").val();
 		var workTime = $("#driverWorkTime").val();
+		console.log(EquipmentId + "--" + ContactId + "--" + startdate + "--" + workTime + "--" )
 		if (!EquipmentId||!ContactId||!startdate||!workTime) {
-			console.log(EquipmentId + "--" + ContactId + "--" + startdate + "--" + workTime + "--" )
-			alert("信息不完整")
+			if (!EquipmentId||!ContactId) {
+				alert("网络原因导致信息获取失败,请回到首页并重试.")
+			}else{
+				alert("信息不完整")
+			}
 			return
 		}
 		startdate=startdate.replace("/","-");
@@ -420,7 +426,8 @@ $(function(){
 		}
 		driverInfo = JSON.stringify(driverInfo)
 		CreateEquipmentDriver(driverInfo,success,myerror)
-		function success () {
+		function success (data) {
+			console.log(data + "--------------------司机绑定返回")
 			inputDriverInfo(name,phoneNum,ContactId)
 			$(".driversDiv").remove();
 		}

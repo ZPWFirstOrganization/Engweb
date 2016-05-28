@@ -147,7 +147,7 @@
     function initLayout(data){
         var map = []
         RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+sessionStorage.getItem('openID')+'"}}',
-        // RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+10001+'"}}',
+        // RetrieveSingleDriver('{"DriverQuery":{"WeiXinOpenID":"'+"o_3jVt8gsb-zjTYNlMwDfQr57hHk"+'"}}',
         function(res){
             // console.log(res)
             // alert(JSON.stringify(res))
@@ -180,8 +180,8 @@
             }
             $.each(person.EquipmentWorks, function(i,v){
                 var html = "<tr>";
-                html += "<td>"+ v.WorkDate.substring(0,7)+"</td>";
-                html += "<td>"+ v.BrandName+v.ModelName+"</td>";
+                html += "<td>"+ v.WorkDate.substring(5,v.WorkDate.length)+"</td>";
+                html += "<td style='text-align: left;'>"+ v.BrandName+v.ModelName+"</td>";
                 html += "<td>"+ v.WorkStatusName+"</td>";
                 html += "<td>"+ v.WorkHours+"</td>";
                 
@@ -232,13 +232,13 @@
         // initLayout()
     })
     function recordDay(){
-        if(!isRegusted){
-            alert("请先录入个人资料")
-            return
-        }else if(!person.VehicleType){
-            alert("请先绑定操作设备")
-            return
-        }
+        // if(!isRegusted){
+        //     alert("请先录入个人资料")
+        //     return
+        // }else if(!person.VehicleType){
+        //     alert("请先绑定操作设备")
+        //     return
+        // }
         self.location='eachday.html?VehicleType=' + person.VehicleType + "&driverId=" + person.DriverId;
     }
 </script>

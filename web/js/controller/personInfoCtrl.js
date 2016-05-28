@@ -92,7 +92,7 @@ function initLayout(){
 		},100)
 	});
 	RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ sessionStorage.getItem('openID') +'"}}',
-	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ 10009 +'"}}',
+	// RetrieveSingleContact('{"Contact":{"WeiXinOpenID":"'+ "o_3jVt8gsb-zjTYNlMwDfQr57hHk" +'"}}',
 	function(res){
 		// alert(JSON.stringify(res))
 		console.log("查询联系人:",res);

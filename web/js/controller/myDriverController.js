@@ -24,9 +24,9 @@ $(function(){
 			$('ul li:first-child .driverInput').eq(1).text(data.EquipmentDrivers[i].ServiceHours);		
 			$("ul li:first-child").click({mydata:data.EquipmentDrivers[i]},function(event) {
 				//alert(event.data.mydata.DriverId)
-				var a = confirm("确定要拨打"+mydata.DriverName+"的电话吗")	
+				var a = confirm("确定要拨打"+event.data.mydata.DriverName+"的电话吗")	
 				if (a) {
-					window.location.href = 'tel://' + mydata.MobilePhone;
+					window.location.href = 'tel://' + event.data.mydata.MobilePhone;
 				}
 				
 			})

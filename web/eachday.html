@@ -13,11 +13,11 @@
 <body>
     <div class="content">
         <div class="thing">
-            <div class="right" style="margin-right: 10px">
+            <div class="right">
                 <!--                 <div class="right-right">
                                     <i class="fa fa-angle-right"></i>
                                 </div> -->
-                <input id="dateTnput" type="date" class="right-left" value="1970-01-01" style="text-align: right;">
+                <input id="dateTnput" type="date" class="right-left" value="1970-01-01" style="padding-right: 0">
                 <!-- 1970-01-01 -->
                 </input>
                 <div class="clear"></div>
@@ -35,6 +35,27 @@
                 <div class="clear"></div>
             </div>
             <div class="left">操作设备</div>
+            <div class="clear"></div>
+        </div>
+         <div class="thing">
+            <div class="right">
+<!--                 <div class="right-right">
+                    <i class="fa fa-angle-right"></i>
+                </div> -->
+                <select class="right-left" id="statusSelect">
+                    <option value="1" selected>正常作业</option>
+                    <option value="2">有维修</option>
+                    <option value="3">有保养</option>
+                    <option value="4">天气影响</option>
+                    <option value="5">设备故障</option>
+                    <option value="6">工程事故</option>
+                    <option value="7">工程方停工</option>
+                    <option value="8">我方要停工</option>
+                    <option value="9">其他</option>
+                </select>
+                <div class="clear"></div>
+            </div>
+            <div class="left">状态</div>
             <div class="clear"></div>
         </div>
         <div class="item">
@@ -169,17 +190,18 @@
     })
     function initLayout(){
         RetrieveMultipleDriverEquipments('{"DriverEquipmentsQuery":{"WeiXinOpenID":"'+sessionStorage.getItem('openID')+'"}}',
-        // RetrieveMultipleDriverEquipments('{"DriverEquipmentsQuery":{"WeiXinOpenID":"' + 10001 +'"}}',
+        // RetrieveMultipleDriverEquipments('{"DriverEquipmentsQuery":{"WeiXinOpenID":"' + "o_3jVt8gsb-zjTYNlMwDfQr57hHk" +'"}}',
         function(res){
+            // alert(JSON.stringify(res))
             var equipOption = "";
-            $.each(res.EquipmentWorks, function(i,v){
+            $.each(res.DriverEquipments, function(i,v){
                 equipOption += '<option value="' + v.EquipmentId +'"'+ ((i==1)?'selected':'') + 'equiptype="'+v.VehicleType+'">'+v.BrandName+v.ModelName+'</option>';
             })
             $("#equipSelect").append(equipOption);
             // currentEquipType = res.EquipmentWorks[0].VehicleType;
-            $($("ul")[res.EquipmentWorks[0].VehicleType-1]).css({"display":"block"});
+            $($("ul")[res.DriverEquipments[0].VehicleType-1]).css({"display":"block"});
         },function(res){
-
+            alert(JSON.stringify(res))
         })
         $("#dateTnput").val((new Date()).format("isoDate"))
         var option = '<option value="0" selected>0</option>  <option value="1">1</option>                        <option value="2">2</option>                        <option value="3">3</option>                        <option value="4">4</option>                        <option value="5">5</option>                        <option value="6">6</option>                        <option value="7">7</option>                        <option value="8">8</option>                        <option value="9">9</option>                        <option value="10">10</option>                        <option value="11">11</option>                        <option value="12">12</option>                        <option value="13">13</option>                        <option value="14">14</option>                        <option value="15">15</option>                        <option value="16">16</option>'
@@ -191,9 +213,9 @@
     function seletChange(e,index) {
         var sum = 0;
         if (e.getAttribute("roletype") == 1) {
-            for (var i = 0; i <= 9; i++) {
+            for (var i = 1; i <= 10; i++) {
                 sum += parseInt($("#select1-"+i).val());
-                subData[map1[i]] = parseInt($("#select1-"+i).val());
+                subData[map1[i-1]] = parseInt($("#select1-"+i).val());
             }
             if(sum > 16){
                 alert("总小时数超过16，请重新输入");
@@ -202,9 +224,9 @@
                 return
             }
         } else {
-            for (var i = 0; i <= 3; i++) {
+            for (var i = 1; i <= 4; i++) {
                 sum += parseInt($("#select2-"+i).val());
-                subData[map2[i]] = parseInt($("#select2-"+i).val());
+                subData[map2[i-1]] = parseInt($("#select2-"+i).val());
             }
             if(sum > 16){
                 alert("总小时数超过16，请重新输入");
@@ -220,18 +242,22 @@
         console.log(oldValue)
     }
     function bundleData(){
-        subData.DriverId = $.getUrlParam("driverId");
+        subData.WeiXinOpenID = sessionStorage.getItem('openID');
         subData.EquipmentId = $("#equipSelect").val();
         subData.WorkDate = $("#dateTnput").val();
         subData.WorkHours = parseInt($("#hours").text());
+        subData.EquipmentWorkStatus = $("#statusSelect").val();
     }
     function submit(){
         bundleData();
+        // alert(JSON.stringify(subData))
         $("body").showLoading();
-        CreateEquipmentDriverWork('{"EquipmentDriverWork":{'+JSON.stringify(subData)+'}}',function(res){
+        CreateEquipmentDriverWork('{"EquipmentDriverWork":'+JSON.stringify(subData)+'}',function(res){
+            alert(JSON.stringify(res))
             $("body").hideLoading();
             self.location='IsDriver.html';
         },function(res){
+            alert(JSON.stringify(res))
             $("body").hideLoading();
             alert("网络异常，请稍后再试")
         })
