@@ -168,7 +168,7 @@ $(function(){
 			$('#buyHour').unbind()
 			$("#inputHour").val(data.RegistrationHours)
 			$('#inputHour').unbind()
-			showInfo(data.BuyHours,data.RegistrationHours)
+			showInfo(data.CurrentHours,data.ServiceHours)
 			if (data&&data.EquipmentDrivers&&data.EquipmentDrivers.length > 0) {
 	        		for (var i = 0; i < data.EquipmentDrivers.length; i++) {
 		        		inputDriverInfo(data.EquipmentDrivers[i].DriverName,data.EquipmentDrivers[i].DriverPhone,data.EquipmentDrivers[i].EquipmentDriverId)
@@ -226,8 +226,9 @@ $(function(){
 						}
 	       }
 	    submitData = JSON.stringify(submitData)
+	    console.log(submitData + "--------------------submitData")
 	    function mysuccess(data){
-			console.log("%o",data);
+//			console.log("%o",data);
 			if (data&&data.ReturnStatus == "E") {
 				alert(data.ReturnValue)
 				return
@@ -246,8 +247,9 @@ $(function(){
 		    		RetrieveSingleEquipment(equipmentData,infoSuc,infoErr)
 		    		
 		    		function infoSuc (data) {
+		    			console.log("%o",data)
 		    			if (!$("#currentHour").eq(0).val()) {
-							showInfo(data.BuyHours,data.RegistrationHours)
+							showInfo(data.CurrentHours,data.ServiceHours)
 						}
 		    			doFuncAfterSubmit(data.EquipmentId)
 		    		}
@@ -338,7 +340,12 @@ $(function(){
 	}
 	
 	function showInfo(currentHours,totalHours){
-	    
+	    if (!currentHours||currentHours=="") {
+	    	currentHours = 0
+	    }
+	    if (!totalHours||totalHours=="") {
+	    	totalHours = 0
+	    }
 		var html = '<div class="thing">' +
             '<div class="right">' +
                 '<div class="right-left">' +
