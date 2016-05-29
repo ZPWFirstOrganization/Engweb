@@ -251,6 +251,10 @@ $(function(){
 		    		RetrieveSingleEquipment(equipmentData,infoSuc,infoErr)
 		    		
 		    		function infoSuc (data) {
+		    			if (data.ReturnStatus != "S") {
+		    				alert(data.ReturnValue)
+		    				return
+		    			}
 		    			console.log("%o",data)
 		    			if (!$("#currentHour").eq(0).val()) {
 							showInfo(data.CurrentHours,data.ServiceHours)
@@ -441,6 +445,7 @@ $(function(){
 				}
 		}
 		driverInfo = JSON.stringify(driverInfo)
+		console.log("绑定司机信息------" + driverInfo)
 		CreateEquipmentDriver(driverInfo,success,myerror)
 		function success (data) {
 			console.log(data + "--------------------司机绑定返回")
@@ -476,7 +481,7 @@ $(function(){
 			$(this).click(function() {
 				var msg = confirm("确定要解绑吗?")
         			if (msg) {
-	        			var contactId = $(this).parent(".bindInfo").attr("driverId")
+	        			var contactId = $("#binDPhone").attr("driverId")
 					var unbindData = 
 					{
 					"EquipmentDriver":
@@ -485,9 +490,15 @@ $(function(){
 						}
 					}
 					unbindData = JSON.stringify(unbindData)
+					console.log("解绑司机信息-------" + unbindData)
 					UnboundEquipmentDriver(unbindData,ubondSec,uBondErr)
 					function ubondSec (data) {
-						alert("删除成功")
+						if (data.ReturnStatus == "E") {
+							alert(data.ReturnValue)
+						}else{
+							alert("删除成功")
+						}
+						
 					}
 					
 					function uBondErr () {
@@ -532,7 +543,7 @@ $(function(){
 		var startDate = myDate.toLocaleDateString()
 		startDate = startDate.replace(/\//g,"-")
 		startDate = startDate.replace(/-/,"-0")
-		var workTime = 0;
+		var workTime = "";
 		var html1 = '<div id="personalInfo" class="mainDriver">' +
 		'<div class="thing">' +
             '<div class="right">' +
